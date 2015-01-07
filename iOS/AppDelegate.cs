@@ -6,6 +6,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
 using Xamarin.Forms;
+using MonoTouch.HealthKit;
 
 namespace HealthKitServer.iOS
 {
@@ -17,12 +18,11 @@ namespace HealthKitServer.iOS
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			Forms.Init ();
-			var hkaccess = new HealtKitAccess (); 
+			var root = new CompositionRoot (); 
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
+
 			window.RootViewController = App.GetMainPage ().CreateViewController ();
 			window.MakeKeyAndVisible ();
-			
 			return true;
 		}
 	}
