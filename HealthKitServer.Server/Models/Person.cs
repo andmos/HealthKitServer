@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HealthKitServer.iOS
+namespace HealthKitServer.Server
 {
 	public class Person
 	{

@@ -49,4 +49,11 @@
     <Folder Include="Models\" />
     <Folder Include="Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataLoader.cs" />
+    <Compile Include="Services\IHealthInfoDataStorage.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\DistanceReading.cs" />
+    <Compile Include="Services\HealthInfoDataCache.cs" />
+  </ItemGroup>
 </Project>
