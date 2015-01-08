@@ -1,7 +1,7 @@
 ﻿using System;
 using Topshelf;
 
-namespace HealthKitServer.Server
+namespace HealthKitServer.Host
 {
 	public class Program
 	{

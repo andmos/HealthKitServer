@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using Nancy.Hosting.Self;
-namespace HealthKitServer.Server
+
+namespace HealthKitServer.Host
 {
 	public class HealthKitServerSelfHost
 	{
@@ -11,6 +12,7 @@ namespace HealthKitServer.Server
 
 			public void Start()
 			{
+			var compositionRoot = new CompositionRoot (); 
 				m_nancyHost = new NancyHost(new System.Uri("http://localhost:5000"));
 				m_nancyHost.Start();
 

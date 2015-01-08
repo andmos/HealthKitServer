@@ -21,7 +21,17 @@ namespace HealthKitServer.Server
 
 		public void AddOrUpdatePersonHealthInfoToStorage(Person person)
 		{
+			if (person.Id == null) 
+			{
+				person.Id = m_storedHealthInfo.Count + 1; 	
+			}
 			m_storedHealthInfo.AddOrUpdate(person.Id, person, (id, oldPersonHealthInfo) => person);
+		}
+
+		public Person GetPatientHealthInfo(int id)
+		{
+			Person personFromCache;
+			return m_storedHealthInfo.TryGetValue (id, out personFromCache) ? personFromCache : new Person(); 
 		}
 
 	}
