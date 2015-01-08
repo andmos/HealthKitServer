@@ -26,8 +26,6 @@ namespace HealthKitServer.Host
 
 			Get["/api/v1/getPatient"] = parameters => 
 			{
-
-				Container.Singleton<IHealthInfoDataStorage>().AddOrUpdatePersonHealthInfoToStorage(person);
 				var id = this.Request.Query["id"];
 				int number; 
 				if(int.TryParse(id, out number))
