@@ -87,6 +87,6 @@ Global
 		{C128987B-D91C-40F3-90A6-A2C416B5358E}.Release|iPhoneSimulator.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = HealthKitServer.Host\HealthKitServer.Host.csproj
+		StartupItem = iOS\HealthKitServer.iOS.csproj
 	EndGlobalSection
 EndGlobal

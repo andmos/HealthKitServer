@@ -7,6 +7,8 @@ namespace HealthKitServer
 		void SetUpPermissions();
 		void GetTotalSteps();
 		void GetTotalLengthWalked(); 
+		void GetTotalFlights();
+
 	}
 }
 

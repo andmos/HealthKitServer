@@ -15,6 +15,8 @@ namespace HealthKitServer
 			m_healthKitAccess.SetUpPermissions (); 
 			m_healthKitAccess.GetTotalSteps ();
 			m_healthKitAccess.GetTotalLengthWalked ();
+			m_healthKitAccess.GetTotalFlights ();
+
 		}
 
 		public string TotalSteps
