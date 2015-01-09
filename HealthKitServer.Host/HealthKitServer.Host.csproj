@@ -29,7 +29,6 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="HealthKitServerModule.cs" />
     <Compile Include="HealthKitServerSelfHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="CompositionRoot.cs" />

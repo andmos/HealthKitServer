@@ -41,6 +41,10 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System" />
+    <Reference Include="Nancy">
+      <HintPath>..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -53,6 +57,7 @@
     <Compile Include="DataLoader.cs" />
     <Compile Include="Services\IHealthInfoDataStorage.cs" />
     <Compile Include="Services\HealthInfoDataCache.cs" />
+    <Compile Include="Services\HealthKitServerModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HealthKitServer\HealthKitServer.csproj">
