@@ -1,0 +1,4 @@
+#! /bin/bash
+
+sudo docker build -t andmos/healthkitserver_solr .
+sudo docker run -p 8983:8983 -it andmos/healthkitserver_solr
