@@ -12,6 +12,8 @@ Resource.designer.cs
 *.user
 *.sln.docstates
 
+.vagrant
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

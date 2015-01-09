@@ -1,5 +1,6 @@
 ﻿using System;
 using HealthKitServer.Server;
+using System.Configuration;
 
 namespace HealthKitServer.Host
 {
@@ -7,8 +8,14 @@ namespace HealthKitServer.Host
 	{
 		public CompositionRoot ()
 		{
+
 			var container = Container.Instance = new SimpleContainer ();
-			container.RegisterSingleton<IHealthInfoDataStorage>(new HealthInfoDataCache());
+
+			var dataStorage = ConfigurationManager.AppSettings["DataStorage"];
+			if(dataStorage.ToLower().Equals("cache"))
+			{
+				container.RegisterSingleton<IHealthInfoDataStorage>(new HealthInfoDataCache());
+			}
 		}
 	}
 }

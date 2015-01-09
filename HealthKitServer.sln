@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthKitServer.Server", "H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthKitServer.Host", "HealthKitServer.Host\HealthKitServer.Host.csproj", "{C128987B-D91C-40F3-90A6-A2C416B5358E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHealthRecordServer.Console", "TestHealthRecordServer.Console\TestHealthRecordServer.Console.csproj", "{3661DE74-568B-44B6-9F15-0039CFAC1812}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,22 @@ Global
 		{270F4FB6-E9EF-44A5-A1B5-58334F0AA195}.Release|iPhone.Build.0 = Release|Any CPU
 		{270F4FB6-E9EF-44A5-A1B5-58334F0AA195}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{270F4FB6-E9EF-44A5-A1B5-58334F0AA195}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Ad-Hoc|iPhone.ActiveCfg = Debug|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Ad-Hoc|iPhone.Build.0 = Debug|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.AppStore|iPhone.ActiveCfg = Debug|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.AppStore|iPhone.Build.0 = Debug|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Debug|Any CPU.ActiveCfg = Debug|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Debug|Any CPU.Build.0 = Debug|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Debug|iPhone.Build.0 = Debug|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Debug|iPhoneSimulator.Build.0 = Debug|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Release|Any CPU.Build.0 = Release|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Release|iPhone.ActiveCfg = Release|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Release|iPhone.Build.0 = Release|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Release|iPhoneSimulator.ActiveCfg = Release|iPhone
+		{3661DE74-568B-44B6-9F15-0039CFAC1812}.Release|iPhoneSimulator.Build.0 = Release|iPhone
 		{42DFA08B-D1AA-4B0F-82DF-4CCA0CDA4C35}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
 		{42DFA08B-D1AA-4B0F-82DF-4CCA0CDA4C35}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
 		{42DFA08B-D1AA-4B0F-82DF-4CCA0CDA4C35}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
@@ -87,6 +105,6 @@ Global
 		{C128987B-D91C-40F3-90A6-A2C416B5358E}.Release|iPhoneSimulator.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = HealthKitServer.Host\HealthKitServer.Host.csproj
+		StartupItem = TestHealthRecordServer.Console\TestHealthRecordServer.Console.csproj
 	EndGlobalSection
 EndGlobal

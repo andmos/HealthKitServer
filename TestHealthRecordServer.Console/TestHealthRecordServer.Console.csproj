@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhone</Platform>
-    <ProjectGuid>{C128987B-D91C-40F3-90A6-A2C416B5358E}</ProjectGuid>
+    <ProjectGuid>{3661DE74-568B-44B6-9F15-0039CFAC1812}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>HealthKitServer.Host</RootNamespace>
-    <AssemblyName>HealthKitServer.Host</AssemblyName>
+    <RootNamespace>TestHealthRecordServer.Console</RootNamespace>
+    <AssemblyName>TestHealthRecordServer.Console</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -17,7 +17,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -25,43 +25,26 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="HealthKitServerSelfHost.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="CompositionRoot.cs" />
-  </ItemGroup>
-  <ItemGroup>
+    <Reference Include="System" />
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.23.2\lib\net40\Nancy.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Hosting.Self">
-      <HintPath>..\packages\Nancy.Hosting.Self.0.23.2\lib\net40\Nancy.Hosting.Self.dll</HintPath>
-    </Reference>
-    <Reference Include="Topshelf">
-      <HintPath>..\packages\Topshelf.3.1.4\lib\net40-full\Topshelf.dll</HintPath>
-    </Reference>
-    <Reference Include="Topshelf.Linux">
-      <HintPath>..\packages\Topshelf.Linux.1.0.11.10\lib\Topshelf.Linux.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Configuration" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HealthKitServer.Server\HealthKitServer.Server.csproj">
-      <Project>{42DFA08B-D1AA-4B0F-82DF-4CCA0CDA4C35}</Project>
-      <Name>HealthKitServer.Server</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HealthKitServer\HealthKitServer.csproj">
       <Project>{270F4FB6-E9EF-44A5-A1B5-58334F0AA195}</Project>
       <Name>HealthKitServer</Name>
