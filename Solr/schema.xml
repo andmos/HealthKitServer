@@ -143,7 +143,64 @@
        "content_type": From the HTTP headers of incoming stream
        "resourcename": From SolrCell request param resource.name
    -->
-  
+   <field name="title" type="text_general" indexed="true" stored="true" multiValued="true"/>
+   <field name="subject" type="text_general" indexed="true" stored="true"/>
+   <field name="description" type="text_general" indexed="true" stored="true"/>
+   <field name="comments" type="text_general" indexed="true" stored="true"/>
+   <field name="author" type="text_general" indexed="true" stored="true"/>
+   <field name="keywords" type="text_general" indexed="true" stored="true"/>
+   <field name="category" type="text_general" indexed="true" stored="true"/>
+   <field name="resourcename" type="text_general" indexed="true" stored="true"/>
+   <field name="url" type="text_general" indexed="true" stored="true"/>
+   <field name="content_type" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="last_modified" type="date" indexed="true" stored="true"/>
+   <field name="links" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="date" type="string" indexed="true" stored="true"/>
+   <field name="company" type="string" indexed="true" stored="true"/>	
+
+	 <field name="productName" type="text_general" indexed="true" stored="true"/>
+	 <field name="volume" type="double" indexed="true" stored="true"/>
+	 <field name="price" type="double" indexed="true" stored="true"/>
+	 <field name="pricePerLiter" type="double" indexed="true" stored="true"/>
+	 
+	 <field name="productType" type="text_general" indexed="true" stored="true"/> 
+	 <field name="productAssortment" type="text_general" indexed="true" stored="true"/> 
+	 <field name="storeCategory" type="text_general" indexed="true" stored="true"/> 
+	 
+	 <field name="sweetness" type="int" indexed="true" stored="true"/> 
+	 <field name="acidity" type="int" indexed="true" stored="true"/> 
+	 <field name="tannin" type="int" indexed="true" stored="true"/> 
+	 <field name="fruit" type="int" indexed="true" stored="true"/> 
+	 <field name="body" type="int" indexed="true" stored="true"/> 
+	 <field name="productColor" type="text_general" indexed="true" stored="true"/> 
+	 <field name="aroma" type="text_general" indexed="true" stored="true"/> 
+	 <field name="taste" type="text_general" indexed="true" stored="true"/> 
+	 <field name="productGoesWithAltOne" type="text_general" indexed="true" stored="true"/> 
+	 <field name="productGoesWithAltTwo" type="text_general" indexed="true" stored="true"/> 
+	 <field name="productGoesWithAltThree" type="text_general" indexed="true" stored="true"/> 
+	 <field name="country" type="text_general" indexed="true" stored="true"/> 
+	 <field name="district" type="text_general" indexed="true" stored="true"/> 
+	 <field name="subDistrict" type="text_general" indexed="true" stored="true"/> 
+	 <field name="vintage" type="int" indexed="true" stored="true"/> 
+	 <field name="rawIngredients" type="text_general" indexed="true" stored="true"/> 
+	 <field name="methodOfStorage" type="text_general" indexed="true" stored="true"/> 
+	 <field name="alcoholPercent" type="double" indexed="true" stored="true"/> 
+	 <field name="gramsSugarPerLiter" type="double" indexed="true" stored="true"/> 
+	<field name="gramsAcidPerLiter" type="double" indexed="true" stored="true"/> 
+	<field name="storageLevel" type="text_general" indexed="true" stored="true"/> 
+	<field name="manifacturer" type="text_general" indexed="true" stored="true"/> 
+	<field name="wholesale" type="text_general" indexed="true" stored="true"/> 
+	<field name="distributor" type="text_general" indexed="true" stored="true"/> 
+	<field name="packageType" type="text_general" indexed="true" stored="true"/> 
+	<field name="corkType" type="text_general" indexed="true" stored="true"/> 
+	<field name="productUrl" type="text_general" indexed="true" stored="true"/> 
+	
+	 
+	
+	 
+	
+	
+	
 
    <!-- Main body of document extracted by SolrCell.
         NOTE: This field is not indexed by default, since it is also copied to "text"
