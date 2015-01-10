@@ -24,7 +24,6 @@ namespace HealthKitServer
 			set { this.SetPropertyValue (ref m_healthKitServerAddress, value); }
 		}
 
-
 	}
 }
 
