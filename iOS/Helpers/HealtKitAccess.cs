@@ -91,7 +91,7 @@ namespace HealthKitServer
 					dataobject.DistanceReadings.TotalFlightsClimed = quantity.ToString();;
 
 					Console.WriteLine(string.Format("totally walked {0} flights",quantity.ToString()));
-					Console.WriteLine(m_healthKitStore.GetDateOfBirth(out error));
+
 				}
 
 			});
@@ -102,6 +102,7 @@ namespace HealthKitServer
 		{
 			NSError error;
 			dataobject.DateOfBirth = m_healthKitStore.GetDateOfBirth (out error).ToString ();
+			Console.WriteLine(m_healthKitStore.GetDateOfBirth(out error));
 		}
 	}
 		

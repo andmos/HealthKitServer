@@ -11,11 +11,12 @@ namespace HealthKitServer
 
 		public DistanceSummaryViewModel ()
 		{
-			m_healthKitdataObject = new HealthKitData ();
+			m_healthKitdataObject = new HealthKitData {Id = 3, DistanceReadings = new DistanceReading{}};
 			m_healthKitDataDecorator = new HealthKitDataDecorator (Container.Singleton<IHealthKitAccess> (), m_healthKitdataObject);
-			m_healthKitDataUploader = Container.Resolve<IHealthKitDataUploader> ();
+			m_healthKitDataDecorator.DecorateHealthKitData ();
+	//		m_healthKitDataUploader = Container.Resolve<IHealthKitDataUploader> ();
 
-			var uploaded = m_healthKitDataUploader.UploadHealthKitDataToHealthKitServer(m_healthKitServerAddress, m_healthKitdataObject);
+	//		var uploaded = m_healthKitDataUploader.UploadHealthKitDataToHealthKitServer(m_healthKitServerAddress, m_healthKitdataObject);
 		}
 
 		public string HealthKitServerAddress

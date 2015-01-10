@@ -10,7 +10,7 @@ namespace HealthKitServer
 
 		public HealthKitDataDecorator (IHealthKitAccess healthKitAccess, HealthKitData dataObject)
 		{
-			healthKitAccess = m_healthKitAccess;
+			m_healthKitAccess = healthKitAccess;
 			m_healthKitData = dataObject;
 			m_healthKitAccess.SetUpPermissions ();
 		}
