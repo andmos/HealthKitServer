@@ -5,28 +5,28 @@ namespace HealthKitServer
 {
 	public class DistanceReading
 	{
-		[JsonProperty("totalSteps")] 
+		//[JsonProperty("totalSteps")] 
 		public string TotalSteps { get; set; }
 
-		[JsonProperty("totalStepsToday")] 
+		//[JsonProperty("totalStepsToday")] 
 		public string TotalStepsToday { get; set; }
 
-		[JsonProperty("totalDistance")] 
+		//[JsonProperty("totalDistance")] 
 		public string TotalDistance { get; set; }
 
-		[JsonProperty("totalDistanceToday")] 
+		//[JsonProperty("totalDistanceToday")] 
 		public string TotalDistanceToday{ get; set; }
 
-		[JsonProperty("totalFlightsClimed")] 
+		//[JsonProperty("totalFlightsClimed")] 
 		public string TotalFlightsClimed { get; set; }
 
-		[JsonProperty("recordingStarted")] 
+		//[JsonProperty("recordingStarted")] 
 		public string RecordingStarted { get; set; }
 
-		[JsonProperty("recordingStoped")] 
+		//[JsonProperty("recordingStoped")] 
 		public string RecordingStoped {get; set; }
 
-		[JsonProperty("secondsSinceLatestRecord")] 
+		//[JsonProperty("secondsSinceLatestRecord")] 
 		public string SecondsSinceLatestRecord { get; set; }
 	}
 }

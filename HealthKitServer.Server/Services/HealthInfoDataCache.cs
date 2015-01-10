@@ -21,7 +21,7 @@ namespace HealthKitServer.Server
 
 		public void AddOrUpdatePersonHealthInfoToStorage(Person person)
 		{
-			if (person.Id == null) 
+			if (person.Id == 0) 
 			{
 				person.Id = m_storedHealthInfo.Count + 1; 	
 			}

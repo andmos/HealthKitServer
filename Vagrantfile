@@ -12,7 +12,7 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :shell, :inline => "curl -s https://get.docker.io/ubuntu/ | sudo sh > /dev/null 2>&1"
 
-  config.vm.forward_port 5000, 5000
+  config.vm.forward_port 5001, 5000
   config.vm.forward_port 8983, 8983
 
 end

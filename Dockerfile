@@ -1,6 +1,5 @@
 From mono:latest
 
-
 ADD HealthKitServer.Host HealthKitServer.Host
 ADD HealthKitServer.Server HealthKitServer.Server
 ADD HealthKitServer HealthKitServer

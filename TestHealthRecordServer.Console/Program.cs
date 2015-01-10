@@ -19,7 +19,7 @@ namespace TestHealthKitServer.Console
 					}
 				});
 
-				var response = wc.UploadString("http://localhost:5000/api/v1/addpatient", jsonString);
+				var response = wc.UploadString("http://localhost:5002/api/v1/addpatient", jsonString);
 
 			}
 		}
