@@ -4,32 +4,26 @@ namespace HealthKitServer
 {
 	public class DistanceSummaryViewModel : ObservableBase 
 	{
-		private string m_totalSteps; 
-		private string m_totalDistance;
-		private IHealthKitAccess m_healthKitAccess; 
-
+		private HealthKitDataDecorator m_healthKitDataDecorator; 
+		private HealthKitData m_healthKitdataObject; 
+		private IHealthKitDataUploader m_healthKitDataUploader; 
+		private string m_healthKitServerAddress;
 
 		public DistanceSummaryViewModel ()
 		{
-			m_healthKitAccess = Container.Singleton<IHealthKitAccess> (); 
-			m_healthKitAccess.SetUpPermissions (); 
-			m_healthKitAccess.GetTotalSteps ();
-			m_healthKitAccess.GetTotalLengthWalked ();
-			m_healthKitAccess.GetTotalFlights ();
+			m_healthKitdataObject = new HealthKitData ();
+			m_healthKitDataDecorator = new HealthKitDataDecorator (Container.Singleton<IHealthKitAccess> (), m_healthKitdataObject);
+			m_healthKitDataUploader = Container.Resolve<IHealthKitDataUploader> ();
 
+			var uploaded = m_healthKitDataUploader.UploadHealthKitDataToHealthKitServer(m_healthKitServerAddress, m_healthKitdataObject);
 		}
 
-		public string TotalSteps
+		public string HealthKitServerAddress
 		{
-			get { return m_totalSteps; }
-			set { this.SetPropertyValue (ref m_totalSteps, value); }
+			get { return m_healthKitServerAddress; }
+			set { this.SetPropertyValue (ref m_healthKitServerAddress, value); }
 		}
 
-		public string TotalDistance
-		{
-			get { return m_totalDistance; }
-			set { this.SetPropertyValue (ref m_totalDistance, value); }
-		}
 
 	}
 }

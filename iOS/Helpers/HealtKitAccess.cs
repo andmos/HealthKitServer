@@ -9,6 +9,7 @@ namespace HealthKitServer
 	{
 		private HKHealthStore m_healthKitStore;
 
+
 		public void SetUpPermissions ()
 		{
 			var distanceQuantityType = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.DistanceWalkingRunning);
@@ -32,6 +33,7 @@ namespace HealthKitServer
 			}
 		}
 
+
 		public HKHealthStore HealthKitStore
 		{ 
 			get 
@@ -44,7 +46,7 @@ namespace HealthKitServer
 			}
 		}
 
-		public void GetTotalSteps()
+		public void GetTotalSteps(HealthKitData dataobject)
 		{
 			var stepsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.StepCount);
 			var sumOptions = HKStatisticsOptions.CumulativeSum;
@@ -52,6 +54,7 @@ namespace HealthKitServer
 				if (results != null) {
 					var quantitySample = results;
 					var quantity = quantitySample.SumQuantity();
+					dataobject.DistanceReadings.TotalSteps = quantity;
 					Console.WriteLine(string.Format("totally walked {0} steps",quantity.ToString()));
 				}
 
@@ -59,7 +62,7 @@ namespace HealthKitServer
 			HealthKitStore.ExecuteQuery (query);
 		}
 
-		public void GetTotalLengthWalked()
+		public void GetTotalLengthWalked(HealthKitData dataobject)
 		{
 			var stepsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.DistanceWalkingRunning);
 			var sumOptions = HKStatisticsOptions.CumulativeSum;
@@ -67,16 +70,16 @@ namespace HealthKitServer
 				if (results != null) {
 					var quantitySample = results;
 					var quantity = quantitySample.SumQuantity();
+					dataobject.DistanceReadings.TotalDistance = quantity;
 					Console.WriteLine(string.Format("totally walked {0}",quantity.ToString()));
-					var seralized = JsonConvert.SerializeObject(quantitySample);
-					Console.WriteLine(seralized);
+
 				}
 
 			});
 			 HealthKitStore.ExecuteQuery (query);
 		}
 
-		public void GetTotalFlights()
+		public void GetTotalFlights(HealthKitData dataobject)
 		{
 			var flightsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.FlightsClimbed);
 			var sumOptions = HKStatisticsOptions.CumulativeSum;
@@ -84,6 +87,9 @@ namespace HealthKitServer
 				if (results != null) {
 					var quantitySample = results;
 					var quantity = quantitySample.SumQuantity();
+
+					dataobject.DistanceReadings.TotalFlightsClimed = quantity;
+
 					Console.WriteLine(string.Format("totally walked {0} flights",quantity.ToString()));
 					Console.WriteLine(m_healthKitStore.GetDateOfBirth(out error));
 				}
@@ -92,6 +98,11 @@ namespace HealthKitServer
 			HealthKitStore.ExecuteQuery (query);
 		}
 
+		public void GetDateOfBirth(HealthKitData dataobject)
+		{
+			NSError error;
+			dataobject.DateOfBirth = m_healthKitStore.GetDateOfBirth (out error);
+		}
 	}
 		
 }

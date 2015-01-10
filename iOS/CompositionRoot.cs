@@ -8,6 +8,7 @@ namespace HealthKitServer.iOS
 		{
 			var container = Container.Instance = new SimpleContainer (); 
 			container.RegisterSingleton<IHealthKitAccess> (new HealtKitAccess());
+			container.Register<IHealthKitDataUploader, HealthKitDataUploader> ();
 		}
 	}
 }

@@ -14,7 +14,7 @@ namespace TestHealthKitServer.Console
 				wc.Headers[HttpRequestHeader.ContentType] = "application/json"; 
 
 				var jsonString = JsonConvert.SerializeObject(new HealthKitData { Id = 9,
-					BloodType = "A+",  TimeOfBirth = DateTime.Now, DistanceReadings = new DistanceReading {
+					BloodType = "A+",  DateOfBirth = DateTime.Now, DistanceReadings = new DistanceReading {
 						TotalDistance = "40", TotalSteps = "500", TotalStepsToday = "200", TotalFlightsClimed = "30", TotalDistanceToday = "10", 
 					}
 				});

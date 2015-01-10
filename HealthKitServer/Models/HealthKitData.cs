@@ -6,16 +6,16 @@ namespace HealthKitServer
 
 	public class HealthKitData
 	{
-		//[JsonProperty("id")] 
+
 		public int Id { get; set;}
 
-		//[JsonProperty("bloodType")] 
+
 		public string BloodType { get; set;}
 
-		//[JsonProperty("timeOfBirth")]
-		public DateTime TimeOfBirth { get; set;}
 
-		//[JsonProperty("distanceReadings")]
+		public DateTime DateOfBirth { get; set;}
+
+
 		public DistanceReading DistanceReadings { get; set;}
 	}
 }
