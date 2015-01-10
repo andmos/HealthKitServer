@@ -54,7 +54,7 @@ namespace HealthKitServer
 				if (results != null) {
 					var quantitySample = results;
 					var quantity = quantitySample.SumQuantity();
-					dataobject.DistanceReadings.TotalSteps = quantity;
+					dataobject.DistanceReadings.TotalSteps = quantity.ToString();
 					Console.WriteLine(string.Format("totally walked {0} steps",quantity.ToString()));
 				}
 
@@ -70,7 +70,7 @@ namespace HealthKitServer
 				if (results != null) {
 					var quantitySample = results;
 					var quantity = quantitySample.SumQuantity();
-					dataobject.DistanceReadings.TotalDistance = quantity;
+					dataobject.DistanceReadings.TotalDistance = quantity.ToString();;
 					Console.WriteLine(string.Format("totally walked {0}",quantity.ToString()));
 
 				}
@@ -88,7 +88,7 @@ namespace HealthKitServer
 					var quantitySample = results;
 					var quantity = quantitySample.SumQuantity();
 
-					dataobject.DistanceReadings.TotalFlightsClimed = quantity;
+					dataobject.DistanceReadings.TotalFlightsClimed = quantity.ToString();;
 
 					Console.WriteLine(string.Format("totally walked {0} flights",quantity.ToString()));
 					Console.WriteLine(m_healthKitStore.GetDateOfBirth(out error));
@@ -101,7 +101,7 @@ namespace HealthKitServer
 		public void GetDateOfBirth(HealthKitData dataobject)
 		{
 			NSError error;
-			dataobject.DateOfBirth = m_healthKitStore.GetDateOfBirth (out error);
+			dataobject.DateOfBirth = m_healthKitStore.GetDateOfBirth (out error).ToString ();
 		}
 	}
 		

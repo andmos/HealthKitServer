@@ -13,8 +13,7 @@ namespace HealthKitServer.iOS
 			{
 				using (var client = new HttpClient(new ModernHttpClient.NativeMessageHandler()))
 				{
-					client.DefaultRequestHeaders[HttpRequestHeader.ContentType] = "application/json";
-					var response = client.PostAsync(new Uri(healthKitServerAddress), JsonConvert.SerializeObject(dataObject));
+					var response = client.PostAsync(new Uri(healthKitServerAddress), new StringContent(JsonConvert.SerializeObject(dataObject)));
 					return true; 
 				}
 			}

@@ -13,7 +13,7 @@ namespace HealthKitServer
 		public string BloodType { get; set;}
 
 
-		public DateTime DateOfBirth { get; set;}
+		public string DateOfBirth { get; set;}
 
 
 		public DistanceReading DistanceReadings { get; set;}
