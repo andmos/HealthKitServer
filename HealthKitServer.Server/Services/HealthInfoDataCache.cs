@@ -7,19 +7,19 @@ namespace HealthKitServer.Server
 {
 	public class HealthInfoDataCache : IHealthInfoDataStorage
 	{
-		private readonly ConcurrentDictionary<int, Person> m_storedHealthInfo; 
+		private readonly ConcurrentDictionary<int, HealthKitData> m_storedHealthInfo; 
 
 		public HealthInfoDataCache ()
 		{
-			m_storedHealthInfo = new ConcurrentDictionary<int, Person> (); 
+			m_storedHealthInfo = new ConcurrentDictionary<int, HealthKitData> (); 
 		}
 
-		public IEnumerable<Person> GetAllPersons ()
+		public IEnumerable<HealthKitData> GetAllPersons ()
 		{
 			return m_storedHealthInfo.Values.ToArray (); 
 		}
 
-		public void AddOrUpdatePersonHealthInfoToStorage(Person person)
+		public void AddOrUpdatePersonHealthInfoToStorage(HealthKitData person)
 		{
 			if (person.Id == 0) 
 			{
@@ -28,10 +28,10 @@ namespace HealthKitServer.Server
 			m_storedHealthInfo.AddOrUpdate(person.Id, person, (id, oldPersonHealthInfo) => person);
 		}
 
-		public Person GetPatientHealthInfo(int id)
+		public HealthKitData GetPatientHealthInfo(int id)
 		{
-			Person personFromCache;
-			return m_storedHealthInfo.TryGetValue (id, out personFromCache) ? personFromCache : new Person(); 
+			HealthKitData personFromCache;
+			return m_storedHealthInfo.TryGetValue (id, out personFromCache) ? personFromCache : new HealthKitData(); 
 		}
 
 	}

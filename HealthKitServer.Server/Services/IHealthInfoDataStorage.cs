@@ -5,9 +5,9 @@ namespace HealthKitServer.Server
 {
 	public interface IHealthInfoDataStorage
 	{
-		IEnumerable<Person> GetAllPersons(); 
-		Person GetPatientHealthInfo(int id);
-		void AddOrUpdatePersonHealthInfoToStorage(Person person);
+		IEnumerable<HealthKitData> GetAllPersons(); 
+		HealthKitData GetPatientHealthInfo(int id);
+		void AddOrUpdatePersonHealthInfoToStorage(HealthKitData person);
 
 	}
 }

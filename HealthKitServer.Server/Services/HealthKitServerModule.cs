@@ -15,7 +15,7 @@ namespace HealthKitServer.Server
 			{
 				try
 				{
-					var person = this.Bind<Person>();	 
+					var person = this.Bind<HealthKitData>();	 
 					Container.Singleton<IHealthInfoDataStorage>().AddOrUpdatePersonHealthInfoToStorage(person);
 					return Response.AsJson(person);
 				}

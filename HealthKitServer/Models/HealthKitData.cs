@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace HealthKitServer
 {
 
-	public class Person
+	public class HealthKitData
 	{
 		//[JsonProperty("id")] 
 		public int Id { get; set;}
