@@ -133,7 +133,7 @@ namespace HealthKitServer
 					var quantitySample = results;
 					var quantity = quantitySample.SumQuantity();
 
-				//	resultString = quantity.ToString();;
+				    resultString = quantity.ToString();;
 					HealthKitDataContext.ActiveHealthKitData.DistanceReadings.TotalFlightsClimed = quantity.ToString();
 					Console.WriteLine(string.Format("totally walked {0} flights",quantity.ToString()));
 

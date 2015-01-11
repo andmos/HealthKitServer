@@ -48,6 +48,9 @@
     <Reference Include="SolrNet">
       <HintPath>..\packages\SolrNet.0.3.1\lib\SolrNet.dll</HintPath>
     </Reference>
+    <Reference Include="StackExchange.Redis">
+      <HintPath>..\packages\StackExchange.Redis.1.0.371\lib\net45\StackExchange.Redis.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -63,6 +66,7 @@
     <Compile Include="Services\HealthInfoDataCache.cs" />
     <Compile Include="Services\HealthKitServerModule.cs" />
     <Compile Include="Services\HealthInfoDataSolrConnection.cs" />
+    <Compile Include="Services\HealthKitInfoRedisConnection.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HealthKitServer\HealthKitServer.csproj">

@@ -19,8 +19,13 @@ namespace HealthKitServer.Host
 			}
 			if (dataStorage.ToLower ().Equals ("solr")) 
 			{
-				var connectionString = ConfigurationManager.AppSettings["SolrServerAddress"];
-				container.RegisterSingleton<IHealthInfoDataStorage> (new HealthInfoDataSolrConnection (connectionString));	
+				var solrServerAddress = ConfigurationManager.AppSettings["SolrServerAddress"];
+				container.RegisterSingleton<IHealthInfoDataStorage> (new HealthInfoDataSolrConnection (solrServerAddress));	
+			}
+			if (dataStorage.ToLower ().Equals ("redis")) 
+			{
+				var redisServerAddress = ConfigurationManager.AppSettings["RedisServerAddress"];
+				container.RegisterSingleton<IHealthInfoDataStorage> (new HealthKitInfoRedisConnection (redisServerAddress));
 			}
 		}
 	}
