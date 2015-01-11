@@ -9,7 +9,7 @@ namespace HealthKitServer
 		private HealthKitData m_healthKitdataObject; 
 		private IHealthKitDataUploader m_healthKitDataUploader; 
 		private bool m_isDecorated;
-		private string m_healthKitServerAddress = "http://apollo.amosti.net:5002/api/v1/addPatient";
+		private string m_healthKitServerAPIAddress = "http://apollo.amosti.net:5002/api/v1/addPatient";
 		private ICommand m_uploadCommand;
 
 		public DistanceSummaryViewModel ()
@@ -30,8 +30,8 @@ namespace HealthKitServer
 
 		public string HealthKitServerAddress
 		{
-			get { return m_healthKitServerAddress; }
-			set { this.SetPropertyValue (ref m_healthKitServerAddress, value); }
+			get { return m_healthKitServerAPIAddress; }
+			set { this.SetPropertyValue (ref m_healthKitServerAPIAddress, value); }
 		}
 
 		public bool IsDecorated
@@ -49,7 +49,7 @@ namespace HealthKitServer
 
 		private void UploadDataToHealthKitServer(object o = null)
 		{
-			var uploaded = m_healthKitDataUploader.UploadHealthKitDataToHealthKitServer (m_healthKitServerAddress, m_healthKitdataObject);
+			var uploaded = m_healthKitDataUploader.UploadHealthKitDataToHealthKitServer (m_healthKitServerAPIAddress, m_healthKitdataObject);
 		}
 	}
 }

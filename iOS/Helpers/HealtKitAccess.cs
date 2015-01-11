@@ -56,7 +56,8 @@ namespace HealthKitServer
 				if (results != null) {
 					var quantitySample = results;
 					var quantity =  quantitySample.SumQuantity();
-					resultString = quantity.ToString();
+				//	resultString = quantity.ToString();
+					HealthKitDataContext.ActiveHealthKitData.DistanceReadings.TotalSteps = quantity.ToString();
 					Console.WriteLine(string.Format("totally walked {0} steps",quantity.ToString()));
 				}
 
@@ -74,7 +75,8 @@ namespace HealthKitServer
 				if (results != null) {
 					var quantitySample = results;
 					var quantity = quantitySample.SumQuantity();
-					resultString = quantity.ToString();;
+					// resultString = quantity.ToString();;
+					HealthKitDataContext.ActiveHealthKitData.DistanceReadings.TotalDistance = quantity.ToString();
 					Console.WriteLine(string.Format("totally walked {0}",quantity.ToString()));
 
 				}
@@ -94,8 +96,8 @@ namespace HealthKitServer
 					var quantitySample = results;
 					var quantity = quantitySample.SumQuantity();
 
-					resultString = quantity.ToString();;
-
+				//	resultString = quantity.ToString();;
+					HealthKitDataContext.ActiveHealthKitData.DistanceReadings.TotalFlightsClimed = quantity.ToString();
 					Console.WriteLine(string.Format("totally walked {0} flights",quantity.ToString()));
 
 				}
@@ -110,6 +112,7 @@ namespace HealthKitServer
 			NSError error;
 			string resultString = string.Empty;
 			await Task.Factory.StartNew(() =>resultString = m_healthKitStore.GetDateOfBirth (out error).ToString ());
+			HealthKitDataContext.ActiveHealthKitData.DateOfBirth = resultString;
 			return resultString;
 			Console.WriteLine(m_healthKitStore.GetDateOfBirth(out error));
 		}
