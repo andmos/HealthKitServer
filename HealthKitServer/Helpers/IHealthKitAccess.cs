@@ -11,6 +11,7 @@ namespace HealthKitServer
 		Task<string> QueryTotalStepsRecordingLastRecordingDate ();
 		Task<string> QueryTotalLengthWalked(); 
 		Task<string> QueryTotalFlights();
+		Task<double> QueryTotalHeight ();
 		Task<string> QueryDateOfBirth();
 		Task<string> QueryBloodType ();
 		Task<string> QuerySex ();

@@ -17,6 +17,8 @@ namespace HealthKitServer
 			var stepsQuantityType = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.StepCount);
 			var flightsQuantityType = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.FlightsClimbed);
 			var heightQuantityType = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.Height);
+			var heartRateQuantityType = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.HeartRate);
+			var nikeFuelQuantityType = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.NikeFuel);
 			var dateOfBirthCharacteristicType = HKObjectType.GetCharacteristicType (HKCharacteristicTypeIdentifierKey.DateOfBirth);
 			var sexCharacteristicType = HKObjectType.GetCharacteristicType (HKCharacteristicTypeIdentifierKey.BiologicalSex);
 			var bloodTypeCharacteristicType = HKObjectType.GetCharacteristicType (HKCharacteristicTypeIdentifierKey.BloodType);
@@ -24,7 +26,7 @@ namespace HealthKitServer
 			if (m_healthKitStore == null) 
 			{
 				HealthKitStore = new HKHealthStore (); 
-				m_healthKitStore.RequestAuthorizationToShare (new NSSet (new [] { distanceQuantityType , stepsQuantityType , flightsQuantityType  }), new NSSet (new [] {  (NSObject) distanceQuantityType ,(NSObject)  stepsQuantityType , (NSObject) flightsQuantityType , (NSObject)  heightQuantityType , (NSObject)dateOfBirthCharacteristicType, (NSObject) sexCharacteristicType, (NSObject) bloodTypeCharacteristicType }), (success, error) => {
+				m_healthKitStore.RequestAuthorizationToShare (new NSSet (new [] { distanceQuantityType , stepsQuantityType , flightsQuantityType  }), new NSSet (new [] {  (NSObject) distanceQuantityType ,(NSObject)  stepsQuantityType , (NSObject) flightsQuantityType , (NSObject)  heightQuantityType , (NSObject)dateOfBirthCharacteristicType, (NSObject) sexCharacteristicType, (NSObject) bloodTypeCharacteristicType, (NSObject)nikeFuelQuantityType, (NSObject)bloodTypeCharacteristicType  }), (success, error) => {
 					Console.WriteLine ("Authorized:" + success);
 					if (error != null) {
 						Console.WriteLine ("Authorization error: " + error);
@@ -123,6 +125,30 @@ namespace HealthKitServer
 			return resultString;
 		}
 
+		public async Task<double> QueryTotalHeight()
+		{
+
+			var heightType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.Height);
+			double usersHeight = 0.0;
+			FetchMostRecentData (heightType, (mostRecentQuantity, error) => {
+				if (error != null) {
+					Console.WriteLine ("An error occured fetching the user's height information. " +
+						"In your app, try to handle this gracefully. The error was: {0}.", error.LocalizedDescription);
+					return;
+				}
+
+				if (mostRecentQuantity != null) {
+					var heightUnit = HKUnit.Meter;
+					usersHeight = mostRecentQuantity.GetDoubleValue (heightUnit);
+					HealthKitDataContext.ActiveHealthKitData.Height = usersHeight;
+
+				}
+
+			});
+			Console.WriteLine(string.Format("Total height: ", usersHeight));
+			return usersHeight;
+		}
+
 		public async Task<string> QueryTotalFlights()
 		{
 			var flightsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.FlightsClimbed);
@@ -175,6 +201,27 @@ namespace HealthKitServer
 			Console.WriteLine(resultString);
 			return resultString;
 		}
+
+		private void FetchMostRecentData (HKQuantityType quantityType, Action <HKQuantity, NSError> completion)
+		{
+			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
+			var query = new HKSampleQuery (quantityType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
+				(HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
+					if (completion != null && error != null) {
+						completion (null, error);
+						return;
+					}
+					HKQuantity quantity = null;
+					if (results.Length != 0) {
+						var quantitySample = (HKQuantitySample)results [results.Length - 1];
+						quantity = quantitySample.Quantity;
+					}
+					if (completion != null)
+						completion (quantity, error);
+				});
+			m_healthKitStore.ExecuteQuery (query);
+		}
+	
 	}
 		
 }
