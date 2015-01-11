@@ -18,10 +18,14 @@ namespace HealthKitServer
 
 		public async Task<bool> DecorateHealthKitData()
 		{
-			m_healthKitData.DateOfBirth = await m_healthKitAccess.GetDateOfBirth ();
-			m_healthKitData.DistanceReadings.TotalSteps = await m_healthKitAccess.GetTotalSteps ();
-			m_healthKitData.DistanceReadings.TotalFlightsClimed = await m_healthKitAccess.GetTotalFlights ();
-			m_healthKitData.DistanceReadings.TotalDistance = await m_healthKitAccess.GetTotalLengthWalked ();
+			m_healthKitData.DateOfBirth = await m_healthKitAccess.QueryDateOfBirth ();
+			m_healthKitData.DistanceReadings.TotalSteps = await m_healthKitAccess.QueryTotalSteps ();
+			m_healthKitData.DistanceReadings.TotalFlightsClimed = await m_healthKitAccess.QueryTotalFlights ();
+			m_healthKitData.DistanceReadings.TotalDistance = await m_healthKitAccess.QueryTotalLengthWalked ();
+			m_healthKitData.DistanceReadings.RecordingStarted = await m_healthKitAccess.QueryTotalStepsRecordingFirstRecordingDate ();
+			m_healthKitData.DistanceReadings.RecordingStoped = await m_healthKitAccess.QueryTotalStepsRecordingLastRecordingDate ();
+			m_healthKitData.BloodType = await m_healthKitAccess.QueryBloodType ();
+			m_healthKitData.Sex = await m_healthKitAccess.QuerySex ();
 			return true;
 		}
 	}

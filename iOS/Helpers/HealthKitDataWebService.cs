@@ -31,7 +31,7 @@ namespace HealthKitServer.iOS
 			{
 				using (var client = new WebClient())
 				{
-					var result = client.DownloadString(new Uri(healthKitServerAddress + id));
+					var result = client.DownloadString(new Uri(healthKitServerAPIAddress + id));
 					return JsonConvert.DeserializeObject<HealthKitData>(result);
 				}
 			}

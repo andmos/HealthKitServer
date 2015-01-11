@@ -15,6 +15,7 @@ namespace HealthKitServer
 
 		public string DateOfBirth { get; set;}
 
+		public string Sex { get; set; }
 
 		public DistanceReading DistanceReadings { get; set;}
 	}

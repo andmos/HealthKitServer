@@ -34,7 +34,6 @@ namespace HealthKitServer
 			}
 		}
 
-
 		public HKHealthStore HealthKitStore
 		{ 
 			get 
@@ -47,7 +46,7 @@ namespace HealthKitServer
 			}
 		}
 
-		public async Task<string>  GetTotalSteps()
+		public async Task<string>  QueryTotalSteps()
 		{
 			var stepsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.StepCount);
 			var sumOptions = HKStatisticsOptions.CumulativeSum;
@@ -66,7 +65,45 @@ namespace HealthKitServer
 			return resultString;
 		}
 
-		public async Task<string> GetTotalLengthWalked()
+		public async Task<string>  QueryTotalStepsRecordingFirstRecordingDate()
+		{
+			var stepsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.StepCount);
+			var sumOptions = HKStatisticsOptions.CumulativeSum;
+			string resultString = string.Empty;
+			var query = new HKStatisticsQuery(stepsCount, new NSPredicate (IntPtr.Zero), sumOptions, (HKStatisticsQuery resultQuery, HKStatistics results, NSError error) => {
+				if (results != null) {
+					var quantitySample = results;
+					var quantity =  quantitySample.StartDate;
+					//	resultString = quantity.ToString();
+					HealthKitDataContext.ActiveHealthKitData.DistanceReadings.RecordingStarted = quantity.ToString();
+					Console.WriteLine(string.Format("Started recording steps: {0} ",quantity.ToString()));
+				}
+
+			});
+			await Task.Factory.StartNew(() =>HealthKitStore.ExecuteQuery (query));
+			return resultString;
+		}
+
+		public async Task<string>  QueryTotalStepsRecordingLastRecordingDate()
+		{
+			var stepsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.StepCount);
+			var sumOptions = HKStatisticsOptions.CumulativeSum;
+			string resultString = string.Empty;
+			var query = new HKStatisticsQuery(stepsCount, new NSPredicate (IntPtr.Zero), sumOptions, (HKStatisticsQuery resultQuery, HKStatistics results, NSError error) => {
+				if (results != null) {
+					var quantitySample = results;
+					var quantity =  quantitySample.EndDate;
+					//	resultString = quantity.ToString();
+					HealthKitDataContext.ActiveHealthKitData.DistanceReadings.RecordingStoped = quantity.ToString();
+					Console.WriteLine(string.Format("Last recording of steps: {0} ",quantity.ToString()));
+				}
+
+			});
+			await Task.Factory.StartNew(() =>HealthKitStore.ExecuteQuery (query));
+			return resultString;
+		}
+
+		public async Task<string> QueryTotalLengthWalked()
 		{
 			var stepsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.DistanceWalkingRunning);
 			var sumOptions = HKStatisticsOptions.CumulativeSum;
@@ -86,7 +123,7 @@ namespace HealthKitServer
 			return resultString;
 		}
 
-		public async Task<string> GetTotalFlights()
+		public async Task<string> QueryTotalFlights()
 		{
 			var flightsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.FlightsClimbed);
 			var sumOptions = HKStatisticsOptions.CumulativeSum;
@@ -107,14 +144,36 @@ namespace HealthKitServer
 			return resultString;
 		}
 
-		public async Task<string> GetDateOfBirth()
+		public async Task<string> QueryDateOfBirth()
 		{
 			NSError error;
 			string resultString = string.Empty;
 			await Task.Factory.StartNew(() =>resultString = m_healthKitStore.GetDateOfBirth (out error).ToString ());
 			HealthKitDataContext.ActiveHealthKitData.DateOfBirth = resultString;
+			Console.WriteLine(resultString);
 			return resultString;
-			Console.WriteLine(m_healthKitStore.GetDateOfBirth(out error));
+
+		}
+
+		public async Task<string> QueryBloodType()
+		{
+			NSError error;
+			string resultString = string.Empty;
+			await Task.Factory.StartNew(() =>resultString = m_healthKitStore.GetBloodType (out error).BloodType.ToString());
+			HealthKitDataContext.ActiveHealthKitData.BloodType = resultString;
+			Console.WriteLine(resultString);
+			return resultString;
+		}
+			
+
+		public async Task<string> QuerySex()
+		{
+			NSError error;
+			string resultString = string.Empty;
+			await Task.Factory.StartNew(() =>resultString = m_healthKitStore.GetBiologicalSex (out error).BiologicalSex.ToString());
+			HealthKitDataContext.ActiveHealthKitData.Sex = resultString;
+			Console.WriteLine(resultString);
+			return resultString;
 		}
 	}
 		
