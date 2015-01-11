@@ -2,6 +2,7 @@
 using MonoTouch.HealthKit;
 using MonoTouch.Foundation;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace HealthKitServer
 {
@@ -46,62 +47,70 @@ namespace HealthKitServer
 			}
 		}
 
-		public void GetTotalSteps(HealthKitData dataobject)
+		public async Task<string>  GetTotalSteps()
 		{
 			var stepsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.StepCount);
 			var sumOptions = HKStatisticsOptions.CumulativeSum;
-			var query = new HKStatisticsQuery(stepsCount, new NSPredicate (IntPtr.Zero), sumOptions,(HKStatisticsQuery resultQuery, HKStatistics results, NSError error) => {
+			string resultString = string.Empty;
+			var query = new HKStatisticsQuery(stepsCount, new NSPredicate (IntPtr.Zero), sumOptions, (HKStatisticsQuery resultQuery, HKStatistics results, NSError error) => {
 				if (results != null) {
 					var quantitySample = results;
-					var quantity = quantitySample.SumQuantity();
-					dataobject.DistanceReadings.TotalSteps = quantity.ToString();
+					var quantity =  quantitySample.SumQuantity();
+					resultString = quantity.ToString();
 					Console.WriteLine(string.Format("totally walked {0} steps",quantity.ToString()));
 				}
 
 			});
-			HealthKitStore.ExecuteQuery (query);
+			await Task.Factory.StartNew(() =>HealthKitStore.ExecuteQuery (query));
+			return resultString;
 		}
 
-		public void GetTotalLengthWalked(HealthKitData dataobject)
+		public async Task<string> GetTotalLengthWalked()
 		{
 			var stepsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.DistanceWalkingRunning);
 			var sumOptions = HKStatisticsOptions.CumulativeSum;
+			string resultString = string.Empty;
 			var query = new HKStatisticsQuery(stepsCount, new NSPredicate (IntPtr.Zero), sumOptions,(HKStatisticsQuery resultQuery, HKStatistics results, NSError error) => {
 				if (results != null) {
 					var quantitySample = results;
 					var quantity = quantitySample.SumQuantity();
-					dataobject.DistanceReadings.TotalDistance = quantity.ToString();;
+					resultString = quantity.ToString();;
 					Console.WriteLine(string.Format("totally walked {0}",quantity.ToString()));
 
 				}
 
 			});
-			 HealthKitStore.ExecuteQuery (query);
+			await Task.Factory.StartNew(() => HealthKitStore.ExecuteQuery (query));
+			return resultString;
 		}
 
-		public void GetTotalFlights(HealthKitData dataobject)
+		public async Task<string> GetTotalFlights()
 		{
 			var flightsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.FlightsClimbed);
 			var sumOptions = HKStatisticsOptions.CumulativeSum;
+			string resultString = string.Empty;
 			var query = new HKStatisticsQuery(flightsCount, new NSPredicate (IntPtr.Zero), sumOptions,(HKStatisticsQuery resultQuery, HKStatistics results, NSError error) => {
 				if (results != null) {
 					var quantitySample = results;
 					var quantity = quantitySample.SumQuantity();
 
-					dataobject.DistanceReadings.TotalFlightsClimed = quantity.ToString();;
+					resultString = quantity.ToString();;
 
 					Console.WriteLine(string.Format("totally walked {0} flights",quantity.ToString()));
 
 				}
 
 			});
-			HealthKitStore.ExecuteQuery (query);
+			await Task.Factory.StartNew(() =>HealthKitStore.ExecuteQuery (query));
+			return resultString;
 		}
 
-		public void GetDateOfBirth(HealthKitData dataobject)
+		public async Task<string> GetDateOfBirth()
 		{
 			NSError error;
-			dataobject.DateOfBirth = m_healthKitStore.GetDateOfBirth (out error).ToString ();
+			string resultString = string.Empty;
+			await Task.Factory.StartNew(() =>resultString = m_healthKitStore.GetDateOfBirth (out error).ToString ());
+			return resultString;
 			Console.WriteLine(m_healthKitStore.GetDateOfBirth(out error));
 		}
 	}

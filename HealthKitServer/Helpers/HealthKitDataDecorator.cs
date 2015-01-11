@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace HealthKitServer
 {
@@ -15,12 +16,13 @@ namespace HealthKitServer
 			m_healthKitAccess.SetUpPermissions ();
 		}
 
-		public void DecorateHealthKitData()
+		public async Task<bool> DecorateHealthKitData()
 		{
-			m_healthKitAccess.GetDateOfBirth (m_healthKitData);
-			m_healthKitAccess.GetTotalSteps (m_healthKitData);
-			m_healthKitAccess.GetTotalFlights (m_healthKitData);
-			m_healthKitAccess.GetTotalLengthWalked (m_healthKitData);
+			m_healthKitData.DateOfBirth = await m_healthKitAccess.GetDateOfBirth ();
+			m_healthKitData.DistanceReadings.TotalSteps = await m_healthKitAccess.GetTotalSteps ();
+			m_healthKitData.DistanceReadings.TotalFlightsClimed = await m_healthKitAccess.GetTotalFlights ();
+			m_healthKitData.DistanceReadings.TotalDistance = await m_healthKitAccess.GetTotalLengthWalked ();
+			return true;
 		}
 	}
 }

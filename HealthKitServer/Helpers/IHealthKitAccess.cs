@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace HealthKitServer
 {
 	public interface IHealthKitAccess
 	{
 		void SetUpPermissions();
-		void GetTotalSteps(HealthKitData dataobject);
-		void GetTotalLengthWalked(HealthKitData dataobject); 
-		void GetTotalFlights(HealthKitData dataobject);
-		void GetDateOfBirth(HealthKitData dataobject);
+		Task<string> GetTotalSteps();
+		Task<string> GetTotalLengthWalked(); 
+		Task<string> GetTotalFlights();
+		Task<string> GetDateOfBirth();
 
 	}
 }
