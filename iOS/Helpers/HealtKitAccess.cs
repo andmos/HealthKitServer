@@ -2,6 +2,8 @@
 using MonoTouch.HealthKit;
 using MonoTouch.Foundation;
 using Newtonsoft.Json;
+using System.Linq;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace HealthKitServer
@@ -125,28 +127,65 @@ namespace HealthKitServer
 			return resultString;
 		}
 
+//		public async Task<double> QueryTotalHeight()
+//		{
+//
+//			var heightType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.Height);
+//			double usersHeight = 0.0;
+//			FetchMostRecentData (heightType, (mostRecentQuantity, error) => {
+//				if (error != null) {
+//					Console.WriteLine ("An error occured fetching the user's height information. " +
+//						"In your app, try to handle this gracefully. The error was: {0}.", error.LocalizedDescription);
+//					return;
+//				}
+//
+//				if (mostRecentQuantity != null) {
+//					var heightUnit = HKUnit.Meter;
+//					usersHeight = mostRecentQuantity.GetDoubleValue (heightUnit);
+//					HealthKitDataContext.ActiveHealthKitData.Height = usersHeight;
+//
+//				}
+//
+//			});
+//			Console.WriteLine(string.Format("Total height: ", usersHeight));
+//			return usersHeight;
+//		}
+
 		public async Task<double> QueryTotalHeight()
 		{
 
 			var heightType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.Height);
 			double usersHeight = 0.0;
-			FetchMostRecentData (heightType, (mostRecentQuantity, error) => {
-				if (error != null) {
-					Console.WriteLine ("An error occured fetching the user's height information. " +
-						"In your app, try to handle this gracefully. The error was: {0}.", error.LocalizedDescription);
-					return;
-				}
 
-				if (mostRecentQuantity != null) {
-					var heightUnit = HKUnit.Meter;
-					usersHeight = mostRecentQuantity.GetDoubleValue (heightUnit);
-					HealthKitDataContext.ActiveHealthKitData.Height = usersHeight;
+			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
+			var query = new HKSampleQuery (heightType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
+				(HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
 
-				}
+					HKQuantity quantity = null;
+					string resultString = string.Empty;
+					if (results.Length != 0) {
+						resultString = results [results.Length - 1].ToString();
+						HealthKitDataContext.ActiveHealthKitData.Height = ExtractHeightFromQuery(resultString);
+						Console.WriteLine(string.Format("value of Fetched: {0}", ExtractHeightFromQuery(resultString)));
+					}
 
-			});
+				});
+			m_healthKitStore.ExecuteQuery (query);
 			Console.WriteLine(string.Format("Total height: ", usersHeight));
 			return usersHeight;
+		}
+
+		private double ExtractHeightFromQuery(string result)
+		{
+			double height = 0;
+			var resultAsArray = result.Split (null);
+			bool tryParse = double.TryParse(resultAsArray[0], System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out height);
+
+			if (tryParse)
+				return height;
+			else {
+				return height;
+			}
 		}
 
 		public async Task<string> QueryTotalFlights()
@@ -202,25 +241,7 @@ namespace HealthKitServer
 			return resultString;
 		}
 
-		private void FetchMostRecentData (HKQuantityType quantityType, Action <HKQuantity, NSError> completion)
-		{
-			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
-			var query = new HKSampleQuery (quantityType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
-				(HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
-					if (completion != null && error != null) {
-						completion (null, error);
-						return;
-					}
-					HKQuantity quantity = null;
-					if (results.Length != 0) {
-						var quantitySample = (HKQuantitySample)results [results.Length - 1];
-						quantity = quantitySample.Quantity;
-					}
-					if (completion != null)
-						completion (quantity, error);
-				});
-			m_healthKitStore.ExecuteQuery (query);
-		}
+
 	
 	}
 		
