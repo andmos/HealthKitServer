@@ -165,8 +165,8 @@ namespace HealthKitServer
 					string resultString = string.Empty;
 					if (results.Length != 0) {
 						resultString = results [results.Length - 1].ToString();
-						HealthKitDataContext.ActiveHealthKitData.Height = ExtractHeightFromQuery(resultString);
-						Console.WriteLine(string.Format("value of Fetched: {0}", ExtractHeightFromQuery(resultString)));
+						HealthKitDataContext.ActiveHealthKitData.Height = ParseStringResultToDuble(resultString);
+						Console.WriteLine(string.Format("value of Fetched: {0}", ParseStringResultToDuble(resultString)));
 					}
 
 				});
@@ -175,7 +175,58 @@ namespace HealthKitServer
 			return usersHeight;
 		}
 
-		private double ExtractHeightFromQuery(string result)
+
+		public async Task<double> QueryLastRegistratedWalkingDistance()
+		{
+
+			var heightType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.DistanceWalkingRunning);
+			double usersHeight = 0.0;
+
+			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
+			var query = new HKSampleQuery (heightType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
+				(HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
+
+					HKQuantity quantity = null;
+					string resultString = string.Empty;
+					if (results.Length != 0) {
+						resultString = results [results.Length - 1].ToString();
+						HealthKitDataContext.ActiveHealthKitData.DistanceReadings.TotalDistanceOfLastRecording = ParseStringResultToDuble(resultString);
+						Console.WriteLine(string.Format("value of Fetched: {0}", ParseStringResultToDuble(resultString)));
+					}
+
+				});
+			m_healthKitStore.ExecuteQuery (query);
+			Console.WriteLine(string.Format("Total walked last recording: ", usersHeight));
+			return usersHeight;
+		}
+
+
+
+		public async Task<double> QueryLastRegistratedSteps()
+		{
+
+			var heightType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.StepCount);
+			double usersHeight = 0.0;
+
+			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
+			var query = new HKSampleQuery (heightType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
+				(HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
+
+					HKQuantity quantity = null;
+					string resultString = string.Empty;
+					if (results.Length != 0) {
+						resultString = results [results.Length - 1].ToString();
+						HealthKitDataContext.ActiveHealthKitData.DistanceReadings.TotalStepsOfLastRecording = ParseStringResultToDuble(resultString);
+						Console.WriteLine(string.Format("value of Fetched: {0}", ParseStringResultToDuble(resultString)));
+					}
+
+				});
+			m_healthKitStore.ExecuteQuery (query);
+			Console.WriteLine(string.Format("Total steps last recording: ", usersHeight));
+			return usersHeight;
+		}
+
+		private double ParseStringResultToDuble(string result)
 		{
 			double height = 0;
 			var resultAsArray = result.Split (null);

@@ -27,6 +27,8 @@ namespace HealthKitServer
 			m_healthKitData.BloodType = await m_healthKitAccess.QueryBloodType ();
 			m_healthKitData.Sex = await m_healthKitAccess.QuerySex ();
 			m_healthKitData.Height = await m_healthKitAccess.QueryTotalHeight (); 
+			m_healthKitData.DistanceReadings.TotalDistanceOfLastRecording = await m_healthKitAccess.QueryLastRegistratedWalkingDistance ();
+			m_healthKitData.DistanceReadings.TotalStepsOfLastRecording = await m_healthKitAccess.QueryLastRegistratedSteps ();
 			return true;
 		}
 	}

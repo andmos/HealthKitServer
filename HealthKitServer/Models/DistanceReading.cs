@@ -9,13 +9,13 @@ namespace HealthKitServer
 		public string TotalSteps { get; set; }
 
 
-		public string TotalStepsToday { get; set; }
+		public double TotalStepsOfLastRecording { get; set; }
 
 
 		public string TotalDistance { get; set; }
 
 
-		public string TotalDistanceToday{ get; set; }
+		public double TotalDistanceOfLastRecording{ get; set; }
 
 
 		public string TotalFlightsClimed { get; set; }

@@ -16,6 +16,9 @@ namespace HealthKitServer
 		Task<string> QueryBloodType ();
 		Task<string> QuerySex ();
 
+		Task<double> QueryLastRegistratedWalkingDistance ();
+		Task<double> QueryLastRegistratedSteps ();
+
 	}
 }
 
