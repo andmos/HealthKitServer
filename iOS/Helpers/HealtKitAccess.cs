@@ -276,14 +276,31 @@ namespace HealthKitServer
 			NSError error;
 			string resultString = string.Empty;
 			await Task.Factory.StartNew(() =>resultString = m_healthKitStore.GetBloodType (out error).BloodType.ToString());
-			HealthKitDataContext.ActiveHealthKitData.BloodType = resultString;
-			Console.WriteLine(resultString);
-			return resultString;
+			HealthKitDataContext.ActiveHealthKitData.BloodType = ReformeBloodTypeString(resultString);
+			Console.WriteLine(ReformeBloodTypeString(resultString));
+			return ReformeBloodTypeString(resultString);
 		}
 
-		private string ResolveBloodTypeFromEnum(enum bloodType)
+		private string ReformeBloodTypeString(string bloodType)
 		{
-				//
+			switch (bloodType)
+			{
+			case("APositive"):
+				return "A+";
+			case("ANegative"):
+				return "A-";
+			case("BPositive"):
+				return "B+";
+			case("ABPositive"):
+				return "AB+";
+			case("ABNegative"):
+				return "AB-";
+			case("OPositive"):
+				return "O+";
+			case("ONegative"):
+				return "O-";
+			}
+			return "null";
 		}
 
 
