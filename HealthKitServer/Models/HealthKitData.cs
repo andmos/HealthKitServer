@@ -7,7 +7,11 @@ namespace HealthKitServer
 	public class HealthKitData
 	{
 
-		public int Id { get; set;}
+		public int PersonId { get; set;}
+
+		public int RecordingId { get; set;}
+
+		public DateTime RecordingTimeStamp { get; set;}
 
 		public string BloodType { get; set;}
 

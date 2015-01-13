@@ -9,7 +9,7 @@ namespace HealthKitServer.iOS
 			var container = Container.Instance = new SimpleContainer (); 
 			container.RegisterSingleton<IHealthKitAccess> (new HealtKitAccess());
 			container.Register<IHealthKitDataWebService, HealthKitDataWebService> ();
-			HealthKitDataContext.ActiveHealthKitData = new HealthKitData{Id=3, DistanceReadings = new DistanceReading{}};
+			HealthKitDataContext.ActiveHealthKitData = new HealthKitData{PersonId=3, DistanceReadings = new DistanceReading{}};
 		}
 	}
 }

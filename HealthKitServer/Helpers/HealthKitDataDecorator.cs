@@ -29,6 +29,7 @@ namespace HealthKitServer
 			m_healthKitData.Height = await m_healthKitAccess.QueryTotalHeight (); 
 			m_healthKitData.DistanceReadings.TotalDistanceOfLastRecording = await m_healthKitAccess.QueryLastRegistratedWalkingDistance ();
 			m_healthKitData.DistanceReadings.TotalStepsOfLastRecording = await m_healthKitAccess.QueryLastRegistratedSteps ();
+			m_healthKitData.RecordingTimeStamp = DateTime.UtcNow;
 			return true;
 		}
 	}
