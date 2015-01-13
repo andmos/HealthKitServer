@@ -25,9 +25,9 @@ namespace HealthKitServer
 			var sexCharacteristicType = HKObjectType.GetCharacteristicType (HKCharacteristicTypeIdentifierKey.BiologicalSex);
 			var bloodTypeCharacteristicType = HKObjectType.GetCharacteristicType (HKCharacteristicTypeIdentifierKey.BloodType);
 
-			if (m_healthKitStore == null) 
+			if (m_healthKitStore == null)
 			{
-				HealthKitStore = new HKHealthStore (); 
+				HealthKitStore = new HKHealthStore ();
 				m_healthKitStore.RequestAuthorizationToShare (new NSSet (new [] { distanceQuantityType , stepsQuantityType , flightsQuantityType  }), new NSSet (new [] {  (NSObject) distanceQuantityType ,(NSObject)  stepsQuantityType , (NSObject) flightsQuantityType , (NSObject)  heightQuantityType , (NSObject)dateOfBirthCharacteristicType, (NSObject) sexCharacteristicType, (NSObject) bloodTypeCharacteristicType, (NSObject)nikeFuelQuantityType, (NSObject)bloodTypeCharacteristicType  }), (success, error) => {
 					Console.WriteLine ("Authorized:" + success);
 					if (error != null) {
@@ -39,14 +39,14 @@ namespace HealthKitServer
 		}
 
 		public HKHealthStore HealthKitStore
-		{ 
-			get 
+		{
+			get
 			{
 				return m_healthKitStore;
-			} 
-			private set 
+			}
+			private set
 			{
-				m_healthKitStore = value; 
+				m_healthKitStore = value;
 			}
 		}
 
@@ -280,7 +280,12 @@ namespace HealthKitServer
 			Console.WriteLine(resultString);
 			return resultString;
 		}
-			
+
+		private string ResolveBloodTypeFromEnum(enum bloodType)
+		{
+				//
+		}
+
 
 		public async Task<string> QuerySex()
 		{
@@ -293,8 +298,7 @@ namespace HealthKitServer
 		}
 
 
-	
-	}
-		
-}
 
+	}
+
+}
