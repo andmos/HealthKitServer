@@ -81,6 +81,7 @@
     <Compile Include="Services\HealthKitInfoRedisConnection.cs" />
     <Compile Include="Modules\HealthKitServerModule.cs" />
     <Compile Include="Modules\HealthKitServerMetadataModule.cs" />
+    <Compile Include="Modules\DefaultRouteMetadataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HealthKitServer\HealthKitServer.csproj">
