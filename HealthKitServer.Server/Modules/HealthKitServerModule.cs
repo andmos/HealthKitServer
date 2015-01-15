@@ -19,7 +19,6 @@ namespace HealthKitServer.Server
 
 			};
 
-
 			Post["/api/v1/addPatient"] = parameters =>
 			{
 				try

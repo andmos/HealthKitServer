@@ -82,6 +82,7 @@
     <Compile Include="Modules\HealthKitServerModule.cs" />
     <Compile Include="Modules\HealthKitServerMetadataModule.cs" />
     <Compile Include="Modules\DefaultRouteMetadataProvider.cs" />
+    <Compile Include="Models\HealthKitMetaDataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HealthKitServer\HealthKitServer.csproj">
