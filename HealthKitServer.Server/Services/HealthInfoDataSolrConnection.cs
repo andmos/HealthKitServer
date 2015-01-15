@@ -19,9 +19,9 @@ namespace HealthKitServer.Server
 			return m_solrServer.Query (new SolrQuery ("*:*")).ToArray();
 		}
 
-		public HealthKitData GetPatientHealthInfo (int id)
+		public IEnumerable<HealthKitData> GetPatientHealthInfo (int id)
 		{
-			return m_solrServer.Query (new SolrQueryByField ("i", id.ToString ())).FirstOrDefault ();
+			throw new NotImplementedException ();
 		}
 
 		public void AddOrUpdatePersonHealthInfoToStorage (HealthKitData person)

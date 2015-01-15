@@ -23,7 +23,7 @@ namespace HealthKitServer.Server
 			throw new NotImplementedException ();
 		}
 
-		public HealthKitData GetPatientHealthInfo (int id)
+		public IEnumerable<HealthKitData> GetPatientHealthInfo (int id)
 		{
 			throw new NotImplementedException ();
 		}

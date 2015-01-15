@@ -15,6 +15,7 @@ namespace HealthKitServer.iOS
 				using (var client = new WebClient())
 				{
 					client.Headers[HttpRequestHeader.ContentType] = "application/json";  
+					HealthKitDataContext.ActiveHealthKitData.RecordingTimeStamp = DateTime.UtcNow;
 					var result = client.UploadString(new Uri(healthKitServerAPIAddress), JsonConvert.SerializeObject(HealthKitDataContext.ActiveHealthKitData));
 					return true; 
 				}

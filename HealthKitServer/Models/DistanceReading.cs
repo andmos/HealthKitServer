@@ -27,7 +27,6 @@ namespace HealthKitServer
 		public string RecordingStoped {get; set; }
 
 
-		public string SecondsSinceLatestRecord { get; set; }
 	}
 }
 
