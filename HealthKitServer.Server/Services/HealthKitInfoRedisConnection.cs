@@ -18,17 +18,17 @@ namespace HealthKitServer.Server
 		}
 
 
-		public IEnumerable<HealthKitData> GetAllPersons ()
+		public IEnumerable<HealthKitData> GetAllHealthKitData ()
 		{
 			throw new NotImplementedException ();
 		}
 
-		public IEnumerable<HealthKitData> GetPatientHealthInfo (int id)
+		public IEnumerable<HealthKitData> GetSpesificHealthKitData (int id)
 		{
 			throw new NotImplementedException ();
 		}
 
-		public void AddOrUpdatePersonHealthInfoToStorage (HealthKitData person)
+		public void AddOrUpdateHealthKitDataToStorage (HealthKitData person)
 		{
 		//	m_redisDatabase.SetAdd (person.Id, person);
 		}

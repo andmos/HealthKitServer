@@ -14,12 +14,12 @@ namespace HealthKitServer.Server
 			m_storedHealthInfo = new ConcurrentDictionary<int, List<HealthKitData>> (); 
 		}
 
-		public IEnumerable<HealthKitData> GetAllPersons ()
+		public IEnumerable<HealthKitData> GetAllHealthKitData ()
 		{
 			return m_storedHealthInfo.Values.SelectMany (d => d).ToList (); 
 		}
 
-		public void AddOrUpdatePersonHealthInfoToStorage(HealthKitData person)
+		public void AddOrUpdateHealthKitDataToStorage(HealthKitData person)
 		{
 			List<HealthKitData> healthKitData = new List<HealthKitData> ();
 			if (person.PersonId == 0) 
@@ -27,9 +27,9 @@ namespace HealthKitServer.Server
 				person.PersonId = m_storedHealthInfo.Count + 1; 
 				healthKitData.Add (person);
 			}
-			if (GetPatientHealthInfo (person.PersonId) != null) 
+			if (GetSpesificHealthKitData (person.PersonId) != null) 
 			{
-				healthKitData = GetPatientHealthInfo (person.PersonId).ToList ();
+				healthKitData = GetSpesificHealthKitData (person.PersonId).ToList ();
 				person.RecordingId = healthKitData.Count + 1;
 				healthKitData.Add (person);
 			}
@@ -37,7 +37,7 @@ namespace HealthKitServer.Server
 			m_storedHealthInfo.AddOrUpdate(person.PersonId, healthKitData, (id, oldPersonHealthInfo) => healthKitData);
 		}
 
-		public IEnumerable<HealthKitData> GetPatientHealthInfo(int id)
+		public IEnumerable<HealthKitData> GetSpesificHealthKitData(int id)
 		{
 			List<HealthKitData> personFromCache;
 			return m_storedHealthInfo.TryGetValue (id, out personFromCache) ? personFromCache : null; 

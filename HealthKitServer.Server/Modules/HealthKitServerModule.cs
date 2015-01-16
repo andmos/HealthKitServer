@@ -19,12 +19,12 @@ namespace HealthKitServer.Server
 
 			};
 
-			Post["/api/v1/addPatient"] = parameters =>
+			Post["/api/v1/addHealthKitData"] = parameters =>
 			{
 				try
 				{
 					var person = this.Bind<HealthKitData>();	 
-					Container.Singleton<IHealthInfoDataStorage>().AddOrUpdatePersonHealthInfoToStorage(person);
+					Container.Singleton<IHealthInfoDataStorage>().AddOrUpdateHealthKitDataToStorage(person);
 					return Response.AsJson(person);
 				}
 				catch(Exception e)
@@ -33,18 +33,18 @@ namespace HealthKitServer.Server
 				}
 			};
 
-			Get["/api/v1/getAllPatients"] = parameters => 
+			Get["/api/v1/getAllHealthKitData"] = parameters => 
 			{
-				return Response.AsJson (Container.Singleton<IHealthInfoDataStorage> ().GetAllPersons());
+				return Response.AsJson (Container.Singleton<IHealthInfoDataStorage> ().GetAllHealthKitData());
 			};
 
-			Get["/api/v1/getPatient"] = parameters => 
+			Get["/api/v1/getHealthKitData"] = parameters => 
 			{
 				var id = this.Request.Query["id"];
 				int number; 
 				if(int.TryParse(id, out number))
 				{
-					return Response.AsJson(Container.Singleton<IHealthInfoDataStorage>().GetPatientHealthInfo(number));
+					return Response.AsJson(Container.Singleton<IHealthInfoDataStorage>().GetSpesificHealthKitData(number));
 
 				}
 				return "Invalid query";

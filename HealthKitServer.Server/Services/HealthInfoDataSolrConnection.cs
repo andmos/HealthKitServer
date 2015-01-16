@@ -14,17 +14,17 @@ namespace HealthKitServer.Server
 			Startup.Init<HealthKitData>(connectionString);
 		}
 
-		public IEnumerable<HealthKitData> GetAllPersons ()
+		public IEnumerable<HealthKitData> GetAllHealthKitData ()
 		{
 			return m_solrServer.Query (new SolrQuery ("*:*")).ToArray();
 		}
 
-		public IEnumerable<HealthKitData> GetPatientHealthInfo (int id)
+		public IEnumerable<HealthKitData> GetSpesificHealthKitData (int id)
 		{
 			throw new NotImplementedException ();
 		}
 
-		public void AddOrUpdatePersonHealthInfoToStorage (HealthKitData person)
+		public void AddOrUpdateHealthKitDataToStorage (HealthKitData person)
 		{
 			m_solrServer.Add (person);
 		}
