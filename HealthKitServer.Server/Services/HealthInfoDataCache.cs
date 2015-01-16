@@ -40,7 +40,7 @@ namespace HealthKitServer.Server
 		public IEnumerable<HealthKitData> GetSpesificHealthKitData(int id)
 		{
 			List<HealthKitData> personFromCache;
-			return m_storedHealthInfo.TryGetValue (id, out personFromCache) ? personFromCache : null; 
+			return m_storedHealthInfo.TryGetValue (id, out personFromCache) ? personFromCache : Enumerable.Empty<HealthKitData>(); 
 		}
 
 	}
