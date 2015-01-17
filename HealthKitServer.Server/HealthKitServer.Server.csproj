@@ -75,14 +75,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataLoader.cs" />
-    <Compile Include="Services\IHealthInfoDataStorage.cs" />
-    <Compile Include="Services\HealthInfoDataCache.cs" />
-    <Compile Include="Services\HealthInfoDataSolrConnection.cs" />
-    <Compile Include="Services\HealthKitInfoRedisConnection.cs" />
     <Compile Include="Modules\HealthKitServerModule.cs" />
     <Compile Include="Modules\HealthKitServerMetadataModule.cs" />
     <Compile Include="Modules\DefaultRouteMetadataProvider.cs" />
     <Compile Include="Models\HealthKitMetaDataProvider.cs" />
+    <Compile Include="Services\HealthKitDataCache.cs" />
+    <Compile Include="Services\HealthKidDataSolrConnection.cs" />
+    <Compile Include="Services\HealthKitDataRedisConnection.cs" />
+    <Compile Include="Services\IHealthKitDataStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HealthKitServer\HealthKitServer.csproj">
