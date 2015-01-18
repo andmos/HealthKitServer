@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace HealthKitServer.Server
 {
-	public class HealthInfoDataSolrConnection : IHealthInfoDataStorage
+	public class HealthKidDataSolrConnection : IHealthKitDataStorage
 	{
 		private readonly ISolrOperations<HealthKitData> m_solrServer;
 
-		public HealthInfoDataSolrConnection (string connectionString)
+		public HealthKidDataSolrConnection (string connectionString)
 		{
 			Startup.Init<HealthKitData>(connectionString);
 		}

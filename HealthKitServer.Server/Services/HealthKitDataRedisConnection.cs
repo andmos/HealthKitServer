@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace HealthKitServer.Server
 {
-	public class HealthKitInfoRedisConnection : IHealthInfoDataStorage 
+	public class HealthKitDataRedisConnection : IHealthKitDataStorage 
 	{
 
 		private ConnectionMultiplexer m_redisServer;
 		private IDatabase m_redisDatabase;
 
-		public HealthKitInfoRedisConnection (string redisServer)
+		public HealthKitDataRedisConnection (string redisServer)
 		{
 			m_redisServer = ConnectionMultiplexer.Connect(redisServer);	
 			m_redisDatabase = m_redisServer.GetDatabase ();

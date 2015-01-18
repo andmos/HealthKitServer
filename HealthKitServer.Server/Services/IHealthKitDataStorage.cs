@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace HealthKitServer.Server
 {
-	public interface IHealthInfoDataStorage
+	public interface IHealthKitDataStorage
 	{
 		IEnumerable<HealthKitData> GetAllHealthKitData(); 
 		IEnumerable<HealthKitData> GetSpesificHealthKitData(int id);

@@ -15,17 +15,17 @@ namespace HealthKitServer.Host
 
 			if(dataStorage.ToLower().Equals("cache"))
 			{
-				container.RegisterSingleton<IHealthInfoDataStorage>(new HealthInfoDataCache());
+				container.RegisterSingleton<IHealthKitDataStorage>(new HealthKitDataCache());
 			}
 			if (dataStorage.ToLower ().Equals ("solr")) 
 			{
 				var solrServerAddress = ConfigurationManager.AppSettings["SolrServerAddress"];
-				container.RegisterSingleton<IHealthInfoDataStorage> (new HealthInfoDataSolrConnection (solrServerAddress));	
+				container.RegisterSingleton<IHealthKitDataStorage> (new HealthKidDataSolrConnection (solrServerAddress));	
 			}
 			if (dataStorage.ToLower ().Equals ("redis")) 
 			{
 				var redisServerAddress = ConfigurationManager.AppSettings["RedisServerAddress"];
-				container.RegisterSingleton<IHealthInfoDataStorage> (new HealthKitInfoRedisConnection (redisServerAddress));
+				container.RegisterSingleton<IHealthKitDataStorage> (new HealthKitDataRedisConnection (redisServerAddress));
 			}
 		}
 	}

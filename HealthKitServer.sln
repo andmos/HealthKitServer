@@ -104,7 +104,4 @@ Global
 		{C128987B-D91C-40F3-90A6-A2C416B5358E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhone
 		{C128987B-D91C-40F3-90A6-A2C416B5358E}.Release|iPhoneSimulator.Build.0 = Release|iPhone
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = HealthKitServer.Host\HealthKitServer.Host.csproj
-	EndGlobalSection
 EndGlobal

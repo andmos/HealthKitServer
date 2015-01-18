@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace HealthKitServer.Server
 {
-	public class HealthInfoDataCache : IHealthInfoDataStorage
+	public class HealthKitDataCache : IHealthKitDataStorage
 	{
 		private readonly ConcurrentDictionary<int, List<HealthKitData>> m_storedHealthInfo; 
 
-		public HealthInfoDataCache ()
+		public HealthKitDataCache ()
 		{
 			m_storedHealthInfo = new ConcurrentDictionary<int, List<HealthKitData>> (); 
 		}

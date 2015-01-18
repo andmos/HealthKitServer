@@ -9,8 +9,8 @@ namespace HealthKitServer
 		private HealthKitData m_healthKitdataObject; 
 		private IHealthKitDataWebService m_healthKitDataUploader; 
 		private bool m_isDecorated;
-		private string m_healthKitServerPostAPIAddress = "http://apollo.amosti.net:5002/api/v1/addPatient";
-		private string m_healthKitServerGetAPIAddress = "http://apollo.amosti.net:5002/api/v1/getpatient?id=";
+		private string m_healthKitServerPostAPIAddress = "http://apollo.amosti.net:5002/api/v1/addHealthKitData";
+		private string m_healthKitServerGetAPIAddress = "http://apollo.amosti.net:5002/api/v1/gethealthkitdata?id=";
 		private ICommand m_uploadCommand;
 
 		public DistanceSummaryViewModel ()
