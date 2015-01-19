@@ -35,7 +35,17 @@ namespace HealthKitServer.Server
 
 		public void AddOrUpdateHealthKitDataToStorage (HealthKitData person)
 		{
-			throw new NotImplementedException ();
+			using (var connection = new MySqlConnection ()) 
+			{
+				try
+				{
+					connection.ConnectionString = m_connectionString;
+				}
+				catch(MySql.Data.MySqlClient.MySqlException e)
+				{
+
+				}
+			}
 		}
 			
 	}
