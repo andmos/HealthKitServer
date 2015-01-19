@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using Dapper;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HealthKitServer.Server
 {
@@ -20,12 +21,15 @@ namespace HealthKitServer.Server
 				try
 				{
 					connection.ConnectionString = m_connectionString;
+					connection.Open();
+					return  Enumerable.Empty<HealthKitData>(); 
 				}
 				catch(MySql.Data.MySqlClient.MySqlException e)
 				{
-					
+					Console.WriteLine (e);
 				}
 			}
+			return  Enumerable.Empty<HealthKitData>();
 		}
 
 		public IEnumerable<HealthKitData> GetSpesificHealthKitData (int id)
@@ -40,6 +44,7 @@ namespace HealthKitServer.Server
 				try
 				{
 					connection.ConnectionString = m_connectionString;
+
 				}
 				catch(MySql.Data.MySqlClient.MySqlException e)
 				{

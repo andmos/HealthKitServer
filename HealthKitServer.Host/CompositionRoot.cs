@@ -12,6 +12,7 @@ namespace HealthKitServer.Host
 			var container = Container.Instance = new SimpleContainer ();
 
 			var dataStorage = ConfigurationManager.AppSettings["DataStorage"];
+			var database = ConfigurationManager.AppSettings ["Database"];
 
 			if(dataStorage.ToLower().Equals("cache"))
 			{
@@ -26,6 +27,14 @@ namespace HealthKitServer.Host
 			{
 				var redisServerAddress = ConfigurationManager.AppSettings["RedisServerAddress"];
 				container.RegisterSingleton<IHealthKitDataStorage> (new HealthKitDataRedisConnection (redisServerAddress));
+			}
+			if (dataStorage.ToLower ().Equals ("database"))
+			{
+				if (database.ToLower ().Equals ("mysql")) 
+				{
+					var mysqlConnectionString = ConfigurationManager.AppSettings ["ConnectionString"];
+					container.RegisterSingleton<IHealthKitDataStorage> (new HealthKitDataMysqlConnection (mysqlConnectionString));
+				}
 			}
 		}
 	}
