@@ -63,10 +63,18 @@
     <Reference Include="Nancy.Metadata.Module">
       <HintPath>..\packages\Nancy.MetaData.0.23.2\lib\net40\Nancy.Metadata.Module.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="Dapper">
+      <HintPath>..\packages\Dapper.1.38\lib\net45\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.9.5\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="SolrNet.chm" />
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -83,6 +91,7 @@
     <Compile Include="Services\HealthKidDataSolrConnection.cs" />
     <Compile Include="Services\HealthKitDataRedisConnection.cs" />
     <Compile Include="Services\IHealthKitDataStorage.cs" />
+    <Compile Include="Services\HealthKitDataMysqlConnection.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HealthKitServer\HealthKitServer.csproj">
