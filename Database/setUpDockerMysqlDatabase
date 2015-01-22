@@ -1,0 +1,4 @@
+#! /bin/bash
+docker run --name healthkitserverdb -p 3306:3306 -e MYSQL_DATABASE=healthkitserver -e MYSQL_ROOT_PASSWORD=passord1 -d mysql
+
+docker run -it --link healthkitserverdb:mysql --rm -v /vagrant/database:/opt/ mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD" healthkitserver < /opt/createHealthKitDataTable.sql'

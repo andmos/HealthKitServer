@@ -16,13 +16,16 @@ namespace HealthKitServer.Server
 
 		public IEnumerable<HealthKitData> GetAllHealthKitData ()
 		{
+			var sql = @"Select * FROM HealthKitData;";
 			using (var connection = new MySqlConnection ()) 
 			{
 				try
 				{
 					connection.ConnectionString = m_connectionString;
 					connection.Open();
-					return  Enumerable.Empty<HealthKitData>(); 
+					IEnumerable<HealthKitData> result =  connection.Query(sql);
+
+					return result;
 				}
 				catch(MySql.Data.MySqlClient.MySqlException e)
 				{
