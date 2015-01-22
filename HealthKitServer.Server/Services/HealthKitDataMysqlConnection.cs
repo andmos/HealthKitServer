@@ -34,13 +34,34 @@ namespace HealthKitServer.Server
 
 		public IEnumerable<HealthKitData> GetSpesificHealthKitData (int id)
 		{
-			throw new NotImplementedException ();
+			var sql = @"Select * FROM HealthKitData WHERE PersonId = @PersonId";
+
+			using (var connection = new MySqlConnection ()) 
+			{
+				try
+				{
+					connection.ConnectionString = m_connectionString;
+					connection.Open(); 
+					IEnumerable<HealthKitData> result =  connection.Query(sql, new {PersonId = id});
+
+					return result;
+				}
+				catch(MySql.Data.MySqlClient.MySqlException e)
+				{
+					Console.WriteLine (e.ToString ());
+					return  Enumerable.Empty<HealthKitData>(); 
+				}
+				finally
+				{
+					connection.Close();
+				}
+			}
 		}
 
 		public void AddOrUpdateHealthKitDataToStorage (HealthKitData person)
 		{
-			var sql = @"INSERT INTO HealthKitData(PersonId, RecordingId,RecordingTimeStamp,BloodType,DateOfBirth,Sex,Height)
-						VALUES (@PersonId, @RecordingId, @RecordingTimeStamp,@BloodType,@DateOfBirth,@Sex,@Height);";
+			var sql = @"INSERT INTO HealthKitData(PersonId,RecordingTimeStamp,BloodType,DateOfBirth,Sex,Height)
+						VALUES (@PersonId, @RecordingTimeStamp,@BloodType,@DateOfBirth,@Sex,@Height);";
 
 			using (var connection = new MySqlConnection ()) 
 			{
