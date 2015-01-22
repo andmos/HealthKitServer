@@ -39,16 +39,25 @@ namespace HealthKitServer.Server
 
 		public void AddOrUpdateHealthKitDataToStorage (HealthKitData person)
 		{
+			var sql = @"INSERT INTO HealthKitData(PersonId, RecordingId,RecordingTimeStamp,BloodType,DateOfBirth,Sex,Height)
+						VALUES (@PersonId, @RecordingId, @RecordingTimeStamp,@BloodType,@DateOfBirth,@Sex,@Height);";
+
 			using (var connection = new MySqlConnection ()) 
 			{
 				try
 				{
 					connection.ConnectionString = m_connectionString;
+					connection.Open(); 
+					connection.Execute(sql,person);
 
 				}
 				catch(MySql.Data.MySqlClient.MySqlException e)
 				{
-
+					Console.WriteLine (e.ToString ());
+				}
+				finally
+				{
+					connection.Close();
 				}
 			}
 		}
