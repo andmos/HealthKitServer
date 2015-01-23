@@ -12,7 +12,7 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :shell, :inline => "curl -s https://get.docker.io/ubuntu/ | sudo sh > /dev/null 2>&1"
 
-  #config.vm.forward_port 5001, 5000 # HealthKitServer
+  config.vm.forward_port 5002, 5000 # HealthKitServer
   config.vm.forward_port 8983, 8983 # Solr
   config.vm.forward_port 6379, 6379 # Redis
   config.vm.forward_port 3306, 3306 # MySQL
