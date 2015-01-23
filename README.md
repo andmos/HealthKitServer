@@ -43,5 +43,5 @@ A Vagrant-file is provided for running on a Linux VM with Docker preinstalled. E
     # Enter healthkitserverdb as database in connectionstring!
     docker build -t healthkitserver .
     docker run -p 5000:5000 --link healthkitserverdb:healthkitserverdb -i -t healthkitserver
-    
+
     curl -G http://localhost:5000/api/v1/getAllHealthKitData

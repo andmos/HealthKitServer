@@ -19,6 +19,11 @@ namespace HealthKitServer.Server
 
 			};
 
+			Get ["/api/v1/ping"] = parameters => 
+			{
+				return "pong";
+			};
+
 			Post["/api/v1/addHealthKitData"] = parameters =>
 			{
 				try
