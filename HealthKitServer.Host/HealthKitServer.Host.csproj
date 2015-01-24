@@ -67,6 +67,12 @@
     <Reference Include="Dapper">
       <HintPath>..\packages\Dapper.1.38\lib\net45\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\packages\Npgsql.2.2.3\lib\net45\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\packages\Npgsql.2.2.3\lib\net45\Npgsql.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

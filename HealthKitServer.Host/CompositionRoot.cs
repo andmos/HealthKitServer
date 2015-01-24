@@ -35,6 +35,11 @@ namespace HealthKitServer.Host
 					var mysqlConnectionString = ConfigurationManager.AppSettings ["ConnectionString"];
 					container.RegisterSingleton<IHealthKitDataStorage> (new HealthKitDataMysqlConnection (mysqlConnectionString));
 				}
+				if(database.ToLower().Equals("postgresql"))
+				{
+						var postgresqlConnectionString = ConfigurationManager.AppSettings ["ConnectionString"];
+						container.RegisterSingleton<IHealthKitDataStorage>(new HealthKitDataPostgresConnection(postgresqlConnectionString));
+				}
 			}
 		}
 	}

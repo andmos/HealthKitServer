@@ -9,6 +9,7 @@ namespace HealthKitServer.Server
 	{
 		public HealthKitServerMetadataModule ()
 		{
+		
 			this.Describe ["addPatient"] = desc => {
 				return desc.AsSwagger (with => 
 					{
