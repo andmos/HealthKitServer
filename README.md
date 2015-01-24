@@ -15,7 +15,7 @@ The project includes the server itself written in .NET (compiled with Mono for c
 I like to let users choose datastorage, so support for the following datastorage methods is created:
 * Local Cache (in memory)
 * MySQL
-* ~~PostgreSQL~~
+* PostgreSQL
 * ~~Redis~~
 * ~~Solr~~
 
