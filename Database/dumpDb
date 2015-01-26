@@ -1,0 +1,11 @@
+#! /bin/bash
+# Easy dump of database to .SQL - file.
+# Andreas Mosti, 01.02.2014
+
+dbname=""
+dbuser=""
+dbpass=""
+
+mysql -u$dbuser -p$dbpass -e 'show databases' |  mysqldump -u$dbuser -p$dbpass --complete-insert "$dbname" > "$dbname".sql; 
+
+
