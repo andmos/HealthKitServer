@@ -226,18 +226,7 @@ namespace HealthKitServer
 			return usersHeight;
 		}
 
-		private double ParseStringResultToDuble(string result)
-		{
-			double height = 0;
-			var resultAsArray = result.Split (null);
-			bool tryParse = double.TryParse(resultAsArray[0], System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out height);
-
-			if (tryParse)
-				return height;
-			else {
-				return height;
-			}
-		}
+	
 
 		public async Task<string> QueryTotalFlights()
 		{
@@ -314,8 +303,31 @@ namespace HealthKitServer
 			return resultString;
 		}
 
+		private double ParseStringResultToDuble(string result)
+		{
+			double res = 0;
+			var resultAsArray = result.Split (null);
+			bool tryParse = double.TryParse(resultAsArray[0], System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out res);
 
+			if (tryParse)
+				return res;
+			else {
+				return res;
+			}
+		}
 
+		private double ParseStringResultToInteger(string result)
+		{
+			double res = 0;
+			var resultAsArray = result.Split (null);
+			bool tryParse = int.TryParse(resultAsArray[0], System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out res);
+
+			if (tryParse)
+				return res;
+			else {
+				return res;
+			}
+		}
 	}
 
 }

@@ -15,12 +15,12 @@ The project includes the server itself written in .NET (compiled with Mono for c
 I like to let users choose datastorage, so support for the following datastorage methods is created:
 * Local Cache (in memory)
 * MySQL
-* PostgreSQL
+* ~~PostgreSQL~~
 * ~~Redis~~
 * ~~Solr~~
 
 
-### Future plans
+ ### Future plans
 * Save all data as [OpenEHR](http://www.openehr.org/) archetypes.
 * Separate core project from Xamarin Forms to make building on Linux easier (xbuild can only be run on OSX or Windows).
 
