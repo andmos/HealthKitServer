@@ -165,8 +165,8 @@ namespace HealthKitServer
 					string resultString = string.Empty;
 					if (results.Length != 0) {
 						resultString = results [results.Length - 1].ToString();
-						HealthKitDataContext.ActiveHealthKitData.Height = ParseStringResultToDuble(resultString);
-						Console.WriteLine(string.Format("value of Fetched: {0}", ParseStringResultToDuble(resultString)));
+						HealthKitDataContext.ActiveHealthKitData.Height = ParseStringResultToDouble(resultString);
+						Console.WriteLine(string.Format("value of Fetched: {0}", ParseStringResultToDouble(resultString)));
 					}
 
 				});
@@ -180,7 +180,7 @@ namespace HealthKitServer
 		{
 
 			var heightType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.DistanceWalkingRunning);
-			double usersHeight = 0.0;
+			double lastRegistratedWalkingDistance = 0.0;
 
 			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
 			var query = new HKSampleQuery (heightType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
@@ -190,23 +190,23 @@ namespace HealthKitServer
 					string resultString = string.Empty;
 					if (results.Length != 0) {
 						resultString = results [results.Length - 1].ToString();
-						HealthKitDataContext.ActiveHealthKitData.DistanceReadings.TotalDistanceOfLastRecording = ParseStringResultToDuble(resultString);
-						Console.WriteLine(string.Format("value of Fetched: {0}", ParseStringResultToDuble(resultString)));
+						lastRegistratedWalkingDistance = ParseStringResultToDouble(resultString);
+						HealthKitDataContext.ActiveHealthKitData.DistanceReadings.TotalDistanceOfLastRecording = lastRegistratedWalkingDistance;
+						Console.WriteLine(string.Format("value of Fetched: {0}", ParseStringResultToDouble(resultString)));
 					}
 
 				});
 			m_healthKitStore.ExecuteQuery (query);
-			Console.WriteLine(string.Format("Total walked last recording: ", usersHeight));
-			return usersHeight;
+			Console.WriteLine(string.Format("Total walked last recording: ", lastRegistratedWalkingDistance));
+			return lastRegistratedWalkingDistance;
 		}
 
 
 
-		public async Task<double> QueryLastRegistratedSteps()
+		public async Task<int> QueryLastRegistratedSteps()
 		{
-
 			var heightType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.StepCount);
-			double usersHeight = 0.0;
+			int lastRegistratedSteps = 0;
 
 			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
 			var query = new HKSampleQuery (heightType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
@@ -216,14 +216,13 @@ namespace HealthKitServer
 					string resultString = string.Empty;
 					if (results.Length != 0) {
 						resultString = results [results.Length - 1].ToString();
-						HealthKitDataContext.ActiveHealthKitData.DistanceReadings.TotalStepsOfLastRecording = ParseStringResultToDuble(resultString);
-						Console.WriteLine(string.Format("value of Fetched: {0}", ParseStringResultToDuble(resultString)));
+						lastRegistratedSteps = ParseStringResultToInteger(resultString);
+						HealthKitDataContext.ActiveHealthKitData.DistanceReadings.TotalStepsOfLastRecording = lastRegistratedSteps;
 					}
 
 				});
 			m_healthKitStore.ExecuteQuery (query);
-			Console.WriteLine(string.Format("Total steps last recording: ", usersHeight));
-			return usersHeight;
+			return lastRegistratedSteps;
 		}
 
 	
@@ -303,7 +302,7 @@ namespace HealthKitServer
 			return resultString;
 		}
 
-		private double ParseStringResultToDuble(string result)
+		private double ParseStringResultToDouble(string result)
 		{
 			double res = 0;
 			var resultAsArray = result.Split (null);
@@ -316,9 +315,9 @@ namespace HealthKitServer
 			}
 		}
 
-		private double ParseStringResultToInteger(string result)
+		private int ParseStringResultToInteger(string result)
 		{
-			double res = 0;
+			int res = 0;
 			var resultAsArray = result.Split (null);
 			bool tryParse = int.TryParse(resultAsArray[0], System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out res);
 

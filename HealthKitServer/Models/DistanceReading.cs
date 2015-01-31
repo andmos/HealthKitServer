@@ -9,7 +9,7 @@ namespace HealthKitServer
 		public string TotalSteps { get; set; }
 
 
-		public double TotalStepsOfLastRecording { get; set; }
+		public int TotalStepsOfLastRecording { get; set; }
 
 
 		public string TotalDistance { get; set; }

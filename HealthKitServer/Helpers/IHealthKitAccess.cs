@@ -17,7 +17,7 @@ namespace HealthKitServer
 		Task<string> QuerySex ();
 
 		Task<double> QueryLastRegistratedWalkingDistance ();
-		Task<double> QueryLastRegistratedSteps ();
+		Task<int> QueryLastRegistratedSteps ();
 
 	}
 }
