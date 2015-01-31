@@ -4,6 +4,8 @@ HealthKitServer is a REST-based server that uses Apple's new hub for health-real
 
 The project includes the server itself written in .NET (compiled with Mono for cross-platform support) and an iOS app written with [Xamarin Forms](http://xamarin.com/forms).
 
+>Note: The Server API supports data from other sources as well, not just HealthKit.  
+
 ### Technology stack
 * Nancy.Selfhost
 * TopShelf
@@ -19,7 +21,7 @@ I like to let users choose datastorage, so support for the following datastorage
 * ~~Redis~~
 * ~~Solr~~
 
- ### Future plans
+### Future plans
 * Save all data as [OpenEHR](http://www.openehr.org/) archetypes.
 * Separate core project from Xamarin Forms to make building on Linux easier (xbuild can only be run on OSX or Windows).
 * More general interfaces for importing data from other sources than HealthKit. (deserialization of archetypes?)

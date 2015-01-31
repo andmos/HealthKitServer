@@ -264,12 +264,12 @@ namespace HealthKitServer
 			NSError error;
 			string resultString = string.Empty;
 			await Task.Factory.StartNew(() =>resultString = m_healthKitStore.GetBloodType (out error).BloodType.ToString());
-			HealthKitDataContext.ActiveHealthKitData.BloodType = ReformeBloodTypeString(resultString);
-			Console.WriteLine(ReformeBloodTypeString(resultString));
-			return ReformeBloodTypeString(resultString);
+			HealthKitDataContext.ActiveHealthKitData.BloodType = ParseBloodTypeString(resultString);
+			Console.WriteLine(ParseBloodTypeString(resultString));
+			return ParseBloodTypeString(resultString);
 		}
 
-		private string ReformeBloodTypeString(string bloodType)
+		private string ParseBloodTypeString(string bloodType)
 		{
 			switch (bloodType)
 			{
