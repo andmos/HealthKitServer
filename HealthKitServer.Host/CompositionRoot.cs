@@ -8,7 +8,6 @@ namespace HealthKitServer.Host
 	{
 		public CompositionRoot ()
 		{
-
 			var container = Container.Instance = new SimpleContainer ();
 
 			var dataStorage = ConfigurationManager.AppSettings["DataStorage"];
