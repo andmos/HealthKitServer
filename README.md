@@ -11,6 +11,7 @@ The project includes the server itself written in .NET (compiled with Mono for c
 * TopShelf
 * Xamarin.Forms
 * Dapper
+* SimpleContainer
 
 ### Datastorage
 
@@ -25,6 +26,7 @@ I like to let users choose datastorage, so support for the following datastorage
 * Save all data as [OpenEHR](http://www.openehr.org/) archetypes.
 * Separate core project from Xamarin Forms to make building on Linux easier (xbuild can only be run on OSX or Windows).
 * More general interfaces for importing data from other sources than HealthKit. (deserialization of archetypes?)
+* Move from SimpleContainer to LightInject when the codebase gets bigger.
 
 ### Build and try
 
