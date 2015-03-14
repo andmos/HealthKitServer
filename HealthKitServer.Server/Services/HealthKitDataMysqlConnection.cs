@@ -9,6 +9,7 @@ namespace HealthKitServer.Server
 	public class HealthKitDataMysqlConnection : IHealthKitDataStorage
 	{
 		private readonly string m_connectionString;
+
 		public HealthKitDataMysqlConnection (string connectionString) 
 		{
 			m_connectionString = connectionString;
