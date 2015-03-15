@@ -9,22 +9,22 @@ namespace HealthKitServer.Server
 {
 	public class HealthKitServerModule : NancyModule
 	{
-		public HealthKitServerModule(IRouteCacheProvider routeCacheProvider) 
+		public HealthKitServerModule(IRouteCacheProvider routeCacheProvider) : base("/api/v1")
 		{
 
-			Get["/api/v1"] = parameters =>
+			Get["/"] = parameters =>
 			{
 				return Negotiate
 					.WithModel(routeCacheProvider.GetCache().RetrieveMetadata<HealthKitServerMetadataModule>());
 
 			};
 
-			Get ["/api/v1/ping"] = parameters => 
+			Get ["/ping"] = parameters => 
 			{
 				return "pong";
 			};
 
-			Post["/api/v1/addHealthKitData"] = parameters =>
+			Post["/addHealthKitData"] = parameters =>
 			{
 				try
 				{
@@ -38,12 +38,12 @@ namespace HealthKitServer.Server
 				}
 			};
 
-			Get["/api/v1/getAllHealthKitData"] = parameters => 
+			Get["/getAllHealthKitData"] = parameters => 
 			{
 				return Response.AsJson (Container.Singleton<IHealthKitDataStorage> ().GetAllHealthKitData());
 			};
 
-			Get["/api/v1/getHealthKitData"] = parameters => 
+			Get["/getHealthKitData"] = parameters => 
 			{
 				var id = this.Request.Query["id"];
 				int number; 
@@ -53,7 +53,6 @@ namespace HealthKitServer.Server
 
 				}
 				return "Invalid query";
-
 			};
 		}
 	}
