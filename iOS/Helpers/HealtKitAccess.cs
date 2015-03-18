@@ -126,31 +126,7 @@ namespace HealthKitServer
 			await Task.Factory.StartNew(() => HealthKitStore.ExecuteQuery (query));
 			return resultString;
 		}
-
-//		public async Task<double> QueryTotalHeight()
-//		{
-//
-//			var heightType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.Height);
-//			double usersHeight = 0.0;
-//			FetchMostRecentData (heightType, (mostRecentQuantity, error) => {
-//				if (error != null) {
-//					Console.WriteLine ("An error occured fetching the user's height information. " +
-//						"In your app, try to handle this gracefully. The error was: {0}.", error.LocalizedDescription);
-//					return;
-//				}
-//
-//				if (mostRecentQuantity != null) {
-//					var heightUnit = HKUnit.Meter;
-//					usersHeight = mostRecentQuantity.GetDoubleValue (heightUnit);
-//					HealthKitDataContext.ActiveHealthKitData.Height = usersHeight;
-//
-//				}
-//
-//			});
-//			Console.WriteLine(string.Format("Total height: ", usersHeight));
-//			return usersHeight;
-//		}
-
+			
 		public async Task<double> QueryTotalHeight()
 		{
 
