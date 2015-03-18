@@ -75,7 +75,17 @@ namespace HealthKitServer
 			var response = m_healthKitDataWebService.GetHealtKitDataFromHealthKitServer (m_healthKitServerGetAPIAddress, 3);
 			if (response != null) 
 			{
+				
 				//too lazy to RisePropertyChanged for now.
+				if(m_healthKitDataFromServer.Any())
+				{
+					// till next Xamarin Update
+					int temp = m_healthKitDataFromServer.Count;
+					for (int i = 0; i < temp; i++) {
+						m_healthKitDataFromServer.RemoveAt (0);
+					};
+					//m_healthKitDataFromServer.Clear ();
+				}
 				foreach (var data in response.ToList()) 
 				{
 					m_healthKitDataFromServer.Add (data);
