@@ -1,9 +1,30 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HealthKitServer.DistancePage">
+	<ContentPage.Resources>
+	<ResourceDictionary>
+		<DataTemplate x:Key="ListItemTemplate">
+			<ViewCell>
+				<ViewCell.View>
+					<StackLayout Orientation="Horizontal">
+					<Label Text="{Binding RecordingId}" />
+					<Label Text="{Binding RecordingTimeStamp}" />
+					</StackLayout>
+				</ViewCell.View>
+			</ViewCell>
+		</DataTemplate>
+	</ResourceDictionary>
+	</ContentPage.Resources>
+
 	<ContentPage.Content>
 	<StackLayout Padding = "15,20,15,15" Orientation = "Vertical">
 		<Label Text="{Binding HealthKitServerAddress}" HorizontalOptions ="Center" VerticalOptions ="Center"/>
 		<Button Text="Upload data" Command="{Binding UploadCommand}" />
+		<Button Text="Get data" Command="{Binding GetDataCommand}" />
+		<ListView
+			ItemsSource="{Binding HealthKitDataFromServer}"
+			ItemTemplate="{StaticResource ListItemTemplate}">
+		</ListView>
 	</StackLayout>
+
 	</ContentPage.Content>
 </ContentPage>

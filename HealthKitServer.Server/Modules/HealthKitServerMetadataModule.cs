@@ -25,7 +25,7 @@ namespace HealthKitServer.Server
 					with.Summary ("Returns all registrated HealthKitData from the server.");
 				});
 			};
-	
+		
 			this.Describe ["getPatient"] = desc => {
 				return desc.AsSwagger (with => {
 					with.ResourcePath ("/api/v1/getPatient");

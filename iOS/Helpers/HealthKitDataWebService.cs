@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace HealthKitServer.iOS
 {
@@ -26,19 +27,19 @@ namespace HealthKitServer.iOS
 			}
 		}
 
-		public HealthKitData GetHealtKitDataFromHealthKitServer (string healthKitServerAPIAddress, int id)
+		public IEnumerable<HealthKitData> GetHealtKitDataFromHealthKitServer (string healthKitServerAPIAddress, int id)
 		{
 			try
 			{
 				using (var client = new WebClient())
 				{
 					var result = client.DownloadString(new Uri(healthKitServerAPIAddress + id));
-					return JsonConvert.DeserializeObject<HealthKitData>(result);
+					return JsonConvert.DeserializeObject<IEnumerable<HealthKitData>>(result);
 				}
 			}
 			catch(Exception e)
 			{
-				return new HealthKitData (); 
+				return new [] { new HealthKitData ()}; 
 			}
 		}
 	}
