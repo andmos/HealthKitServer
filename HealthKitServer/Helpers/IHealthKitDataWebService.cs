@@ -5,7 +5,7 @@ namespace HealthKitServer
 {
 	public interface IHealthKitDataWebService
 	{
-		bool UploadHealthKitDataToHealthKitServer(string healthKitServerAPIAddress, HealthKitData dataObject);
+		string UploadHealthKitDataToHealthKitServer(string healthKitServerAPIAddress, HealthKitData dataObject);
 		IEnumerable<HealthKitData> GetHealtKitDataFromHealthKitServer(string healthKitServerAPIAddress, int id);
 	}
 

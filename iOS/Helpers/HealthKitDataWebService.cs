@@ -8,7 +8,7 @@ namespace HealthKitServer.iOS
 {
 	public class HealthKitDataWebService : IHealthKitDataWebService 
 	{
-		public bool UploadHealthKitDataToHealthKitServer(string healthKitServerAPIAddress, HealthKitData dataObject)
+		public string UploadHealthKitDataToHealthKitServer(string healthKitServerAPIAddress, HealthKitData dataObject)
 		{
 			try
 			{
@@ -17,13 +17,13 @@ namespace HealthKitServer.iOS
 				{
 					client.Headers[HttpRequestHeader.ContentType] = "application/json";  
 					HealthKitDataContext.ActiveHealthKitData.RecordingTimeStamp = DateTime.UtcNow;
-					var result = client.UploadString(new Uri(healthKitServerAPIAddress), JsonConvert.SerializeObject(HealthKitDataContext.ActiveHealthKitData));
-					return true; 
+					var response = client.UploadString(new Uri(healthKitServerAPIAddress), JsonConvert.SerializeObject(HealthKitDataContext.ActiveHealthKitData));
+					return response; 
 				}
 			}
 			catch(Exception e)
 			{
-				return false; 
+				return e.ToString(); 
 			}
 		}
 

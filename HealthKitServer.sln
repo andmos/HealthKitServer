@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthKitServer.Host", "Hea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHealthRecordServer.Console", "TestHealthRecordServer.Console\TestHealthRecordServer.Console.csproj", "{3661DE74-568B-44B6-9F15-0039CFAC1812}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHealthKitServer.Server", "TestHealthKitServer.Server\TestHealthKitServer.Server.csproj", "{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,22 @@ Global
 		{42DFA08B-D1AA-4B0F-82DF-4CCA0CDA4C35}.Release|iPhone.Build.0 = Release|Any CPU
 		{42DFA08B-D1AA-4B0F-82DF-4CCA0CDA4C35}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{42DFA08B-D1AA-4B0F-82DF-4CCA0CDA4C35}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Release|iPhone.Build.0 = Release|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{5FEB2CF8-2EDE-4EA5-9F46-342A37B53F65}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{8643FF86-7ED7-41B1-8A12-AE163A1939CC}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
 		{8643FF86-7ED7-41B1-8A12-AE163A1939CC}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
 		{8643FF86-7ED7-41B1-8A12-AE163A1939CC}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
