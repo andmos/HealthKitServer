@@ -30,7 +30,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
-		public void GetSpesificHealthKitData_GivenMultipleHealthKitDataWithDifferentIdsReturnsCorrectNumberofRecords()
+		public void GetSpesificHealthKitData_GivenMultipleHealthKitDataWithDifferentIds_ReturnsCorrectNumberofRecords()
 		{
 			var testData = SetUpMultipleHealthKitObjects ();
 
@@ -45,20 +45,52 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		public void GetSpesificHealthKitData_GivenMultipleRecordsWithSamePersonId_ReturnsTrueIfAllRecordIdsAreUnique()
+		{
+			var singleTestData = SetUpSingleHealthKitDataObject ();
+			var testData = SetUpMultipleHealthKitObjects ();
+			PutMultipleHealthKitRecordsInCache (testData);
+			m_dataStorage.AddOrUpdateHealthKitDataToStorage (singleTestData);
+
+			var dataFromCache = m_dataStorage.GetSpesificHealthKitData (singleTestData.PersonId);
+
+			Assert.IsTrue (CheckResponseForUniqueRecordIds (dataFromCache));
+
+		}
+			
+		[Test()]
 		public void GetAllHealthKitData_GivenMultipleHealthKitRecordsCorrectNumberOfRecordsGetsAdded()
 		{
 			var testData = SetUpMultipleHealthKitObjects ();
-
-			foreach (var record in testData)
-			{
-				m_dataStorage.AddOrUpdateHealthKitDataToStorage (record);
-			}
+			PutMultipleHealthKitRecordsInCache (testData);
 
 			var totalCount = m_dataStorage.GetAllHealthKitData ().Count();
 
 			Assert.IsTrue (totalCount == 3);
 		}
 
+		private bool CheckResponseForUniqueRecordIds(IEnumerable<HealthKitData> healthKitData)
+		{
+			List<int> response = new List<int> (healthKitData.Select (r => r.RecordingId)); 
+			var gr = response.GroupBy (r => r);
+
+			foreach (var number in gr) 
+			{
+				if (number.Count() > 1) 
+				{
+					return false; 
+				}
+			}
+			return true; 
+		}
+
+		private void PutMultipleHealthKitRecordsInCache(IEnumerable<HealthKitData> healthKitData)
+		{
+			foreach (var record in healthKitData)
+			{
+				m_dataStorage.AddOrUpdateHealthKitDataToStorage (record);
+			}
+		}
 
 		private HealthKitData SetUpSingleHealthKitDataObject()
 		{
