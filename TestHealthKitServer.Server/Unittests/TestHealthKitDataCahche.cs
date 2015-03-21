@@ -33,11 +33,7 @@ namespace TestHealthKitServer.Server
 		public void GetSpesificHealthKitData_GivenMultipleHealthKitDataWithDifferentIds_ReturnsCorrectNumberofRecords()
 		{
 			var testData = SetUpMultipleHealthKitObjects ();
-
-			foreach (var record in testData) 
-			{
-				m_dataStorage.AddOrUpdateHealthKitDataToStorage (record);	
-			}
+			PutMultipleHealthKitRecordsInCache (testData);
 
 			var countId1 = m_dataStorage.GetSpesificHealthKitData (11).Count();
 

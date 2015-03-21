@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace TestHealthKitServer.Server
 {
@@ -25,6 +26,7 @@ namespace TestHealthKitServer.Server
 		public void Init()
 		{
 			m_healthKitDataWebClient = new IntegrationTestableHealthKitDataWebService ();
+
 		}
 
 		[Test()]
@@ -59,7 +61,7 @@ namespace TestHealthKitServer.Server
 			var healthKitDataFromServer = m_healthKitDataWebClient.GetHealtKitDataFromHealthKitServer (HealthKitServerGetUsersRecordsUrl, testData.PersonId);
 
 			Assert.IsNotNull (healthKitDataFromServer);
-			Assert.IsTrue (healthKitDataFromServer.ToList ().Any (x => x.RecordingId != null && x.RecordingId != 0));
+			Assert.IsTrue (healthKitDataFromServer.ToList ().Any (x => x.RecordingId != 0));
 		}
 
 		[Test()]
@@ -72,6 +74,20 @@ namespace TestHealthKitServer.Server
 
 			Assert.IsNotNull (healthKitDataFromServer);
 			Assert.IsTrue (CheckResponseForUniqueRecordIds(healthKitDataFromServer));
+		}
+
+		[Test()]
+		public void GetHealthKitData_GivenSingleRecordWithDistanceReadings_ReturnsTrueIfDistanceReadingIsCorrect()
+		{
+			var testData = SetUpSingleHealthKitDataObject (); 
+			m_healthKitDataWebClient.UploadHealthKitDataToHealthKitServer (HealthKitServerUploadUrl, testData);
+
+			var healthKitDataFromServer = m_healthKitDataWebClient.GetHealtKitDataFromHealthKitServer (HealthKitServerGetUsersRecordsUrl, testData.PersonId);
+
+			Assert.IsNotNull (healthKitDataFromServer);
+			Assert.AreEqual (testData.DistanceReadings.TotalDistance, healthKitDataFromServer.FirstOrDefault(t => t.DistanceReadings.TotalDistance == testData.DistanceReadings.TotalDistance).DistanceReadings.TotalDistance);
+			Assert.AreEqual (testData.DistanceReadings.TotalStepsOfLastRecording, healthKitDataFromServer.FirstOrDefault(t => t.DistanceReadings.TotalStepsOfLastRecording == testData.DistanceReadings.TotalStepsOfLastRecording).DistanceReadings.TotalStepsOfLastRecording);
+
 		}
 
 		private bool CheckResponseForUniqueRecordIds(IEnumerable<HealthKitData> healthKitData)
@@ -106,7 +122,7 @@ namespace TestHealthKitServer.Server
 					TotalDistance = "40", TotalSteps = "500", TotalStepsOfLastRecording = 200, TotalFlightsClimed = "30", TotalDistanceOfLastRecording = 10.50, 
 				}};
 		}
-
+			
 		private IEnumerable<HealthKitData> SetUpMultipleHealthKitObjects()
 		{
 			IList<HealthKitData> multipleDataRecords = new List<HealthKitData> (); 
