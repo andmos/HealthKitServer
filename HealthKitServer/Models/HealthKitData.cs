@@ -9,7 +9,7 @@ namespace HealthKitServer
 
 		public int PersonId { get; set;}
 
-		public int RecordingId { get; set;}
+		public int RecordId { get; set;}
 
 		public DateTime RecordingTimeStamp { get; set;}
 

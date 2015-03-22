@@ -30,6 +30,17 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		public void AddOrUpdateHealthKitDataToStorage_GivenHealthKitDataWithZeroAsId_GetsStoredInCacheWithIncrementedId()
+		{
+			var testData = SetUpSingleHealthKitDataObject();
+			testData.PersonId = 0;
+
+			m_dataStorage.AddOrUpdateHealthKitDataToStorage (testData);
+
+			Assert.IsTrue (testData.PersonId == 1);
+		}
+
+		[Test()]
 		public void GetSpesificHealthKitData_GivenMultipleHealthKitDataWithDifferentIds_ReturnsCorrectNumberofRecords()
 		{
 			var testData = SetUpMultipleHealthKitObjects ();
@@ -67,7 +78,7 @@ namespace TestHealthKitServer.Server
 
 		private bool CheckResponseForUniqueRecordIds(IEnumerable<HealthKitData> healthKitData)
 		{
-			List<int> response = new List<int> (healthKitData.Select (r => r.RecordingId)); 
+			List<int> response = new List<int> (healthKitData.Select (r => r.RecordId)); 
 			var gr = response.GroupBy (r => r);
 
 			foreach (var number in gr) 

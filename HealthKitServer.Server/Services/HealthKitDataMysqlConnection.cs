@@ -62,9 +62,16 @@ namespace HealthKitServer.Server
 			}
 		}
 
-		public void AddOrUpdateHealthKitDataToStorage (HealthKitData person)
+		public void AddOrUpdateHealthKitDataToStorage (HealthKitData record)
 		{
-			var sql = @"INSERT INTO HealthKitData(PersonId,RecordingTimeStamp,BloodType,DateOfBirth,Sex,Height)
+			string sql;
+
+			//if (GetSpesificHealthKitData (record.PersonId).Any (x => x.RecordId.Equals (record.PersonId))) 
+			//{
+			//	sql = @"INSERT INTO HealthKitData(RecordingTimeStamp,BloodType,DateOfBirth,Sex,Height) VALUES (@RecordingTimeStamp,@BloodType,@DateOfBirth,@Sex,@Height) WHERE PersonId = @PersonId ;";
+			//}
+
+			sql = @"INSERT INTO HealthKitData(PersonId,RecordingTimeStamp,BloodType,DateOfBirth,Sex,Height)
 						VALUES (@PersonId, @RecordingTimeStamp,@BloodType,@DateOfBirth,@Sex,@Height);";
 
 			using (var connection = new MySqlConnection ()) 
@@ -73,7 +80,7 @@ namespace HealthKitServer.Server
 				{
 					connection.ConnectionString = m_connectionString;
 					connection.Open(); 
-					connection.Execute(sql,person);
+					connection.Execute(sql,record);
 
 				}
 				catch(MySql.Data.MySqlClient.MySqlException e)

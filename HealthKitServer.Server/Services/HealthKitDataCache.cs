@@ -19,22 +19,22 @@ namespace HealthKitServer.Server
 			return m_storedHealthInfo.Values.SelectMany (d => d).ToList (); 
 		}
 
-		public void AddOrUpdateHealthKitDataToStorage(HealthKitData person)
+		public void AddOrUpdateHealthKitDataToStorage(HealthKitData record)
 		{
-			List<HealthKitData> healthKitData = new List<HealthKitData> ();
-			if (person.PersonId == 0) 
+			List<HealthKitData> healthKitDataRecords = new List<HealthKitData> ();
+			if (record.PersonId == 0) 
 			{
-				person.PersonId = m_storedHealthInfo.Count + 1; 
-				healthKitData.Add (person);
+				record.PersonId = m_storedHealthInfo.Count + 1; 
+				healthKitDataRecords.Add (record);
 			}
-			if (GetSpesificHealthKitData (person.PersonId) != null) 
+			if (GetSpesificHealthKitData (record.PersonId) != null) 
 			{
-				healthKitData = GetSpesificHealthKitData (person.PersonId).ToList ();
-				person.RecordingId = healthKitData.Count + 1;
-				healthKitData.Add (person);
+				healthKitDataRecords = GetSpesificHealthKitData (record.PersonId).ToList ();
+				record.RecordId = healthKitDataRecords.Count + 1;
+				healthKitDataRecords.Add (record);
 			}
 			
-			m_storedHealthInfo.AddOrUpdate(person.PersonId, healthKitData, (id, oldPersonHealthInfo) => healthKitData);
+			m_storedHealthInfo.AddOrUpdate(record.PersonId, healthKitDataRecords, (id, oldPersonHealthInfo) => healthKitDataRecords);
 		}
 
 		public IEnumerable<HealthKitData> GetSpesificHealthKitData(int id)

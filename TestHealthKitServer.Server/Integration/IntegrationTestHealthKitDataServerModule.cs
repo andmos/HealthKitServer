@@ -26,7 +26,6 @@ namespace TestHealthKitServer.Server
 		public void Init()
 		{
 			m_healthKitDataWebClient = new IntegrationTestableHealthKitDataWebService ();
-
 		}
 
 		[Test()]
@@ -41,7 +40,7 @@ namespace TestHealthKitServer.Server
 			Assert.AreEqual (testData.Height, deserializedObject.Height);
 			Assert.AreEqual (testData.DistanceReadings.TotalDistance, deserializedObject.DistanceReadings.TotalDistance);
 		}
-
+			
 		[Test()]
 		public void GetHealthKitData_RequestsHealthKitDataForUserId_ReturnsCorrectRecordsFromServer()
 		{
@@ -61,7 +60,7 @@ namespace TestHealthKitServer.Server
 			var healthKitDataFromServer = m_healthKitDataWebClient.GetHealtKitDataFromHealthKitServer (HealthKitServerGetUsersRecordsUrl, testData.PersonId);
 
 			Assert.IsNotNull (healthKitDataFromServer);
-			Assert.IsTrue (healthKitDataFromServer.ToList ().Any (x => x.RecordingId != 0));
+			Assert.IsTrue (healthKitDataFromServer.ToList ().Any (x => x.RecordId != 0));
 		}
 
 		[Test()]
@@ -92,7 +91,7 @@ namespace TestHealthKitServer.Server
 
 		private bool CheckResponseForUniqueRecordIds(IEnumerable<HealthKitData> healthKitData)
 		{
-			List<int> response = new List<int> (healthKitData.Select (r => r.RecordingId)); 
+			List<int> response = new List<int> (healthKitData.Select (r => r.RecordId)); 
 			var gr = response.GroupBy (r => r);
 
 			foreach (var number in gr) 
