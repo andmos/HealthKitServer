@@ -73,14 +73,14 @@ namespace HealthKitServer.Server
 
 			sql = @"INSERT INTO HealthKitData(PersonId,RecordingTimeStamp,BloodType,DateOfBirth,Sex,Height)
 						VALUES (@PersonId, @RecordingTimeStamp,@BloodType,@DateOfBirth,@Sex,@Height);";
-
+					
 			using (var connection = new MySqlConnection ()) 
 			{
 				try
 				{
 					connection.ConnectionString = m_connectionString;
 					connection.Open(); 
-					connection.Execute(sql,record);
+					connection.Execute(sql, record);
 
 				}
 				catch(MySql.Data.MySqlClient.MySqlException e)

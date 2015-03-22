@@ -7,7 +7,7 @@ namespace HealthKitServer
 	{
 
 		public string TotalSteps { get; set; }
-
+			
 
 		public int TotalStepsOfLastRecording { get; set; }
 

@@ -1,0 +1,8 @@
+#! /bin/bash
+
+if [ -z "$(docker ps | grep healthkitserverdb)" ]
+	then 
+	   docker start healthkitserverdb
+	fi
+	   docker build -t healthkitserver ..
+	   docker run -p 5002:5002 --link healthkitserverdb:healthkitserverdb -it healthkitserver 
