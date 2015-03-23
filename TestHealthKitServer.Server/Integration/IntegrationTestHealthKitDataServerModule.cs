@@ -76,6 +76,21 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		public void GetHealthKitData_GivenSingleRecordWithHealthKitData_ReturnsTrueIfAllHealthKitDataIsCorrect()
+		{
+			var testData = SetUpSingleHealthKitDataObject (); 
+			m_healthKitDataWebClient.UploadHealthKitDataToHealthKitServer (HealthKitServerUploadUrl, testData);
+
+			var healthKitDataFromServer = m_healthKitDataWebClient.GetHealtKitDataFromHealthKitServer (HealthKitServerGetUsersRecordsUrl, testData.PersonId);
+
+			Assert.IsNotNull (healthKitDataFromServer);
+			Assert.AreEqual (testData.BloodType, healthKitDataFromServer.FirstOrDefault(t => t.BloodType == testData.BloodType).BloodType);
+			Assert.AreEqual (testData.DateOfBirth, healthKitDataFromServer.FirstOrDefault(t => t.DateOfBirth == testData.DateOfBirth).DateOfBirth);
+			Assert.AreEqual (testData.Sex, healthKitDataFromServer.FirstOrDefault(t => t.Sex == testData.Sex).Sex);
+
+		}
+
+		[Test()]
 		public void GetHealthKitData_GivenSingleRecordWithDistanceReadings_ReturnsTrueIfDistanceReadingIsCorrect()
 		{
 			var testData = SetUpSingleHealthKitDataObject (); 

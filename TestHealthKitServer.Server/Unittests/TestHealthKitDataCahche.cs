@@ -30,7 +30,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
-		public void AddOrUpdateHealthKitDataToStorage_GivenHealthKitDataWithZeroAsId_GetsStoredInCacheWithIncrementedId()
+		public void AddOrUpdateHealthKitDataToStorage_GivenHealthKitDataWithZeroAsPersonId_GetsStoredInCacheWithIncrementedId()
 		{
 			var testData = SetUpSingleHealthKitDataObject();
 			testData.PersonId = 0;
