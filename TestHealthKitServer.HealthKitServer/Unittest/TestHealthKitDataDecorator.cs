@@ -24,6 +24,18 @@ namespace TestHealthKitServer.HealthKitServer
 			m_decoratableObject.DistanceReadings = m_decoratableDistanceReading;
 			m_decorator = new HealthKitDataDecorator (m_healthKitAccess, m_decoratableObject);
 		}
+
+		[Test()]
+		public async Task DecorateHealthKitData_GivenValidIHealthKitAccess_SetUpPermissionIsCalledOnce()
+		{
+			var healthKitAccessMoc = new Mock<IHealthKitAccess> (); 
+			healthKitAccessMoc.Setup (x => x.SetUpPermissions ()).Verifiable ();
+			m_decorator = new HealthKitDataDecorator (healthKitAccessMoc.Object, m_decoratableObject);
+
+			await m_decorator.DecorateHealthKitData ();
+
+			healthKitAccessMoc.Verify(x => x.SetUpPermissions(), Times.AtLeastOnce()); 
+		}
 			
 		[Test()]
 		public async Task DecorateHealthKitData_GivenValidIHealthKitAccess_ReturnsTrue()

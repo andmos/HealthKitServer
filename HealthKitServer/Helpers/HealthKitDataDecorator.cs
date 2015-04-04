@@ -5,7 +5,6 @@ namespace HealthKitServer
 {
 	public class HealthKitDataDecorator
 	{
-
 		IHealthKitAccess m_healthKitAccess;
 		HealthKitData m_healthKitData;
 
