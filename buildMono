@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Installs mono from source. Might be unstable. If on OSX, might as well install Xamarin.
 if [[ "$(uname)" == "Linux" ]]; then
 
     PREFIX=$@
