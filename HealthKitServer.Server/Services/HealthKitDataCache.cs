@@ -43,5 +43,16 @@ namespace HealthKitServer.Server
 			return m_storedHealthInfo.TryGetValue (id, out personFromCache) ? personFromCache : Enumerable.Empty<HealthKitData>(); 
 		}
 
+		public HealthKitData GetSpesificHealthKitDataRecord(int personId, int recordId)
+		{
+			var recordFromCache = GetSpesificHealthKitData (personId).Where (x => x.RecordId == recordId).FirstOrDefault ();
+
+			if (recordFromCache != null)
+			{
+				return recordFromCache;
+			}
+			return new HealthKitData (); 
+		}
+
 	}
 }

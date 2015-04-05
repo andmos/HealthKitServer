@@ -21,6 +21,7 @@ namespace TestHealthKitServer.Server
 		private IHealthKitDataWebService m_healthKitDataWebClient; 
 		private const string HealthKitServerUploadUrl = "http://localhost:5000/api/v1/addHealthKitData";
 		private const string HealthKitServerGetUsersRecordsUrl = "http://localhost:5000/api/v1/gethealthkitdata?id=";
+		private const string HealthKitServerGetSpesificHealthKitRecord = "http://localhost:5000/api/v1/getHealthKitDataRecord";
 
 		[SetUp()]
 		public void Init()
@@ -101,6 +102,20 @@ namespace TestHealthKitServer.Server
 			Assert.IsNotNull (healthKitDataFromServer);
 			Assert.AreEqual (testData.DistanceReadings.TotalDistance, healthKitDataFromServer.FirstOrDefault(t => t.DistanceReadings.TotalDistance == testData.DistanceReadings.TotalDistance).DistanceReadings.TotalDistance);
 			Assert.AreEqual (testData.DistanceReadings.TotalStepsOfLastRecording, healthKitDataFromServer.FirstOrDefault(t => t.DistanceReadings.TotalStepsOfLastRecording == testData.DistanceReadings.TotalStepsOfLastRecording).DistanceReadings.TotalStepsOfLastRecording);
+
+		}
+
+		[Test()]
+		public void GetHealthKitDataRecord_GivenSingleHealthKitRecords_ReturnsCorrectHealthKitRecord()
+		{
+			var testData = SetUpSingleHealthKitDataObject (); 
+			m_healthKitDataWebClient.UploadHealthKitDataToHealthKitServer (HealthKitServerUploadUrl, testData);
+			var healthKitRecordsFromPerson = m_healthKitDataWebClient.GetHealtKitDataFromHealthKitServer (HealthKitServerGetUsersRecordsUrl, testData.PersonId).Count ();
+
+			var healthKitRecordFromServer = m_healthKitDataWebClient.GetHealthKitDataRecordFromHealthKitServer (HealthKitServerGetSpesificHealthKitRecord, testData.PersonId, healthKitRecordsFromPerson );
+
+			Assert.IsNotNull (healthKitRecordFromServer);
+			Assert.IsFalse (healthKitRecordFromServer.RecordId == 0); 
 
 		}
 

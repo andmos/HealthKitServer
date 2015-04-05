@@ -33,6 +33,10 @@ namespace HealthKitServer.Server
 		//	m_redisDatabase.SetAdd (person.Id, person);
 		}
 
+		public HealthKitData GetSpesificHealthKitDataRecord(int personId, int recordId)
+		{
+			throw new NotImplementedException ();
+		}
 
 	}
 }

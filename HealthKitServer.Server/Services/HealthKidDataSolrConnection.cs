@@ -24,6 +24,11 @@ namespace HealthKitServer.Server
 			throw new NotImplementedException ();
 		}
 
+		public HealthKitData GetSpesificHealthKitDataRecord(int personId, int recordId)
+		{
+			throw new NotImplementedException ();
+		}
+
 		public void AddOrUpdateHealthKitDataToStorage (HealthKitData person)
 		{
 			m_solrServer.Add (person);

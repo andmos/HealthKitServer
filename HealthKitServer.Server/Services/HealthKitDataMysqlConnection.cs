@@ -62,6 +62,11 @@ namespace HealthKitServer.Server
 			}
 		}
 
+		public HealthKitData GetSpesificHealthKitDataRecord(int personId, int recordId)
+		{
+			throw new NotImplementedException ();
+		}
+
 		public void AddOrUpdateHealthKitDataToStorage (HealthKitData record)
 		{
 			string sql;

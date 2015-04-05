@@ -42,5 +42,22 @@ namespace HealthKitServer.iOS
 				return new [] { new HealthKitData ()}; 
 			}
 		}
+
+		public HealthKitData GetHealthKitDataRecordFromHealthKitServer(string healthKitServerAPIAddress, int personId, int recordId)
+		{
+			try
+			{
+				using (var client = new WebClient())
+				{
+					var query = string.Format("?id={0}&recordId={1}", personId, recordId);
+					var result = client.DownloadString(new Uri(healthKitServerAPIAddress + query));
+					return JsonConvert.DeserializeObject<HealthKitData>(result);
+				}
+			}
+			catch(Exception e)
+			{
+				return new HealthKitData (); 
+			}
+		}
 	}
 }

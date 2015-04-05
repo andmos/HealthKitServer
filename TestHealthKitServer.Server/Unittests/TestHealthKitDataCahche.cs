@@ -76,6 +76,33 @@ namespace TestHealthKitServer.Server
 			Assert.IsTrue (totalCount == 3);
 		}
 
+		[Test()]
+		public void GetSpesificHealthKitDataRecord_GivenMultipleHealthKitRecords_ReturnsHealthKitRecordWithCorrectId()
+		{
+			var singleTestData = SetUpSingleHealthKitDataObject ();
+			var testData = SetUpMultipleHealthKitObjects ();
+			m_dataStorage.AddOrUpdateHealthKitDataToStorage (singleTestData);
+			PutMultipleHealthKitRecordsInCache (testData);
+
+			var dataFromCache = m_dataStorage.GetSpesificHealthKitDataRecord (singleTestData.PersonId, 1);
+
+			Assert.IsTrue (dataFromCache.RecordId != 0);
+			Assert.AreEqual (singleTestData.PersonId, dataFromCache.PersonId);
+		}
+
+		[Test()]
+		public void GetSpesificHealthKitDataRecord_GivenMultipleHealthKitRecords_ReturnsEmptyHealthKitRecordWhenAskedForNonExistingId()
+		{
+			var singleTestData = SetUpSingleHealthKitDataObject ();
+			var testData = SetUpMultipleHealthKitObjects ();
+			m_dataStorage.AddOrUpdateHealthKitDataToStorage (singleTestData);
+			PutMultipleHealthKitRecordsInCache (testData);
+
+			var dataFromCache = m_dataStorage.GetSpesificHealthKitDataRecord (singleTestData.PersonId, 20);
+
+			Assert.IsTrue (dataFromCache.RecordId == 0);
+		}
+
 		private bool CheckResponseForUniqueRecordIds(IEnumerable<HealthKitData> healthKitData)
 		{
 			List<int> response = new List<int> (healthKitData.Select (r => r.RecordId)); 
