@@ -20,7 +20,7 @@ namespace TestHealthKitServer.Server
 	{
 		private IHealthKitDataWebService m_healthKitDataWebClient; 
 		private const string HealthKitServerUploadUrl = "http://localhost:5000/api/v1/addHealthKitData";
-		private const string HealthKitServerGetUsersRecordsUrl = "http://localhost:5000/api/v1/gethealthkitdata?id=";
+		private const string HealthKitServerGetUsersRecordsUrl = "http://localhost:5000/api/v1/gethealthkitdata";
 		private const string HealthKitServerGetSpesificHealthKitRecord = "http://localhost:5000/api/v1/getHealthKitDataRecord";
 
 		[SetUp()]

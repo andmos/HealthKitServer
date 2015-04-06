@@ -32,7 +32,8 @@ namespace TestHealthKitServer.Server
 				{
 					using (var client = new WebClient())
 					{
-						var result = client.DownloadString(new Uri(healthKitServerAPIAddress + id));
+					var query = string.Format("?id={0}", id);	
+					var result = client.DownloadString(new Uri(healthKitServerAPIAddress + query));
 						return JsonConvert.DeserializeObject<IEnumerable<HealthKitData>>(result);
 					}
 				}
