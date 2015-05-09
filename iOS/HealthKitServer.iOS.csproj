@@ -131,6 +131,7 @@
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="Models\HealthKitDataContext.cs" />
     <Compile Include="Helpers\HealthKitDataWebService.cs" />
+    <Compile Include="Models\iOSDevice.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.0.6341\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.0.6341\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

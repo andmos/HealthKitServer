@@ -22,6 +22,8 @@ namespace HealthKitServer
 		public double Height { get; set; }
 
 		public DistanceReading DistanceReadings { get; set;}
+
+		public string Device { get; set; }
 	}
 }
 

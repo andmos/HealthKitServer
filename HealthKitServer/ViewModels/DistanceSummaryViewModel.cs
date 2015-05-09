@@ -19,7 +19,7 @@ namespace HealthKitServer
 
 		public DistanceSummaryViewModel ()
 		{
-			m_healthKitdataObject = new HealthKitData {PersonId = 3, DistanceReadings = new DistanceReading{}};
+			m_healthKitdataObject = new HealthKitData {PersonId = 3, DistanceReadings = new DistanceReading{}, Device = Container.Resolve<IDevice>().Device};
 			m_healthKitDataDecorator = new HealthKitDataDecorator (Container.Singleton<IHealthKitAccess> (), m_healthKitdataObject);
 			StartDecoration ();
 			m_healthKitDataWebService = Container.Resolve<IHealthKitDataWebService> ();
