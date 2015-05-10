@@ -40,7 +40,6 @@
     <Compile Include="Helpers\Container.cs" />
     <Compile Include="Helpers\ISimpleContainer.cs" />
     <Compile Include="Helpers\SimpleContainer.cs" />
-    <Compile Include="ViewModels\DistanceSummaryViewModel.cs" />
     <Compile Include="Models\DistanceReading.cs" />
     <Compile Include="Models\HealthKitData.cs" />
     <Compile Include="Helpers\HealthKitDataDecorator.cs" />
@@ -48,6 +47,7 @@
     <Compile Include="Helpers\IHealthKitDataWebService.cs" />
     <Compile Include="Helpers\Utils.cs" />
     <Compile Include="Models\IDevice.cs" />
+    <Compile Include="ViewModels\DistanceSummaryViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.0.6341\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.0.6341\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

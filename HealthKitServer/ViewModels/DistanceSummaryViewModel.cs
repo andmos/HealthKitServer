@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
-namespace HealthKitServer
+namespace HealthKitServer.ViewModels
 {
 	public class DistanceSummaryViewModel : ObservableBase 
 	{
@@ -17,14 +18,14 @@ namespace HealthKitServer
 		private ICommand m_uploadCommand;
 		private ICommand m_GetDataCommand; 
 
-		public DistanceSummaryViewModel ()
+		public DistanceSummaryViewModel (IHealthKitDataWebService healthKitDataWebService)
 		{
 			m_healthKitdataObject = new HealthKitData {PersonId = 3, DistanceReadings = new DistanceReading{}, Device = Container.Resolve<IDevice>().Device};
 			m_healthKitDataDecorator = new HealthKitDataDecorator (Container.Singleton<IHealthKitAccess> (), m_healthKitdataObject);
 			StartDecoration ();
-			m_healthKitDataWebService = Container.Resolve<IHealthKitDataWebService> ();
+			m_healthKitDataWebService = healthKitDataWebService; 
 			m_healthKitDataFromServer = new ObservableCollection<HealthKitData> ();
-			m_uploadCommand = new DelegateCommand (UploadDataToHealthKitServer, () => true);
+			m_uploadCommand = new DelegateCommand (UploadDataToHealthKitServer, () => true); //CanUploadHealthKitDataToServer());
 			m_GetDataCommand = new DelegateCommand (GetDataFromHealthKitServer, () => true);
 		}
 
@@ -52,17 +53,21 @@ namespace HealthKitServer
 			set { this.SetPropertyValue (ref m_healthKitServerPostAPIAddress, value); }
 		}
 
-		public bool IsDecorated
+		public bool IsDecorating
 		{
 			get{return m_isDecorated; }
-			set{ this.SetPropertyValue (ref m_isDecorated, value);
-				NotifyPropertyChanged ("IsDecorated");}
+			set{ this.SetPropertyValue (ref m_isDecorated, value); }
 		}
 
 		private async void StartDecoration()
 		{
-			IsDecorated = await m_healthKitDataDecorator.DecorateHealthKitData();
-			NotifyPropertyChanged ("IsDecorated");
+			IsDecorating = true; 
+			await m_healthKitDataDecorator.DecorateHealthKitData().ContinueWith(SetDecoratoting);
+		}
+
+		private void SetDecoratoting(Task<bool> obj)
+		{
+			IsDecorating = false; 
 		}
 
 		private void UploadDataToHealthKitServer(object o = null)
@@ -70,13 +75,20 @@ namespace HealthKitServer
 			var uploaded = m_healthKitDataWebService.UploadHealthKitDataToHealthKitServer (m_healthKitServerPostAPIAddress, m_healthKitdataObject);
 		}
 
+		private bool CanUploadHealthKitDataToServer()
+		{
+			if (!IsDecorating) 
+			{
+				return true; 
+			} 
+			return false; 
+		}
+
 		private void GetDataFromHealthKitServer(object o = null)
 		{
 			var response = m_healthKitDataWebService.GetHealtKitDataFromHealthKitServer (m_healthKitServerGetAPIAddress, 3);
 			if (response != null) 
 			{
-				
-				//too lazy to RisePropertyChanged for now.
 				if(m_healthKitDataFromServer.Any())
 				{
 					// till next Xamarin Update
@@ -96,4 +108,3 @@ namespace HealthKitServer
 	
 	}
 }
-

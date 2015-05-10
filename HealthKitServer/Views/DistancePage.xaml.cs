@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using HealthKitServer.ViewModels;
 
 namespace HealthKitServer
 {	
@@ -9,7 +10,7 @@ namespace HealthKitServer
 		public DistancePage ()
 		{ 
 			InitializeComponent ();
-			BindingContext = new DistanceSummaryViewModel ();
+			BindingContext = new DistanceSummaryViewModel (Container.Resolve<IHealthKitDataWebService>());
 		}
 	}
 }
