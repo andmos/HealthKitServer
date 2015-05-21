@@ -11,6 +11,7 @@ Vagrant::Config.run do |config|
   
 
   config.vm.provision :shell, :inline => "curl -s https://get.docker.io/ubuntu/ | sudo sh > /dev/null 2>&1"
+  config.vm.provision :shell, :inline => "curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > docker-compose; chmod +x docker-compose; sudo mv docker-compose /usr/local/bin/docker-compose"
 
   config.vm.forward_port 5002, 5000 # HealthKitServer
   config.vm.forward_port 8983, 8983 # Solr
