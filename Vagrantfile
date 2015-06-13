@@ -2,15 +2,15 @@
 # vi: set ft=ruby :
 
 Vagrant::Config.run do |config|
-  config.vm.box = "virtualUbuntu64"
+  config.vm.box = "ubuntu/trusty64"
 
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box_url = "ubuntu/trusty64"
   config.vm.provision :shell, :inline => "sudo apt-get update"
   config.vm.provision :shell, :inline => "sudo apt-get install curl -y"
   config.vm.provision :shell, :inline => "sudo apt-get install vim -y"
   
 
-  config.vm.provision :shell, :inline => "curl -s https://get.docker.io/ubuntu/ | sudo sh > /dev/null 2>&1"
+  config.vm.provision :shell, :inline => "curl -s https://get.docker.io/ubuntu/ | sudo sh "
   config.vm.provision :shell, :inline => "curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > docker-compose; chmod +x docker-compose; sudo mv docker-compose /usr/local/bin/docker-compose"
 
   config.vm.forward_port 5002, 5000 # HealthKitServer
