@@ -29,7 +29,7 @@ namespace HealthKitServer
 			m_healthKitData.DistanceReadings.TotalDistanceOfLastRecording = await m_healthKitAccess.QueryLastRegistratedWalkingDistance ();
 			m_healthKitData.DistanceReadings.TotalStepsOfLastRecording = await m_healthKitAccess.QueryLastRegistratedSteps ();
 			m_healthKitData.RecordingTimeStamp = DateTime.UtcNow;
-			//m_healthKitData.LastRegisteredHeartRate = await m_healthKitAccess.QueryLastRegistratetHeartRate ();
+			m_healthKitData.LastRegisteredHeartRate = await m_healthKitAccess.QueryLastRegistratetHeartRate ();
 			return true;
 		}
 	}

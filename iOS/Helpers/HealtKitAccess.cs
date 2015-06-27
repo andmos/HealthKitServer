@@ -147,6 +147,7 @@ namespace HealthKitServer
 
 				});
 			await Task.Factory.StartNew(() => HealthKitStore.ExecuteQuery (query));
+
 			return usersHeight;
 		}
 
@@ -175,6 +176,37 @@ namespace HealthKitServer
 			Console.WriteLine(string.Format("Total walked last recording: ", lastRegistratedWalkingDistance));
 			return lastRegistratedWalkingDistance;
 		}
+
+		public async Task<int> QueryLastRegistratetHeartRate()
+		{
+
+			var heartRateType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.HeartRate);
+			int lastRegistratedHeartRate = 0;
+
+			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
+			var query = new HKSampleQuery (heartRateType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
+				(HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
+					string resultString = string.Empty;
+					if (results.Length != 0) {
+						resultString = results [results.Length - 1].ToString();
+						lastRegistratedHeartRate = ParseHeartRateResultToBeatsPrMinute(resultString);
+						HealthKitDataContext.ActiveHealthKitData.LastRegisteredHeartRate = lastRegistratedHeartRate;
+						Console.WriteLine(string.Format("lastRegistratedHeartRate: {0}", lastRegistratedHeartRate));
+					}
+
+				});
+			await Task.Factory.StartNew(() =>HealthKitStore.ExecuteQuery (query));
+	
+			return lastRegistratedHeartRate;
+		}
+
+		private int ParseHeartRateResultToBeatsPrMinute(string heartRateResult)
+		{
+			var heartRateStringArray = heartRateResult.Split (null);
+			var heartRateBeatsPrMinute = ParseStringResultToDouble (heartRateStringArray [0]) * 60;
+			return (int) heartRateBeatsPrMinute; 
+		}
+
 
 
 
