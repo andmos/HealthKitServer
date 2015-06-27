@@ -70,6 +70,10 @@ namespace TestHealthKitServer.HealthKitServer
 			return Task<int>.Factory.StartNew(() => 20);
 		}
 
+		public Task<int> QueryLastRegistratetHeartRate ()
+		{
+			return Task<int>.Factory.StartNew(() => 85);
+		}
 	}
 }
 

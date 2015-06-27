@@ -18,6 +18,7 @@ namespace HealthKitServer
 
 		Task<double> QueryLastRegistratedWalkingDistance ();
 		Task<int> QueryLastRegistratedSteps ();
+		//Task<int> QueryLastRegistratetHeartRate(); 
 
 	}
 }

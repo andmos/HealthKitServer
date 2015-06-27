@@ -28,7 +28,7 @@ namespace HealthKitServer
 			if (m_healthKitStore == null)
 			{
 				HealthKitStore = new HKHealthStore ();
-				m_healthKitStore.RequestAuthorizationToShare (new NSSet (new [] { distanceQuantityType , stepsQuantityType , flightsQuantityType  }), new NSSet (new [] {  (NSObject) distanceQuantityType ,(NSObject)  stepsQuantityType , (NSObject) flightsQuantityType , (NSObject)  heightQuantityType , (NSObject)dateOfBirthCharacteristicType, (NSObject) sexCharacteristicType, (NSObject) bloodTypeCharacteristicType, (NSObject)nikeFuelQuantityType, (NSObject)bloodTypeCharacteristicType  }), (success, error) => {
+				m_healthKitStore.RequestAuthorizationToShare (new NSSet (new [] { distanceQuantityType , stepsQuantityType , flightsQuantityType, heartRateQuantityType  }), new NSSet (new [] {  (NSObject) distanceQuantityType ,(NSObject)  stepsQuantityType , (NSObject) flightsQuantityType , (NSObject)  heightQuantityType , (NSObject)dateOfBirthCharacteristicType, (NSObject) sexCharacteristicType, (NSObject) bloodTypeCharacteristicType, (NSObject)nikeFuelQuantityType, (NSObject)bloodTypeCharacteristicType, (NSObject) heartRateQuantityType }), (success, error) => {
 					Console.WriteLine ("Authorized:" + success);
 					if (error != null) {
 						Console.WriteLine ("Authorization error: " + error);
@@ -146,8 +146,7 @@ namespace HealthKitServer
 					}
 
 				});
-			m_healthKitStore.ExecuteQuery (query);
-			Console.WriteLine(string.Format("Total height: ", usersHeight));
+			await Task.Factory.StartNew(() => HealthKitStore.ExecuteQuery (query));
 			return usersHeight;
 		}
 
@@ -200,9 +199,7 @@ namespace HealthKitServer
 			m_healthKitStore.ExecuteQuery (query);
 			return lastRegistratedSteps;
 		}
-
-	
-
+			
 		public async Task<string> QueryTotalFlights()
 		{
 			var flightsCount = HKObjectType.GetQuantityType (HKQuantityTypeIdentifierKey.FlightsClimbed);

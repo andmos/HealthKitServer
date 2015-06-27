@@ -24,6 +24,8 @@ namespace HealthKitServer
 		public DistanceReading DistanceReadings { get; set;}
 
 		public string Device { get; set; }
+
+		public int LastRegisteredHeartRate {get; set;}
 	}
 }
 
