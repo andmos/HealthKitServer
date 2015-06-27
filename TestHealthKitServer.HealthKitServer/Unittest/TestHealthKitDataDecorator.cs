@@ -52,6 +52,7 @@ namespace TestHealthKitServer.HealthKitServer
 			Assert.AreEqual(m_decoratableObject.DateOfBirth, "22.04.1990");
 			Assert.AreEqual(m_decoratableObject.Height, 1.74);
 			Assert.AreEqual(m_decoratableObject.Sex, "Male");
+			Assert.AreEqual (m_decoratableObject.LastRegisteredHeartRate, 85);
 		}
 
 		[Test()]
