@@ -88,6 +88,7 @@ namespace TestHealthKitServer.Server
 			Assert.AreEqual (testData.BloodType, healthKitDataFromServer.FirstOrDefault(t => t.BloodType == testData.BloodType).BloodType);
 			Assert.AreEqual (testData.DateOfBirth, healthKitDataFromServer.FirstOrDefault(t => t.DateOfBirth == testData.DateOfBirth).DateOfBirth);
 			Assert.AreEqual (testData.Sex, healthKitDataFromServer.FirstOrDefault(t => t.Sex == testData.Sex).Sex);
+			Assert.AreEqual (testData.LastRegisteredHeartRate, healthKitDataFromServer.FirstOrDefault (t => t.LastRegisteredHeartRate == testData.LastRegisteredHeartRate).LastRegisteredHeartRate);
 
 		}
 
