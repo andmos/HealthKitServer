@@ -1,6 +1,6 @@
 HealthKitServer
 ===
-HealthKitServer is a REST-based server that uses Apple's new hub for health-realted information, HealthKit, to store a persons health related data.
+HealthKitServer is a RESTfull server that uses Apple's new hub for health-realted information, HealthKit, to store a persons health related data.
 
 The project includes the server itself written in .NET (compiled with Mono for cross-platform support) and an iOS app written with [Xamarin Forms](http://xamarin.com/forms).
 
