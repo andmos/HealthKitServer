@@ -2,6 +2,10 @@ HealthKitServer
 ===
 HealthKitServer is a RESTfull server that uses Apple's new hub for health-realted information, HealthKit, to store a persons health related data.
 
+With HealthKit, Apple has created a hub for health data from devices like [The Apple Watch](https://www.apple.com/watch/),
+[FitBit](https://www.fitbit.com/no) and [Jawbone](https://jawbone.com/up). Why not store all that data outside the iPhone? 
+
+
 The project includes the server itself written in .NET (compiled with Mono for cross-platform support) and an iOS app written with [Xamarin Forms](http://xamarin.com/forms).
 
 >Note: The Server API supports data from other sources as well, not just HealthKit.  
@@ -14,7 +18,7 @@ The project includes the server itself written in .NET (compiled with Mono for c
 * SimpleContainer
 
 ### Datastorage
-
+i
 I like to let users choose datastorage, so support for the following datastorage methods is created:
 * Local Cache (in memory)
 * MySQL
@@ -27,9 +31,9 @@ I like to let users choose datastorage, so support for the following datastorage
 * Separate core project from Xamarin Forms to make building on Linux easier (xbuild can only be run on OSX or Windows).
 * More general interfaces for importing data from other sources than HealthKit. (deserialization of archetypes?)
 * Move from SimpleContainer to [LightInject](https://github.com/seesharper/LightInject) when the codebase gets bigger.
-
+ 
 ### Build and try
-
+ 
     # Run local with data stored in memory:  
     git clone https://github.com/andmos/HealthKitServer.git
     cd HealthKitServer/
