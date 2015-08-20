@@ -149,7 +149,7 @@ namespace TestHealthKitServer.Server
 		{
 			return new HealthKitData { PersonId = 11,  RecordingTimeStamp = DateTime.UtcNow, Sex = "male", Height = 1.74,
 				BloodType = "A+",  DateOfBirth = "08.01.2015", LastRegisteredHeartRate = 50, DistanceReadings = new DistanceReading {
-					TotalDistance = "40", TotalSteps = "500", TotalStepsOfLastRecording = 200, TotalFlightsClimed = "30", TotalDistanceOfLastRecording = 10.50, 
+					TotalDistance = 40, TotalSteps = 500, TotalStepsOfLastRecording = 200, TotalFlightsClimed = 30, TotalDistanceOfLastRecording = 10.50, 
 				}};
 		}
 			
@@ -158,15 +158,15 @@ namespace TestHealthKitServer.Server
 			IList<HealthKitData> multipleDataRecords = new List<HealthKitData> (); 
 			multipleDataRecords.Add(new HealthKitData { PersonId = 11, LastRegisteredHeartRate = 50, RecordingTimeStamp = DateTime.UtcNow, Sex = "male", Height = 1.74,
 				BloodType = "A+",  DateOfBirth = "08.01.2015", DistanceReadings = new DistanceReading {
-					TotalDistance = "40", TotalSteps = "500", TotalStepsOfLastRecording = 200, TotalFlightsClimed = "30", TotalDistanceOfLastRecording = 10.50, 
+					TotalDistance = 40, TotalSteps = 500, TotalStepsOfLastRecording = 200, TotalFlightsClimed = 30, TotalDistanceOfLastRecording = 10.50, 
 				}});
 			multipleDataRecords.Add(new HealthKitData { PersonId = 12,  RecordingTimeStamp = DateTime.UtcNow, Sex = "male", Height = 1.74,
 				BloodType = "A+",  DateOfBirth = "08.01.2015", LastRegisteredHeartRate = 50, DistanceReadings = new DistanceReading {
-					TotalDistance = "40", TotalSteps = "520", TotalStepsOfLastRecording = 200, TotalFlightsClimed = "30", TotalDistanceOfLastRecording = 10.50, 
+					TotalDistance = 40, TotalSteps = 520, TotalStepsOfLastRecording = 200, TotalFlightsClimed = 30, TotalDistanceOfLastRecording = 10.50, 
 				}});
 			multipleDataRecords.Add(new HealthKitData { PersonId = 11,  RecordingTimeStamp = DateTime.UtcNow, Sex = "male", Height = 1.74,
 				BloodType = "A+",  DateOfBirth = "08.01.2015", LastRegisteredHeartRate = 50, DistanceReadings = new DistanceReading {
-					TotalDistance = "40", TotalSteps = "550", TotalStepsOfLastRecording = 200, TotalFlightsClimed = "30", TotalDistanceOfLastRecording = 10.50, 
+					TotalDistance = 40, TotalSteps = 550, TotalStepsOfLastRecording = 200, TotalFlightsClimed = 30, TotalDistanceOfLastRecording = 10.50, 
 				}});
 			return multipleDataRecords;
 		}

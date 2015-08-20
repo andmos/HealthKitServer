@@ -15,7 +15,7 @@ namespace TestHealthKitServer.Console
 
 				var jsonString = JsonConvert.SerializeObject(new HealthKitData { PersonId = 11,  RecordingTimeStamp = DateTime.UtcNow, Sex = "male", Height = 1.74, LastRegisteredHeartRate = 85,
 					BloodType = "A+",  DateOfBirth = "08.01.2015", DistanceReadings = new DistanceReading {
-						TotalDistance = "40", TotalSteps = "500", TotalStepsOfLastRecording = 200, TotalFlightsClimed = "30", TotalDistanceOfLastRecording = 10.50, 
+						TotalDistance = 40, TotalSteps = 500, TotalStepsOfLastRecording = 200, TotalFlightsClimed = 30, TotalDistanceOfLastRecording = 10.50, 
 					}
 				});
 

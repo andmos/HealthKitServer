@@ -15,9 +15,9 @@ namespace TestHealthKitServer.HealthKitServer
 			return;
 		}
 
-		public Task<string> QueryTotalSteps ()
+		public Task<int> QueryTotalSteps ()
 		{
-			return Task<string>.Factory.StartNew(() => "50000");
+			return Task<int>.Factory.StartNew(() => 50000);
 		}
 
 		public Task<string> QueryTotalStepsRecordingFirstRecordingDate ()
@@ -30,14 +30,14 @@ namespace TestHealthKitServer.HealthKitServer
 			return Task<string>.Factory.StartNew(() => "01.01.2012");
 		}
 
-		public Task<string> QueryTotalLengthWalked ()
+		public Task<double> QueryTotalLengthWalked ()
 		{
-			return Task<string>.Factory.StartNew(() => "10000");
+			return Task<double>.Factory.StartNew(() => 10000);
 		}
 
-		public Task<string> QueryTotalFlights ()
+		public Task<int> QueryTotalFlights ()
 		{
-			return Task<string>.Factory.StartNew(() => "3000");
+			return Task<int>.Factory.StartNew(() => 3000);
 		}
 
 		public Task<double> QueryTotalHeight ()

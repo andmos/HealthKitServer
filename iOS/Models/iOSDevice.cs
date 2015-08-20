@@ -5,11 +5,6 @@ namespace HealthKitServer.iOS
 {
 	public class iOSDevice : IDevice
 	{
-		public iOSDevice ()
-		{
-		}
-
-
 
 		public string Device {
 			get 

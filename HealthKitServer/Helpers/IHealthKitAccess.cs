@@ -6,11 +6,11 @@ namespace HealthKitServer
 	public interface IHealthKitAccess
 	{
 		void SetUpPermissions();
-		Task<string> QueryTotalSteps();
+		Task<int> QueryTotalSteps();
 		Task<string> QueryTotalStepsRecordingFirstRecordingDate ();
 		Task<string> QueryTotalStepsRecordingLastRecordingDate ();
-		Task<string> QueryTotalLengthWalked(); 
-		Task<string> QueryTotalFlights();
+		Task<double> QueryTotalLengthWalked(); 
+		Task<int> QueryTotalFlights();
 		Task<double> QueryTotalHeight ();
 		Task<string> QueryDateOfBirth();
 		Task<string> QueryBloodType ();
