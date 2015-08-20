@@ -3,6 +3,8 @@ using System.Linq;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using Xamarin.Forms;
 
 namespace HealthKitServer.ViewModels
 {
@@ -15,8 +17,9 @@ namespace HealthKitServer.ViewModels
 		private bool m_isDecorated;
 		private string m_healthKitServerPostAPIAddress = "http://apollo.amosti.net:5002/api/v1/addHealthKitData";
 		private string m_healthKitServerGetAPIAddress = "http://apollo.amosti.net:5002/api/v1/gethealthkitdata?id=";
-		private ICommand m_uploadCommand;
+		private RelayCommand m_uploadCommand;
 		private ICommand m_GetDataCommand; 
+		private ICommand m_reloadCommand; 
 
 		public DistanceSummaryViewModel (IHealthKitDataWebService healthKitDataWebService)
 		{
@@ -25,11 +28,12 @@ namespace HealthKitServer.ViewModels
 			StartDecoration ();
 			m_healthKitDataWebService = healthKitDataWebService; 
 			m_healthKitDataFromServer = new ObservableCollection<HealthKitData> ();
-			m_uploadCommand = new DelegateCommand (UploadDataToHealthKitServer, () => true); //CanUploadHealthKitDataToServer());
+			m_uploadCommand = new RelayCommand (() => UploadDataToHealthKitServer (),() => true); // => CanUploadHealthKitDataToServer());
 			m_GetDataCommand = new DelegateCommand (GetDataFromHealthKitServer, () => true);
+			m_reloadCommand = new DelegateCommand (StartDecoration, () => true); 
 		}
 
-		public ICommand UploadCommand 
+		public RelayCommand UploadCommand 
 		{
 			get{ return m_uploadCommand; }
 			private set{this.SetPropertyValue (ref m_uploadCommand, value); }
@@ -39,6 +43,12 @@ namespace HealthKitServer.ViewModels
 		{
 			get{ return m_GetDataCommand; }
 			private set{this.SetPropertyValue (ref m_GetDataCommand, value); }
+		}
+
+		public ICommand ReloadCommand
+		{
+			get{ return m_reloadCommand; }
+			private set{ this.SetPropertyValue (ref m_reloadCommand, value); }
 		}
 
 		public ObservableCollection<HealthKitData> HealthKitDataFromServer
@@ -59,7 +69,7 @@ namespace HealthKitServer.ViewModels
 			set{ this.SetPropertyValue (ref m_isDecorated, value); }
 		}
 
-		private async void StartDecoration()
+		private async void StartDecoration(object o = null)
 		{
 			IsDecorating = true; 
 			await m_healthKitDataDecorator.DecorateHealthKitData().ContinueWith(SetDecoratoting);

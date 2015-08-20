@@ -20,6 +20,7 @@
 		<Label Text="{Binding HealthKitServerAddress}" HorizontalOptions ="Center" VerticalOptions ="Center"/>
 		<Button Text="Upload data" Command="{Binding UploadCommand}" />
 		<Button Text="Get data" Command="{Binding GetDataCommand}" />
+		<Button Text="Reload data" Command="{Binding ReloadCommand}" />
 		<ListView
 			ItemsSource="{Binding HealthKitDataFromServer}"
 			ItemTemplate="{StaticResource ListItemTemplate}">
