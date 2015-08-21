@@ -187,18 +187,21 @@ namespace HealthKitServer
 			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
 			var query = new HKSampleQuery (heartRateType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
 				(HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
-					string resultString = string.Empty;
+
+					HKQuantity quantity = null;
 					if (results.Length != 0) {
-						resultString = results [results.Length - 1].ToString();
-						lastRegistratedHeartRate = ParseHeartRateResultToBeatsPrMinute(resultString);
+						var quantitySample = (HKQuantitySample) results [results.Length - 1];
+						quantity = quantitySample.Quantity;  
+						lastRegistratedHeartRate = (int) (quantity.GetDoubleValue(HKUnit.Count) / quantity.GetDoubleValue(HKUnit.Minute));
 
 						HealthKitDataContext.ActiveHealthKitData.LastRegisteredHeartRate = lastRegistratedHeartRate;
 						Console.WriteLine(string.Format("lastRegistratedHeartRate: {0}", lastRegistratedHeartRate));
 					}
 
+
 				});
 			await Task.Factory.StartNew(() =>HealthKitStore.ExecuteQuery (query));
-	
+
 			return lastRegistratedHeartRate;
 		}
 
