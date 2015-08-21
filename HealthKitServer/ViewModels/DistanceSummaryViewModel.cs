@@ -23,7 +23,7 @@ namespace HealthKitServer.ViewModels
 
 		public DistanceSummaryViewModel (IHealthKitDataWebService healthKitDataWebService)
 		{
-			m_healthKitdataObject = new HealthKitData {PersonId = 3, DistanceReadings = new DistanceReading{}, Device = Container.Resolve<IDevice>().Device};
+			m_healthKitdataObject = new HealthKitData {PersonId = 3, DistanceReadings = new DistanceReading{}, HeartRateReadings = new HeartRateReading{}, Device = Container.Resolve<IDevice>().Device};
 			m_healthKitDataDecorator = new HealthKitDataDecorator (Container.Singleton<IHealthKitAccess> (), m_healthKitdataObject);
 			StartDecoration ();
 			m_healthKitDataWebService = healthKitDataWebService; 

@@ -190,11 +190,16 @@ namespace HealthKitServer
 			var query = new HKSampleQuery (heartRateType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
 				(HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
 					string resultString = string.Empty;
+					string source = string.Empty;
+					HKQuantity quantity = null;
 					if (results.Length != 0) {
 						resultString = results [results.Length - 1].ToString();
 						lastRegistratedHeartRate = ParseHeartRateResultToBeatsPrMinute(resultString);
+						var quantiyResult = (HKQuantitySample) results [results.Length - 1];
+						source = quantiyResult.Source.Name;
 
-						HealthKitDataContext.ActiveHealthKitData.LastRegisteredHeartRate = lastRegistratedHeartRate;
+						HealthKitDataContext.ActiveHealthKitData.HeartRateReadings.LastRegisteredHeartRate = lastRegistratedHeartRate;
+						HealthKitDataContext.ActiveHealthKitData.HeartRateReadings.Source = source; 
 						Console.WriteLine(string.Format("lastRegistratedHeartRate: {0}", lastRegistratedHeartRate));
 					}
 
@@ -226,9 +231,10 @@ namespace HealthKitServer
 
 						var quantitySample = (HKQuantitySample) results [results.Length - 1];
 						quantity = quantitySample.Quantity;
-
+						var source =  quantitySample.Source.Name;
 						lastRegistratedSteps = (int)quantity.GetDoubleValue(HKUnit.Count);
 						HealthKitDataContext.ActiveHealthKitData.DistanceReadings.TotalStepsOfLastRecording = lastRegistratedSteps;
+						HealthKitDataContext.ActiveHealthKitData.DistanceReadings.Source = source; 
 					}
 
 				});

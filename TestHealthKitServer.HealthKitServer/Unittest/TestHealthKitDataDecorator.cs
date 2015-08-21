@@ -14,6 +14,7 @@ namespace TestHealthKitServer.HealthKitServer
 		private HealthKitData m_decoratableObject;
 		private IHealthKitAccess m_healthKitAccess; 
 		private DistanceReading m_decoratableDistanceReading; 
+		private HeartRateReading m_decoratableHeartRateReading; 
 
 		[SetUp()]
 		public void Init()
@@ -21,7 +22,9 @@ namespace TestHealthKitServer.HealthKitServer
 			m_healthKitAccess = new TestableHealthKitDataAccess ();
 			m_decoratableObject = new HealthKitData();
 			m_decoratableDistanceReading = new DistanceReading (); 
+			m_decoratableHeartRateReading = new HeartRateReading ();
 			m_decoratableObject.DistanceReadings = m_decoratableDistanceReading;
+			m_decoratableObject.HeartRateReadings = m_decoratableHeartRateReading;
 			m_decorator = new HealthKitDataDecorator (m_healthKitAccess, m_decoratableObject);
 		}
 
@@ -52,7 +55,7 @@ namespace TestHealthKitServer.HealthKitServer
 			Assert.AreEqual(m_decoratableObject.DateOfBirth, "22.04.1990");
 			Assert.AreEqual(m_decoratableObject.Height, 1.74);
 			Assert.AreEqual(m_decoratableObject.Sex, "Male");
-			Assert.AreEqual (m_decoratableObject.LastRegisteredHeartRate, 85);
+			Assert.AreEqual (m_decoratableObject.HeartRateReadings.LastRegisteredHeartRate, 85);
 		}
 
 		[Test()]

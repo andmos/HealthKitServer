@@ -27,6 +27,8 @@ namespace HealthKitServer
 		public string RecordingStoped {get; set; }
 
 
+		public string Source {get; set;}
+
 	}
 }
 

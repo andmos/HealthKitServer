@@ -25,7 +25,7 @@ namespace HealthKitServer
 
 		public string Device { get; set; }
 
-		public double LastRegisteredHeartRate {get; set;}
+		public HeartRateReading HeartRateReadings { get; set; }
 	}
 }
 

@@ -88,7 +88,7 @@ namespace TestHealthKitServer.Server
 			Assert.AreEqual (testData.BloodType, healthKitDataFromServer.FirstOrDefault(t => t.BloodType == testData.BloodType).BloodType);
 			Assert.AreEqual (testData.DateOfBirth, healthKitDataFromServer.FirstOrDefault(t => t.DateOfBirth == testData.DateOfBirth).DateOfBirth);
 			Assert.AreEqual (testData.Sex, healthKitDataFromServer.FirstOrDefault(t => t.Sex == testData.Sex).Sex);
-			Assert.AreEqual (testData.LastRegisteredHeartRate, healthKitDataFromServer.FirstOrDefault (t => t.LastRegisteredHeartRate == testData.LastRegisteredHeartRate).LastRegisteredHeartRate);
+			Assert.AreEqual (testData.HeartRateReadings.LastRegisteredHeartRate, healthKitDataFromServer.FirstOrDefault (t => t.HeartRateReadings.LastRegisteredHeartRate == testData.HeartRateReadings.LastRegisteredHeartRate).HeartRateReadings.LastRegisteredHeartRate);
 
 		}
 
@@ -148,7 +148,7 @@ namespace TestHealthKitServer.Server
 		private HealthKitData SetUpSingleHealthKitDataObject()
 		{
 			return new HealthKitData { PersonId = 11,  RecordingTimeStamp = DateTime.UtcNow, Sex = "male", Height = 1.74,
-				BloodType = "A+",  DateOfBirth = "08.01.2015", LastRegisteredHeartRate = 50, DistanceReadings = new DistanceReading {
+				BloodType = "A+",  DateOfBirth = "08.01.2015", HeartRateReadings = new HeartRateReading { LastRegisteredHeartRate = 50, Source = "Testdata" }, DistanceReadings = new DistanceReading {
 					TotalDistance = 40, TotalSteps = 500, TotalStepsOfLastRecording = 200, TotalFlightsClimed = 30, TotalDistanceOfLastRecording = 10.50, 
 				}};
 		}
@@ -156,16 +156,16 @@ namespace TestHealthKitServer.Server
 		private IEnumerable<HealthKitData> SetUpMultipleHealthKitObjects()
 		{
 			IList<HealthKitData> multipleDataRecords = new List<HealthKitData> (); 
-			multipleDataRecords.Add(new HealthKitData { PersonId = 11, LastRegisteredHeartRate = 50, RecordingTimeStamp = DateTime.UtcNow, Sex = "male", Height = 1.74,
+			multipleDataRecords.Add(new HealthKitData { PersonId = 11,  HeartRateReadings = new HeartRateReading { LastRegisteredHeartRate = 50, Source = "Testdata" }, RecordingTimeStamp = DateTime.UtcNow, Sex = "male", Height = 1.74,
 				BloodType = "A+",  DateOfBirth = "08.01.2015", DistanceReadings = new DistanceReading {
 					TotalDistance = 40, TotalSteps = 500, TotalStepsOfLastRecording = 200, TotalFlightsClimed = 30, TotalDistanceOfLastRecording = 10.50, 
 				}});
 			multipleDataRecords.Add(new HealthKitData { PersonId = 12,  RecordingTimeStamp = DateTime.UtcNow, Sex = "male", Height = 1.74,
-				BloodType = "A+",  DateOfBirth = "08.01.2015", LastRegisteredHeartRate = 50, DistanceReadings = new DistanceReading {
+				BloodType = "A+",  DateOfBirth = "08.01.2015", HeartRateReadings = new HeartRateReading { LastRegisteredHeartRate = 50, Source = "Testdata" }, DistanceReadings = new DistanceReading {
 					TotalDistance = 40, TotalSteps = 520, TotalStepsOfLastRecording = 200, TotalFlightsClimed = 30, TotalDistanceOfLastRecording = 10.50, 
 				}});
 			multipleDataRecords.Add(new HealthKitData { PersonId = 11,  RecordingTimeStamp = DateTime.UtcNow, Sex = "male", Height = 1.74,
-				BloodType = "A+",  DateOfBirth = "08.01.2015", LastRegisteredHeartRate = 50, DistanceReadings = new DistanceReading {
+				BloodType = "A+",  DateOfBirth = "08.01.2015", HeartRateReadings = new HeartRateReading { LastRegisteredHeartRate = 50, Source = "Testdata" }, DistanceReadings = new DistanceReading {
 					TotalDistance = 40, TotalSteps = 550, TotalStepsOfLastRecording = 200, TotalFlightsClimed = 30, TotalDistanceOfLastRecording = 10.50, 
 				}});
 			return multipleDataRecords;
