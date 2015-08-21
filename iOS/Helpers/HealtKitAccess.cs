@@ -150,7 +150,9 @@ namespace HealthKitServer
 
 			return usersHeight;
 		}
-			
+
+	
+
 		public async Task<double> QueryLastRegistratedWalkingDistance()
 		{
 
@@ -187,21 +189,18 @@ namespace HealthKitServer
 			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
 			var query = new HKSampleQuery (heartRateType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
 				(HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
-
-					HKQuantity quantity = null;
+					string resultString = string.Empty;
 					if (results.Length != 0) {
-						var quantitySample = (HKQuantitySample) results [results.Length - 1];
-						quantity = quantitySample.Quantity;  
-						lastRegistratedHeartRate = (int) (quantity.GetDoubleValue(HKUnit.Count) / quantity.GetDoubleValue(HKUnit.Minute));
+						resultString = results [results.Length - 1].ToString();
+						lastRegistratedHeartRate = ParseHeartRateResultToBeatsPrMinute(resultString);
 
 						HealthKitDataContext.ActiveHealthKitData.LastRegisteredHeartRate = lastRegistratedHeartRate;
 						Console.WriteLine(string.Format("lastRegistratedHeartRate: {0}", lastRegistratedHeartRate));
 					}
 
-
 				});
 			await Task.Factory.StartNew(() =>HealthKitStore.ExecuteQuery (query));
-
+	
 			return lastRegistratedHeartRate;
 		}
 
