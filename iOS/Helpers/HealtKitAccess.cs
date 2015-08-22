@@ -156,18 +156,17 @@ namespace HealthKitServer
 		public async Task<double> QueryLastRegistratedWalkingDistance()
 		{
 
-			var heightType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.DistanceWalkingRunning);
+			var distanceType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.DistanceWalkingRunning);
 			double lastRegistratedWalkingDistance = 0.0;
 
 			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
-			var query = new HKSampleQuery (heightType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
+						var query = new HKSampleQuery (distanceType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
 				(HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
 					HKQuantity quantity = null;
 					string resultString = string.Empty;
 					if (results.Length != 0) {
 						var quantitySample = (HKQuantitySample) results [results.Length - 1];
 						quantity = quantitySample.Quantity;
-
 						lastRegistratedWalkingDistance = quantity.GetDoubleValue(HKUnit.Meter);
 
 						HealthKitDataContext.ActiveHealthKitData.DistanceReadings.TotalDistanceOfLastRecording = lastRegistratedWalkingDistance;
@@ -179,6 +178,7 @@ namespace HealthKitServer
 			m_healthKitStore.ExecuteQuery (query);
 			return lastRegistratedWalkingDistance;
 		}
+			
 
 		public async Task<int> QueryLastRegistratetHeartRate()
 		{
@@ -218,11 +218,11 @@ namespace HealthKitServer
 			
 		public async Task<int> QueryLastRegistratedSteps()
 		{
-			var heightType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.StepCount);
+			var stepType = HKQuantityType.GetQuantityType (HKQuantityTypeIdentifierKey.StepCount);
 			int lastRegistratedSteps = 0;
 
 			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
-			var query = new HKSampleQuery (heightType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
+			var query = new HKSampleQuery (stepType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor },
 				(HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
 
 					HKQuantity quantity = null;
