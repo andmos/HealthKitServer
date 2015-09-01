@@ -32,7 +32,7 @@ namespace TestHealthKitServer.HealthKitServer
 
 		public Task<double> QueryTotalLengthWalked ()
 		{
-			return Task<double>.Factory.StartNew(() => 10000);
+			return Task<double>.Factory.StartNew(() => 10000.50);
 		}
 
 		public Task<int> QueryTotalFlights ()

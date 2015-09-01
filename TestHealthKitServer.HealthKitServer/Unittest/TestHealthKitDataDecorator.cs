@@ -51,11 +51,11 @@ namespace TestHealthKitServer.HealthKitServer
 		{
 			var decoration = await m_decorator.DecorateHealthKitData ();
 
-			Assert.AreEqual(m_decoratableObject.BloodType, "A+");
-			Assert.AreEqual(m_decoratableObject.DateOfBirth, "22.04.1990");
-			Assert.AreEqual(m_decoratableObject.Height, 1.74);
-			Assert.AreEqual(m_decoratableObject.Sex, "Male");
-			Assert.AreEqual (m_decoratableObject.HeartRateReadings.LastRegisteredHeartRate, 85);
+			Assert.AreEqual("A+", m_decoratableObject.BloodType);
+			Assert.AreEqual("22.04.1990", m_decoratableObject.DateOfBirth);
+			Assert.AreEqual(1.74, m_decoratableObject.Height);
+			Assert.AreEqual("Male", m_decoratableObject.Sex);
+			Assert.AreEqual (85, m_decoratableObject.HeartRateReadings.LastRegisteredHeartRate);
 		}
 
 		[Test()]
@@ -65,11 +65,11 @@ namespace TestHealthKitServer.HealthKitServer
 
 			var actualDistanceReadings = m_decoratableObject.DistanceReadings;
 
-			Assert.AreEqual(actualDistanceReadings.TotalDistance, "10000");
-			Assert.AreEqual(actualDistanceReadings.TotalFlightsClimed, "3000");
-			Assert.AreEqual(actualDistanceReadings.RecordingStarted, "01.01.2011");
-			Assert.AreEqual(actualDistanceReadings.RecordingStoped, "01.01.2012");
-			Assert.AreEqual(actualDistanceReadings.TotalSteps, "50000");
+			Assert.AreEqual(10000.5, actualDistanceReadings.TotalDistance);
+			Assert.AreEqual(3000, actualDistanceReadings.TotalFlightsClimed);
+			Assert.AreEqual("01.01.2011", actualDistanceReadings.RecordingStarted);
+			Assert.AreEqual("01.01.2012", actualDistanceReadings.RecordingStoped);
+			Assert.AreEqual(50000, actualDistanceReadings.TotalSteps);
 		}
 
 	}
