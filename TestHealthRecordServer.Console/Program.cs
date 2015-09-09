@@ -2,6 +2,7 @@
 using System.Net;
 using Newtonsoft.Json;
 using HealthKitServer;
+using System.Configuration;
 
 namespace TestHealthKitServer.Console
 {
@@ -9,6 +10,8 @@ namespace TestHealthKitServer.Console
 	{
 		public static void Main()
 		{
+			string serverUrl = ConfigurationManager.AppSettings ["ServerURL"]; 
+
 			using(var wc = new WebClient())
 			{
 				wc.Headers[HttpRequestHeader.ContentType] = "application/json"; 
@@ -19,8 +22,7 @@ namespace TestHealthKitServer.Console
 					}
 				});
 
-				var response = wc.UploadString("http://localhost:5002/api/v1/addHealthKitData", jsonString);
-
+				var response = wc.UploadString(string.Format("{0}/api/v1/addHealthKitData", serverUrl), jsonString);
 			}
 		}
 	}
