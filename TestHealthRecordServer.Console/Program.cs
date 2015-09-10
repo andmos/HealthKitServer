@@ -3,6 +3,7 @@ using System.Net;
 using Newtonsoft.Json;
 using HealthKitServer;
 using System.Configuration;
+using Newtonsoft.Json.Linq;
 
 namespace TestHealthKitServer.Console
 {
@@ -31,7 +32,9 @@ namespace TestHealthKitServer.Console
 					}
 				});
 
-				var response = wc.UploadString(string.Format("{0}/api/v1/addHealthKitData", serverUrl), jsonString);
+				JObject response = JObject.Parse(wc.UploadString(string.Format("{0}/api/v1/addHealthKitData", serverUrl), jsonString));
+
+				System.Console.WriteLine(string.Format("Response from {0}: {1}",serverUrl, response));  
 			}
 		}
 	}
