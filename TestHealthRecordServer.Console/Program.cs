@@ -8,9 +8,18 @@ namespace TestHealthKitServer.Console
 {
 	public class Program
 	{
-		public static void Main()
+		public static void Main(string[] args)
 		{
-			string serverUrl = ConfigurationManager.AppSettings ["ServerURL"]; 
+			string serverUrl; 
+
+			if (args.IsAny()) 
+			{
+				serverUrl = args [0]; 
+			} 
+			else 
+			{
+				serverUrl = ConfigurationManager.AppSettings ["ServerURL"];
+			}
 
 			using(var wc = new WebClient())
 			{
