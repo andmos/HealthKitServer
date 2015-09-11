@@ -1,0 +1,27 @@
+#! /bin/bash
+# Work in progress. Will be done with FAKE and Paket.
+
+function build-local()
+{
+nuget restore HealthKitServer.sln
+xbuild /property:Configuration=Release HealthKitServer.Host/HealthKitServer.Host.csproj
+}
+
+function build-docker()
+{
+sudo docker build -t healthkitserver .
+}
+
+function run-local()
+{
+build-local
+mono HealthKitServer.Host/bin/Release/HealthKitServer.Host.exe
+}
+
+function run-docker()
+{
+build-docker
+sudo docker run -p 5002:5002 -it healthkitserver
+}
+
+"$@"
