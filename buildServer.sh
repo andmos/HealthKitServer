@@ -3,4 +3,4 @@
 
 nuget restore HealthKitServer.sln 
 
-xbuild HealthKitServer.sln
+xbuild HealthKitServer.Host/HealthKitServer.Host.csproj

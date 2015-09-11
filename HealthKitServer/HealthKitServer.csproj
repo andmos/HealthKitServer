@@ -9,7 +9,7 @@
     <RootNamespace>HealthKitServer</RootNamespace>
     <AssemblyName>HealthKitServer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,19 +36,8 @@
     <Compile Include="Views\DistancePage.xaml.cs">
       <DependentUpon>DistancePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\IHealthKitAccess.cs" />
-    <Compile Include="Helpers\Container.cs" />
-    <Compile Include="Helpers\ISimpleContainer.cs" />
-    <Compile Include="Helpers\SimpleContainer.cs" />
-    <Compile Include="Models\DistanceReading.cs" />
-    <Compile Include="Models\HealthKitData.cs" />
-    <Compile Include="Helpers\HealthKitDataDecorator.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
-    <Compile Include="Helpers\IHealthKitDataWebService.cs" />
-    <Compile Include="Helpers\Utils.cs" />
-    <Compile Include="Models\IDevice.cs" />
     <Compile Include="ViewModels\DistanceSummaryViewModel.cs" />
-    <Compile Include="Models\HeartRateReading.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.4.6392\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -89,5 +78,11 @@
     <EmbeddedResource Include="Views\DistancePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HealthKitServer.Common\HealthKitServer.Common.csproj">
+      <Project>{66053EED-8FC2-4449-87D3-636515B93537}</Project>
+      <Name>HealthKitServer.Common</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
