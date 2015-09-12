@@ -24,4 +24,13 @@ build-docker
 sudo docker run -p 5002:5002 -it healthkitserver
 }
 
+function testdata-local(){
+mono TestHealthRecordServer.Console/bin/Debug/TestHealthRecordServer.Console.exe $1
+}
+
+function testdata-docker(){
+sudo docker build -t healthkitservertestdataclient TestHealthRecordServer.Console/
+sudo docker run -it -e URL=$1 healthkitservertestdataclient  
+}
+
 "$@"

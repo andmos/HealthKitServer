@@ -13,6 +13,8 @@ Vagrant::Config.run do |config|
   config.vm.provision :shell, :inline => "curl -sSL https://get.docker.com/ | sh"
   config.vm.provision :shell, :inline => "curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > docker-compose; chmod +x docker-compose; sudo mv docker-compose /usr/local/bin/docker-compose"
   config.vm.provision :shell, :inline => "sudo usermod -aG docker vagrant"
+  config.vm.provision :shell, :inline => "git clone https://github.com/andmos/dotfiles"
+  config.vm.provision :shell, :inline => "cp dotfiles/.bash_profile /home/vagrant; cp dotfiles/.vimrc /home/vagrant"
   config.vm.provision :shell, :inline => "echo All done, go vagrant ssh!"
 
   config.vm.forward_port 5002, 5000 # HealthKitServer
