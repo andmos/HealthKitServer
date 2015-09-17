@@ -29,10 +29,6 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.mosti.HealthKitServer</string>
 	<key>CFBundleIconFiles</key>
-	<array>
-		<string>Icon-60@2x</string>
-	</array>
-	<key>UIPrerenderedIcon</key>
-	<true/>
+	<array/>
 </dict>
 </plist>
