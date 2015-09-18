@@ -1,0 +1,15 @@
+healthkitserver:
+    build: .
+    external_links:
+        - healthkitserverdb
+    expose:
+        - "5002:5002"
+loadbalance:
+    image: tutum/haproxy
+    links:
+        - healthkitserver
+    ports:
+        - "8983:80"
+    environment:
+        - BACKEND_PORT=5002
+        - BALANCE=roundrobin
