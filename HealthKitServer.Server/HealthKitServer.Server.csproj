@@ -99,9 +99,9 @@
     <Compile Include="Services\HealthKitDataPostgresConnection.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HealthKitServer\HealthKitServer.csproj">
-      <Project>{270F4FB6-E9EF-44A5-A1B5-58334F0AA195}</Project>
-      <Name>HealthKitServer</Name>
+    <ProjectReference Include="..\HealthKitServer.Common\HealthKitServer.Common.csproj">
+      <Project>{66053EED-8FC2-4449-87D3-636515B93537}</Project>
+      <Name>HealthKitServer.Common</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

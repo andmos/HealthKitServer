@@ -33,7 +33,7 @@
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -50,13 +50,13 @@
     <Folder Include="Integration\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HealthKitServer\HealthKitServer.csproj">
-      <Project>{270F4FB6-E9EF-44A5-A1B5-58334F0AA195}</Project>
-      <Name>HealthKitServer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HealthKitServer.Server\HealthKitServer.Server.csproj">
       <Project>{42DFA08B-D1AA-4B0F-82DF-4CCA0CDA4C35}</Project>
       <Name>HealthKitServer.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HealthKitServer.Common\HealthKitServer.Common.csproj">
+      <Project>{66053EED-8FC2-4449-87D3-636515B93537}</Project>
+      <Name>HealthKitServer.Common</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
