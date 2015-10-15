@@ -37,8 +37,7 @@ I like to let users choose datastorage, so support for the following datastorage
     # Run local with data stored in memory:  
     git clone https://github.com/andmos/HealthKitServer.git
     cd HealthKitServer/
-    ./build.sh
-    mono HealthKitServer.Host/bin/Debug/HealthKitServer.Host.exe
+    ./buildServer run-local
 
 A Vagrant-file is provided for running on a Linux VM with Docker preinstalled. Example with MySQLdatabase:
 
@@ -50,9 +49,9 @@ A Vagrant-file is provided for running on a Linux VM with Docker preinstalled. E
     # Edit HealthKitData.Host/bin/Debug/HealthKitServer.Host.exe.config and chose 'database' as source.
     # Enter healthkitserverdb as database in connectionstring!
     docker build -t healthkitserver .
-    docker run -p 5000:5000 --link healthkitserverdb:healthkitserverdb -i -t healthkitserver
+    docker run -p 5000:5000 --link healthkitserverdb:healthkitserverdb -it healthkitserver
 
-    curl -G http://localhost:5000/api/v1/getAllHealthKitData
+    curl http://localhost:5000/api/v1/ping
 
 ### Status
 
