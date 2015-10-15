@@ -2,7 +2,7 @@ sudo: required
 language: csharp
 
 services:
-  - docker
+  - docker 
 
 before_script:
     - chmod +x buildServer
