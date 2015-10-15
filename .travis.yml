@@ -1,8 +1,4 @@
 language: csharp
-mono:
-    - 4.2.0
-install:
-    - sudo apt-get install mono-devel mono-gmcs
 before_script:
     - chmod +x buildServer
 scripts:
