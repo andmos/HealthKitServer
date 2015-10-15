@@ -1,5 +1,11 @@
+sudo: required
 language: csharp
+
+services:
+  - docker
+
 before_script:
     - chmod +x buildServer
+    - ./buildServer run-docker
 script:
     - ./buildServer build-local
