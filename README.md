@@ -53,6 +53,6 @@ A Vagrant-file is provided for running on a Linux VM with Docker preinstalled. E
 
     curl http://localhost:5000/api/v1/ping
 
-### Status
+### Build Status
 
 [![Build Status](https://travis-ci.org/andmos/HealthKitServer.svg?branch=master)](https://travis-ci.org/andmos/HealthKitServer)
