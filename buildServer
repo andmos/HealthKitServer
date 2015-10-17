@@ -31,8 +31,8 @@ mono TestHealthRecordServer.Console/bin/Debug/TestHealthRecordServer.Console.exe
 }
 
 function unit-local(){
-  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.HealthKitServer/bin/Debug/Test*.dll -include=Unit
-  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.Server/bin/Debug/Test*.dll -include=Unit
+  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.HealthKitServer/bin/Release/Test*.dll -include=Unit
+  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.Server/bin/Release/Test*.dll -include=Unit
 }
 
 
