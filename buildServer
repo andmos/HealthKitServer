@@ -28,9 +28,15 @@ function testdata-local(){
 mono TestHealthRecordServer.Console/bin/Debug/TestHealthRecordServer.Console.exe $1
 }
 
+function unit-local(){
+  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.HealthKitServer/bin/Debug/Test*.dll -include=Unit
+  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.Server/bin/Debug/Test*.dll -include=Unit
+}
+
+
 function testdata-docker(){
 sudo docker build -t healthkitservertestdataclient TestHealthRecordServer.Console/
-sudo docker run -it -e URL=$1 healthkitservertestdataclient  
+sudo docker run -it -e URL=$1 healthkitservertestdataclient
 }
 
 "$@"
