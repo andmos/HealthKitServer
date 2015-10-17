@@ -6,7 +6,6 @@ With HealthKit, Apple has created a hub for health data from devices like [The A
 [FitBit](https://www.fitbit.com/no) and [Jawbone](https://jawbone.com/up). Why not store all that data outside the iPhone, perhaps
 in a [structured](http://www.openehr.org) way that can be shared with other health-realted systems?
 
-
 The project includes the server itself written in .NET (compiled with Mono for cross-platform support) and an iOS app written with [Xamarin Forms](http://xamarin.com/forms).
 
 >Note: The Server API supports data from other sources as well, not just HealthKit.  
@@ -38,8 +37,7 @@ I like to let users choose datastorage, so support for the following datastorage
     # Run local with data stored in memory:  
     git clone https://github.com/andmos/HealthKitServer.git
     cd HealthKitServer/
-    ./build.sh
-    mono HealthKitServer.Host/bin/Debug/HealthKitServer.Host.exe
+    ./buildServer run-local
 
 A Vagrant-file is provided for running on a Linux VM with Docker preinstalled. Example with MySQLdatabase:
 
@@ -51,6 +49,10 @@ A Vagrant-file is provided for running on a Linux VM with Docker preinstalled. E
     # Edit HealthKitData.Host/bin/Debug/HealthKitServer.Host.exe.config and chose 'database' as source.
     # Enter healthkitserverdb as database in connectionstring!
     docker build -t healthkitserver .
-    docker run -p 5000:5000 --link healthkitserverdb:healthkitserverdb -i -t healthkitserver
+    docker run -p 5000:5000 --link healthkitserverdb:healthkitserverdb -it healthkitserver
 
-    curl -G http://localhost:5000/api/v1/getAllHealthKitData
+    curl http://localhost:5000/api/v1/ping
+
+### Build Status
+
+[![Build Status](https://travis-ci.org/andmos/HealthKitServer.svg?branch=master)](https://travis-ci.org/andmos/HealthKitServer)
