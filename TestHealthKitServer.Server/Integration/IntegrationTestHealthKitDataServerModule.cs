@@ -30,6 +30,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		[Category("Integration")]
 		public void AddHealthKitData_GivenSingleHealthKitDataRecord_ResponseContainsSameData()
 		{
 			var testData = SetUpSingleHealthKitDataObject (); 
@@ -43,6 +44,7 @@ namespace TestHealthKitServer.Server
 		}
 			
 		[Test()]
+		[Category("Integration")]
 		public void GetHealthKitData_RequestsHealthKitDataForUserId_ReturnsCorrectRecordsFromServer()
 		{
 			var testData = SetUpSingleHealthKitDataObject (); 
@@ -54,6 +56,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		[Category("Integration")]
 		public void GetHealthKitData_ChecksHealthKitDataForRecordId_ReturnsRecordIdsWithValue()
 		{
 			var testData = SetUpSingleHealthKitDataObject (); 
@@ -65,6 +68,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		[Category("Integration")]
 		public void GetHealthKitData_GivenMultipleRecordsWithSamePersonId_ReturnsTrueIfAllRecordIdsAreUnique()
 		{
 			var testData = SetUpSingleHealthKitDataObject (); 
@@ -77,6 +81,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		[Category("Integration")]
 		public void GetHealthKitData_GivenSingleRecordWithHealthKitData_ReturnsTrueIfAllHealthKitDataIsCorrect()
 		{
 			var testData = SetUpSingleHealthKitDataObject (); 
@@ -93,6 +98,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		[Category("Integration")]
 		public void GetHealthKitData_GivenSingleRecordWithDistanceReadings_ReturnsTrueIfDistanceReadingIsCorrect()
 		{
 			var testData = SetUpSingleHealthKitDataObject (); 
@@ -107,6 +113,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		[Category("Integration")]
 		public void GetHealthKitDataRecord_GivenSingleHealthKitRecords_ReturnsCorrectHealthKitRecord()
 		{
 			var testData = SetUpSingleHealthKitDataObject (); 

@@ -29,6 +29,7 @@ namespace TestHealthKitServer.HealthKitServer
 		}
 
 		[Test()]
+		[Category("Unit")]
 		public async Task DecorateHealthKitData_GivenValidIHealthKitAccess_SetUpPermissionIsCalledOnce()
 		{
 			var healthKitAccessMoc = new Mock<IHealthKitAccess> (); 
@@ -41,12 +42,14 @@ namespace TestHealthKitServer.HealthKitServer
 		}
 			
 		[Test()]
+		[Category("Unit")]
 		public async Task DecorateHealthKitData_GivenValidIHealthKitAccess_ReturnsTrue()
 		{
 			Assert.That(async () => await m_decorator.DecorateHealthKitData (), Is.True);
 		}
 
 		[Test()]
+		[Category("Unit")]
 		public async Task DecorateHealthKitData_GivenValidIHealthKitAccess_HealthKitObjectIsDecorated()
 		{
 			var decoration = await m_decorator.DecorateHealthKitData ();
@@ -59,6 +62,7 @@ namespace TestHealthKitServer.HealthKitServer
 		}
 
 		[Test()]
+		[Category("Unit")]
 		public async Task DecorateHealthKitData_GivenValidIHealthKitAccess_DistanceReadingsIsDecorated()
 		{
 			var decoration = await m_decorator.DecorateHealthKitData ();

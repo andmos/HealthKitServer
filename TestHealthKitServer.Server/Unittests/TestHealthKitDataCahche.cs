@@ -19,6 +19,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		[Category("Unit")]
 		public void AddOrUpdateHealthKitDataToStorage_GivenHealthKitDataGetsStoredInCache()
 		{
 			var testData = SetUpSingleHealthKitDataObject();
@@ -30,6 +31,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		[Category("Unit")]
 		public void AddOrUpdateHealthKitDataToStorage_GivenHealthKitDataWithZeroAsPersonId_GetsStoredInCacheWithIncrementedId()
 		{
 			var testData = SetUpSingleHealthKitDataObject();
@@ -41,6 +43,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		[Category("Unit")]
 		public void GetSpesificHealthKitData_GivenMultipleHealthKitDataWithDifferentIds_ReturnsCorrectNumberofRecords()
 		{
 			var testData = SetUpMultipleHealthKitObjects ();
@@ -52,6 +55,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		[Category("Unit")]
 		public void GetSpesificHealthKitData_GivenMultipleRecordsWithSamePersonId_ReturnsTrueIfAllRecordIdsAreUnique()
 		{
 			var singleTestData = SetUpSingleHealthKitDataObject ();
@@ -66,6 +70,7 @@ namespace TestHealthKitServer.Server
 		}
 			
 		[Test()]
+		[Category("Unit")]
 		public void GetAllHealthKitData_GivenMultipleHealthKitRecordsCorrectNumberOfRecordsGetsAdded()
 		{
 			var testData = SetUpMultipleHealthKitObjects ();
@@ -77,6 +82,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		[Category("Unit")]
 		public void GetSpesificHealthKitDataRecord_GivenMultipleHealthKitRecords_ReturnsHealthKitRecordWithCorrectId()
 		{
 			var singleTestData = SetUpSingleHealthKitDataObject ();
@@ -91,6 +97,7 @@ namespace TestHealthKitServer.Server
 		}
 
 		[Test()]
+		[Category("Unit")]
 		public void GetSpesificHealthKitDataRecord_GivenMultipleHealthKitRecords_ReturnsEmptyHealthKitRecordWhenAskedForNonExistingId()
 		{
 			var singleTestData = SetUpSingleHealthKitDataObject ();
