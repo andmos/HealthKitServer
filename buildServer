@@ -5,6 +5,8 @@ function build-local()
 {
 nuget restore HealthKitServer.sln
 xbuild /property:Configuration=Release HealthKitServer.Host/HealthKitServer.Host.csproj
+xbuild /property:Configuration=Release TestHealthKitServer.HealthKitServer/TestHealthKitServer.HealthKitServer.csproj
+xbuild /property:Configuration=Release TestHealthKitServer.Server/TestHealthKitServer.Server.csproj
 }
 
 function build-docker()
