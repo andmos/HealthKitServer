@@ -35,6 +35,10 @@ function unit-local(){
   mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.Server/bin/Release/Test*.dll -include=Unit
 }
 
+function unit-local(){
+  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.HealthKitServer/bin/Release/Test*.dll -include=Integration
+  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.Server/bin/Release/Test*.dll -include=Integration
+}
 
 function testdata-docker(){
 sudo docker build -t healthkitservertestdataclient TestHealthRecordServer.Console/
