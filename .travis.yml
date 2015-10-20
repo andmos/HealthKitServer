@@ -7,7 +7,7 @@ before_script:
     - chmod +x buildServer
     - ./buildServer build-local
     - ./buildServer build-docker
-   # - ./buildServer run-docker
+    - ./buildServer run-docker
 script:
     - ./buildServer unit-local
     - ./buildServer integration-local
