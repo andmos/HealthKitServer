@@ -11,34 +11,34 @@ namespace HealthKitServer.Host
 			var container = Container.Instance = new SimpleContainer ();
 
 			var dataStorage = ConfigurationManager.AppSettings["DataStorage"];
-			var database = ConfigurationManager.AppSettings ["Database"];
-			
-			if(dataStorage.ToLower().Equals("cache"))
+			var database = ConfigurationManager.AppSettings["Database"];
+
+			switch (dataStorage) 
 			{
-				container.RegisterSingleton<IHealthKitDataStorage>(new HealthKitDataCache()); 
-			}
-			if (dataStorage.ToLower ().Equals ("solr"))
-			{
+			case "cache":
+				container.RegisterSingleton<IHealthKitDataStorage>(new HealthKitDataCache ()); 
+				break; 
+			case "solr":
 				var solrServerAddress = ConfigurationManager.AppSettings["SolrServerAddress"];
 				container.RegisterSingleton<IHealthKitDataStorage> (new HealthKidDataSolrConnection (solrServerAddress));
-			}
-			if (dataStorage.ToLower ().Equals ("redis"))
-			{
+				break;
+			case "redis":
 				var redisServerAddress = ConfigurationManager.AppSettings["RedisServerAddress"];
 				container.RegisterSingleton<IHealthKitDataStorage> (new HealthKitDataRedisConnection (redisServerAddress));
-			}
-			if (dataStorage.ToLower ().Equals ("database"))
-			{
-				if (database.ToLower ().Equals ("mysql"))
+				break;
+			case "database": 
+				if (database.ToLower().Equals("mysql")) 
 				{
-					var mysqlConnectionString = ConfigurationManager.AppSettings ["ConnectionString"];
+					var mysqlConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
 					container.RegisterSingleton<IHealthKitDataStorage> (new HealthKitDataMysqlConnection (mysqlConnectionString));
 				}
-				if(database.ToLower().Equals("postgresql"))
+				if (database.ToLower().Equals("postgresql")) 
 				{
-						var postgresqlConnectionString = ConfigurationManager.AppSettings ["ConnectionString"];
-						container.RegisterSingleton<IHealthKitDataStorage>(new HealthKitDataPostgresConnection(postgresqlConnectionString));
+					var postgresqlConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
+					container.RegisterSingleton<IHealthKitDataStorage> (new HealthKitDataPostgresConnection (postgresqlConnectionString));
 				}
+				break;
+			
 			}
 		}
 	}
