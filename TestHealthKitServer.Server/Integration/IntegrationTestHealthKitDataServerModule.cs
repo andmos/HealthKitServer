@@ -22,11 +22,21 @@ namespace TestHealthKitServer.Server
 		private const string HealthKitServerUploadUrl = "http://localhost:5000/api/v1/addHealthKitData";
 		private const string HealthKitServerGetUsersRecordsUrl = "http://localhost:5000/api/v1/gethealthkitdata";
 		private const string HealthKitServerGetSpesificHealthKitRecord = "http://localhost:5000/api/v1/getHealthKitDataRecord";
+		private const string HealthKitServerPingEndpoint = "http://localhost:5000/api/v1/ping"; 
 
 		[SetUp()]
 		public void Init()
 		{
 			m_healthKitDataWebClient = new IntegrationTestableHealthKitDataWebService ();
+		}
+
+		[Test()]
+		[Category("Integration")]
+		public void Ping_GivenCallToPingEndopoint_ReturnsPong()
+		{
+			var response = m_healthKitDataWebClient.CheckConnectionToHealthKitServer (HealthKitServerPingEndpoint);
+
+			Assert.IsTrue (response); 
 		}
 
 		[Test()]

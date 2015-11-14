@@ -60,6 +60,18 @@ namespace TestHealthKitServer.Server
 			}
 		}
 
+		public bool CheckConnectionToHealthKitServer(string healthKitServerAPIAddress)
+		{
+			try 
+			{
+				using (var client = new WebClient ()) 
+				{
+					return client.DownloadString (new Uri (healthKitServerAPIAddress)).Equals ("pong"); 
+				}
+			} catch (Exception e) {
+				return false; 
+			}
+		}
 	}
 }
 

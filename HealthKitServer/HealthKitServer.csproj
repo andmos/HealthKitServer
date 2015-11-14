@@ -76,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DistancePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
