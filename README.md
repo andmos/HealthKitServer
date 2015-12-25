@@ -11,7 +11,7 @@ The project includes the server itself written in .NET (compiled with Mono for c
 >Note: The Server API supports data from other sources as well, not just HealthKit.  
 
 ### Technology stack
- * Nancy.Selfhost
+* Nancy.Selfhost
 * TopShelf
 * Xamarin.Forms
 * Dapper
