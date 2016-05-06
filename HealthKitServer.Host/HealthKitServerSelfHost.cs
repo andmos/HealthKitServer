@@ -2,19 +2,18 @@
 using System.Diagnostics;
 using Nancy.Hosting.Self;
 using System.Configuration;
+using LightInject;
 
 namespace HealthKitServer.Host
 {
 	public class HealthKitServerSelfHost
 	{
-
 		private NancyHost m_nancyHost;
 
 		private string m_listeningAddress;
 
 		public void Start()
 		{
-			var compositionRoot = new CompositionRoot (); 
 			m_listeningAddress = string.Format ("http://localhost:{0}", GetPort(ConfigurationManager.AppSettings ["HttpPort"]));
 
 			m_nancyHost = new NancyHost(new System.Uri(m_listeningAddress));

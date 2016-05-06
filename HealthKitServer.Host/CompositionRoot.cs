@@ -1,41 +1,41 @@
 ﻿using System;
 using HealthKitServer.Server;
 using System.Configuration;
+using LightInject;
 
 namespace HealthKitServer.Host
 {
-	public class CompositionRoot
+	public class CompositionRoot : ICompositionRoot
 	{
-		public CompositionRoot ()
+		public void Compose (IServiceRegistry serviceRegistry)
 		{
-			var container = Container.Instance = new SimpleContainer ();
+			serviceRegistry.RegisterFrom<HealthKitServer.Server.ServerCompositionRoot> (); 
 
 			var dataStorage = ConfigurationManager.AppSettings["DataStorage"];
 			var database = ConfigurationManager.AppSettings["Database"];
-
 			switch (dataStorage) 
 			{
 				case "cache":
-					container.RegisterSingleton<IHealthKitDataStorage>(new HealthKitDataCache ()); 
+				serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataCache ()); 
 					break; 
 				case "solr":
 					var solrServerAddress = ConfigurationManager.AppSettings["SolrServerAddress"];
-					container.RegisterSingleton<IHealthKitDataStorage> (new HealthKidDataSolrConnection (solrServerAddress));
+				serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKidDataSolrConnection (solrServerAddress));
 					break;
 				case "redis":
 					var redisServerAddress = ConfigurationManager.AppSettings["RedisServerAddress"];
-					container.RegisterSingleton<IHealthKitDataStorage> (new HealthKitDataRedisConnection (redisServerAddress));
+				serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataRedisConnection (redisServerAddress));
 					break;
 				case "database": 
 					if (database.ToLower().Equals("mysql")) 
 					{
 						var mysqlConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
-						container.RegisterSingleton<IHealthKitDataStorage> (new HealthKitDataMysqlConnection (mysqlConnectionString));
+						serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataMysqlConnection (mysqlConnectionString));
 					}
 					if (database.ToLower().Equals("postgresql")) 
 					{
 						var postgresqlConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
-						container.RegisterSingleton<IHealthKitDataStorage> (new HealthKitDataPostgresConnection (postgresqlConnectionString));
+						serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataPostgresConnection (postgresqlConnectionString));
 					}
 					break;
 			

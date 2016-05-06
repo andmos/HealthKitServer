@@ -32,6 +32,7 @@
     <Compile Include="HealthKitServerSelfHost.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="CompositionRoot.cs" />
+    <Compile Include="BootStrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -52,12 +53,6 @@
     <Reference Include="Npgsql">
       <HintPath>..\packages\Npgsql.2.2.5\lib\net45\Npgsql.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy">
-      <HintPath>..\packages\Nancy.1.2.0\lib\net40\Nancy.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Hosting.Self">
-      <HintPath>..\packages\Nancy.Hosting.Self.1.2.0\lib\net40\Nancy.Hosting.Self.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -72,6 +67,18 @@
     </Reference>
     <Reference Include="MySql.Data">
       <HintPath>..\packages\MySql.Data.6.9.7\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject">
+      <HintPath>..\packages\LightInject.3.0.2.7\lib\net45\LightInject.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject.Nancy">
+      <HintPath>..\packages\LightInject.Nancy.1.0.2\lib\net45\LightInject.Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\packages\Nancy.1.4.3\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Self">
+      <HintPath>..\packages\Nancy.Hosting.Self.1.4.1\lib\net40\Nancy.Hosting.Self.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

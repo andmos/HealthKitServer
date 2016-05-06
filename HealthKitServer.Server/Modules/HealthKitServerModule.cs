@@ -9,7 +9,7 @@ namespace HealthKitServer.Server
 {
 	public class HealthKitServerModule : NancyModule
 	{
-		public HealthKitServerModule(IRouteCacheProvider routeCacheProvider) : base("/api/v1")
+		public HealthKitServerModule(IRouteCacheProvider routeCacheProvider, IHealthKitDataStorage dataStorage) : base("/api/v1")
 		{
 
 			Get["/"] = parameters =>
@@ -29,7 +29,7 @@ namespace HealthKitServer.Server
 				try
 				{
 					var person = this.Bind<HealthKitData>();	 
-					Container.Singleton<IHealthKitDataStorage>().AddOrUpdateHealthKitDataToStorage(person);
+					dataStorage.AddOrUpdateHealthKitDataToStorage(person);
 					return Response.AsJson(person);
 				}
 				catch(Exception e)
@@ -40,7 +40,7 @@ namespace HealthKitServer.Server
 				
 			Get["/getAllHealthKitData"] = parameters => 
 			{
-				return Response.AsJson (Container.Singleton<IHealthKitDataStorage> ().GetAllHealthKitData());
+				return Response.AsJson (dataStorage.GetAllHealthKitData());
 			};
 
 			Get["/getHealthKitData"] = parameters => 
@@ -61,7 +61,7 @@ namespace HealthKitServer.Server
 				int number; 
 				if(int.TryParse(personId, out number))
 				{
-					return Response.AsJson(Container.Singleton<IHealthKitDataStorage>().GetSpesificHealthKitData(number));
+					return Response.AsJson(dataStorage.GetSpesificHealthKitData(number));
 
 				}
 				return "Invalid query";
@@ -75,7 +75,7 @@ namespace HealthKitServer.Server
 				int recordIdNumber = new int(); 
 				if(int.TryParse(personId, out idNumber) && int.TryParse(recordId, out recordIdNumber))
 				{
-					return Response.AsJson(Container.Singleton<IHealthKitDataStorage>().GetSpesificHealthKitDataRecord(idNumber, recordIdNumber));
+					return Response.AsJson(dataStorage.GetSpesificHealthKitDataRecord(idNumber, recordIdNumber));
 
 				}
 				return "Invalid query";
