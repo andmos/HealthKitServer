@@ -30,7 +30,7 @@ I like to let users choose datastorage, so support for the following datastorage
 *  Save all data as [OpenEHR](http://www.openehr.org/) archetypes.
 * ~~Separate core project from Xamarin Forms to make building on Linux easier (xbuild can only be run on OSX or Windows).~~ Done, Common project added.
 * More general interfaces for importing data from other sources than HealthKit. (deserialization of archetypes?)
-* ~~Move from SimpleContainer to [LightInject](https://github.com/seesharper/LightInject) when the codebase gets bigger.
+* ~~Move from SimpleContainer to [LightInject](https://github.com/seesharper/LightInject) when the codebase gets bigger.~~ Done.
 * Create Apple Watch extension
 
 ### Build and try
