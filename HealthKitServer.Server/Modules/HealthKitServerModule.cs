@@ -9,15 +9,8 @@ namespace HealthKitServer.Server
 {
 	public class HealthKitServerModule : NancyModule
 	{
-		public HealthKitServerModule(IRouteCacheProvider routeCacheProvider, IHealthKitDataStorage dataStorage) : base("/api/v1")
+		public HealthKitServerModule(IHealthKitDataStorage dataStorage) : base("/api/v1")
 		{
-
-			Get["/"] = parameters =>
-			{
-				return Negotiate
-					.WithModel(routeCacheProvider.GetCache().RetrieveMetadata<HealthKitServerMetadataModule>());
-
-			};
 
 			Get ["/ping"] = parameters => 
 			{
@@ -49,7 +42,7 @@ namespace HealthKitServer.Server
 				int number; 
 				if(int.TryParse(id, out number))
 				{
-					return Response.AsJson(Container.Singleton<IHealthKitDataStorage>().GetSpesificHealthKitData(number));
+					return Response.AsJson(dataStorage.GetSpesificHealthKitData(number));
 
 				}
 				return "Invalid query";

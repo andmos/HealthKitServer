@@ -42,18 +42,6 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Swagger.ObjectModel">
-      <HintPath>..\packages\Swagger.ObjectModel.0.1.0-alpha3\lib\net40\Swagger.ObjectModel.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Swagger">
-      <HintPath>..\packages\Nancy.Swagger.0.1.0-alpha3\lib\net40\Nancy.Swagger.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Swagger.Annotations">
-      <HintPath>..\packages\Nancy.Swagger.Annotations.0.1.0-alpha3\lib\net40\Nancy.Swagger.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Metadata.Module">
-      <HintPath>..\packages\Nancy.MetaData.0.23.2\lib\net40\Nancy.Metadata.Module.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="Dapper">
       <HintPath>..\packages\Dapper.1.38\lib\net45\Dapper.dll</HintPath>
@@ -98,9 +86,6 @@
   <ItemGroup>
     <Compile Include="DataLoader.cs" />
     <Compile Include="Modules\HealthKitServerModule.cs" />
-    <Compile Include="Modules\HealthKitServerMetadataModule.cs" />
-    <Compile Include="Modules\DefaultRouteMetadataProvider.cs" />
-    <Compile Include="Models\HealthKitMetaDataProvider.cs" />
     <Compile Include="Services\HealthKitDataCache.cs" />
     <Compile Include="Services\HealthKidDataSolrConnection.cs" />
     <Compile Include="Services\HealthKitDataRedisConnection.cs" />
