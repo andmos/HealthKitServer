@@ -16,26 +16,26 @@ namespace HealthKitServer.Host
 			switch (dataStorage) 
 			{
 				case "cache":
-				serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataCache ()); 
+				serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataCache (), new PerContainerLifetime()); 
 					break; 
 				case "solr":
 					var solrServerAddress = ConfigurationManager.AppSettings["SolrServerAddress"];
-				serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKidDataSolrConnection (solrServerAddress));
+				serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKidDataSolrConnection (solrServerAddress), new PerContainerLifetime());
 					break;
 				case "redis":
 					var redisServerAddress = ConfigurationManager.AppSettings["RedisServerAddress"];
-				serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataRedisConnection (redisServerAddress));
+				serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataRedisConnection (redisServerAddress), new PerContainerLifetime());
 					break;
 				case "database": 
 					if (database.ToLower().Equals("mysql")) 
 					{
 						var mysqlConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
-						serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataMysqlConnection (mysqlConnectionString));
+					serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataMysqlConnection (mysqlConnectionString), new PerContainerLifetime());
 					}
 					if (database.ToLower().Equals("postgresql")) 
 					{
 						var postgresqlConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
-						serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataPostgresConnection (postgresqlConnectionString));
+					serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataPostgresConnection (postgresqlConnectionString), new PerContainerLifetime());
 					}
 					break;
 			
