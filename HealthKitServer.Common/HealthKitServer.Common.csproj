@@ -35,12 +35,9 @@
     <Compile Include="Models\HealthKitData.cs" />
     <Compile Include="Models\HeartRateReading.cs" />
     <Compile Include="Models\IDevice.cs" />
-    <Compile Include="Helpers\Container.cs" />
     <Compile Include="Helpers\HealthKitDataDecorator.cs" />
     <Compile Include="Helpers\IHealthKitAccess.cs" />
     <Compile Include="Helpers\IHealthKitDataWebService.cs" />
-    <Compile Include="Helpers\ISimpleContainer.cs" />
-    <Compile Include="Helpers\SimpleContainer.cs" />
     <Compile Include="Helpers\Utils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
@@ -52,6 +49,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Collections" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

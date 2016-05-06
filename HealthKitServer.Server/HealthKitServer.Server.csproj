@@ -42,18 +42,6 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="Swagger.ObjectModel">
-      <HintPath>..\packages\Swagger.ObjectModel.0.1.0-alpha3\lib\net40\Swagger.ObjectModel.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Swagger">
-      <HintPath>..\packages\Nancy.Swagger.0.1.0-alpha3\lib\net40\Nancy.Swagger.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Swagger.Annotations">
-      <HintPath>..\packages\Nancy.Swagger.Annotations.0.1.0-alpha3\lib\net40\Nancy.Swagger.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Metadata.Module">
-      <HintPath>..\packages\Nancy.MetaData.0.23.2\lib\net40\Nancy.Metadata.Module.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="Dapper">
       <HintPath>..\packages\Dapper.1.38\lib\net45\Dapper.dll</HintPath>
@@ -70,8 +58,14 @@
     <Reference Include="Npgsql">
       <HintPath>..\packages\Npgsql.3.0.1\lib\net45\Npgsql.dll</HintPath>
     </Reference>
+    <Reference Include="LightInject">
+      <HintPath>..\packages\LightInject.3.0.2.7\lib\net45\LightInject.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject.Nancy">
+      <HintPath>..\packages\LightInject.Nancy.1.0.2\lib\net45\LightInject.Nancy.dll</HintPath>
+    </Reference>
     <Reference Include="Nancy">
-      <HintPath>..\packages\Nancy.1.2.0\lib\net40\Nancy.dll</HintPath>
+      <HintPath>..\packages\Nancy.1.4.3\lib\net40\Nancy.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -84,19 +78,24 @@
     <Folder Include="Models\" />
     <Folder Include="Services\" />
     <Folder Include="Modules\" />
+    <Folder Include="Logging\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataLoader.cs" />
     <Compile Include="Modules\HealthKitServerModule.cs" />
-    <Compile Include="Modules\HealthKitServerMetadataModule.cs" />
-    <Compile Include="Modules\DefaultRouteMetadataProvider.cs" />
-    <Compile Include="Models\HealthKitMetaDataProvider.cs" />
     <Compile Include="Services\HealthKitDataCache.cs" />
     <Compile Include="Services\HealthKidDataSolrConnection.cs" />
     <Compile Include="Services\HealthKitDataRedisConnection.cs" />
     <Compile Include="Services\IHealthKitDataStorage.cs" />
     <Compile Include="Services\HealthKitDataMysqlConnection.cs" />
     <Compile Include="Services\HealthKitDataPostgresConnection.cs" />
+    <Compile Include="ServerCompositionRoot.cs" />
+    <Compile Include="Logging\ILog.cs" />
+    <Compile Include="Logging\ILogFactory.cs" />
+    <Compile Include="Logging\Log.cs" />
+    <Compile Include="Logging\NancyTraceLog.cs" />
+    <Compile Include="CurrentNancyContext.cs" />
+    <Compile Include="Services\HealthKitDataStorageProfiler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HealthKitServer.Common\HealthKitServer.Common.csproj">
