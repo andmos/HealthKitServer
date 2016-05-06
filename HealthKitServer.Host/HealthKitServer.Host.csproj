@@ -33,6 +33,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="BootStrapper.cs" />
+    <Compile Include="Logging\Log4NetLogFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -80,6 +81,9 @@
     <Reference Include="Nancy.Hosting.Self">
       <HintPath>..\packages\Nancy.Hosting.Self.1.4.1\lib\net40\Nancy.Hosting.Self.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -95,5 +99,8 @@
       <Project>{66053EED-8FC2-4449-87D3-636515B93537}</Project>
       <Name>HealthKitServer.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logging\" />
   </ItemGroup>
 </Project>

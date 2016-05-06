@@ -39,9 +39,6 @@
     <Compile Include="Helpers\IHealthKitAccess.cs" />
     <Compile Include="Helpers\IHealthKitDataWebService.cs" />
     <Compile Include="Helpers\Utils.cs" />
-    <Compile Include="Helpers\ISimpleContainer.cs" />
-    <Compile Include="Helpers\SimpleContainer.cs" />
-    <Compile Include="Helpers\Container.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

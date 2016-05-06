@@ -9,6 +9,7 @@ namespace HealthKitServer.Host
 	{
 		public void Compose (IServiceRegistry serviceRegistry)
 		{
+			serviceRegistry.Register<ILogFactory, Log4NetLogFactory>(new PerContainerLifetime());
 			serviceRegistry.RegisterFrom<HealthKitServer.Server.ServerCompositionRoot> (); 
 
 			var dataStorage = ConfigurationManager.AppSettings["DataStorage"];
@@ -38,8 +39,9 @@ namespace HealthKitServer.Host
 					serviceRegistry.Register<IHealthKitDataStorage>(factory => new HealthKitDataPostgresConnection (postgresqlConnectionString), new PerContainerLifetime());
 					}
 					break;
-			
+
 			}
+			serviceRegistry.Decorate<IHealthKitDataStorage, HealthKitDataStorageProfiler> ();
 		}
 	}
 }

@@ -64,9 +64,6 @@
     <Reference Include="LightInject.Nancy">
       <HintPath>..\packages\LightInject.Nancy.1.0.2\lib\net45\LightInject.Nancy.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.1.4.3\lib\net40\Nancy.dll</HintPath>
     </Reference>
@@ -96,9 +93,9 @@
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Logging\ILogFactory.cs" />
     <Compile Include="Logging\Log.cs" />
-    <Compile Include="Logging\Log4NetLogFactory.cs" />
     <Compile Include="Logging\NancyTraceLog.cs" />
     <Compile Include="CurrentNancyContext.cs" />
+    <Compile Include="Services\HealthKitDataStorageProfiler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HealthKitServer.Common\HealthKitServer.Common.csproj">
