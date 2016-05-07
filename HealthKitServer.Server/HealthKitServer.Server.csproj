@@ -81,7 +81,6 @@
     <Folder Include="Logging\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataLoader.cs" />
     <Compile Include="Modules\HealthKitServerModule.cs" />
     <Compile Include="Services\HealthKitDataCache.cs" />
     <Compile Include="Services\HealthKidDataSolrConnection.cs" />
