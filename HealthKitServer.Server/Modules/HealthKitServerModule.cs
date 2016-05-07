@@ -9,12 +9,20 @@ namespace HealthKitServer.Server
 {
 	public class HealthKitServerModule : NancyModule
 	{
-		public HealthKitServerModule(IHealthKitDataStorage dataStorage) : base("/api/v1")
+		private ILog m_logger;
+		private IHealthKitDataStorage m_dataStorage;
+
+		public HealthKitServerModule(IHealthKitDataStorage dataStorage, ILogFactory logger) : base("/api/v1")
 		{
+			m_logger = logger.GetLogger (GetType());
+			m_dataStorage = dataStorage;
 
 			Get ["/ping"] = parameters => 
 			{
-				return "pong";
+				var response = (Response) "pong"; 
+				response.StatusCode = HttpStatusCode.OK;
+
+				return response; 
 			};
 
 			Post["/addHealthKitData"] = parameters =>
@@ -22,42 +30,60 @@ namespace HealthKitServer.Server
 				try
 				{
 					var person = this.Bind<HealthKitData>();	 
-					dataStorage.AddOrUpdateHealthKitDataToStorage(person);
-					return Response.AsJson(person);
+					m_dataStorage.AddOrUpdateHealthKitDataToStorage(person);
+					var response = Response.AsJson(person);
+					response.StatusCode = HttpStatusCode.Created;
+					return response; 
 				}
 				catch(Exception e)
 				{
-					return Response.AsText(e.Message);
+					m_logger.Error(e.Message, e); 
+					var response = (Response) e.ToString(); 
+					response.StatusCode = HttpStatusCode.BadRequest; 
+
+					return response;
 				}
 			};
 				
 			Get["/getAllHealthKitData"] = parameters => 
 			{
-				return Response.AsJson (dataStorage.GetAllHealthKitData());
+				var response = Response.AsJson (m_dataStorage.GetAllHealthKitData());
+				response.StatusCode = HttpStatusCode.OK;
+				return response;
 			};
 
 			Get["/getHealthKitData"] = parameters => 
 			{
 				var id = this.Request.Query["id"];
 				int number; 
+				Nancy.Response response;
 				if(int.TryParse(id, out number))
 				{
-					return Response.AsJson(dataStorage.GetSpesificHealthKitData(number));
+					response = Response.AsJson(m_dataStorage.GetSpesificHealthKitData(number));
+					response.StatusCode = HttpStatusCode.OK;
+					return response;
 
 				}
-				return "Invalid query";
+				response = Response.AsText("Bad Request");
+				response.StatusCode = HttpStatusCode.BadRequest;
+				return response;
 			};
 
 			Get["/getHealthKitData"] = parameters => 
 			{
 				var personId = this.Request.Query["id"];
 				int number; 
+				Nancy.Response response;
 				if(int.TryParse(personId, out number))
 				{
-					return Response.AsJson(dataStorage.GetSpesificHealthKitData(number));
+					response = Response.AsJson(m_dataStorage.GetSpesificHealthKitData(number));
+					response.StatusCode = HttpStatusCode.OK;
+					return response;
 
 				}
-				return "Invalid query";
+				response = Response.AsText("Bad Request");
+				response.StatusCode = HttpStatusCode.BadRequest;
+				return response;
 			};
 
 			Get["/getHealthKitDataRecord"] = parameters => 
@@ -66,12 +92,17 @@ namespace HealthKitServer.Server
 				var recordId = this.Request.Query["recordId"]; 
 				int idNumber = new int();
 				int recordIdNumber = new int(); 
+				Nancy.Response response;
 				if(int.TryParse(personId, out idNumber) && int.TryParse(recordId, out recordIdNumber))
 				{
-					return Response.AsJson(dataStorage.GetSpesificHealthKitDataRecord(idNumber, recordIdNumber));
+					response = Response.AsJson(m_dataStorage.GetSpesificHealthKitDataRecord(idNumber, recordIdNumber));
+					response.StatusCode = HttpStatusCode.OK;
+					return response;
 
 				}
-				return "Invalid query";
+				response = Response.AsText("Bad Request");
+				response.StatusCode = HttpStatusCode.BadRequest;
+				return response;
 			};
 		}
 	}
