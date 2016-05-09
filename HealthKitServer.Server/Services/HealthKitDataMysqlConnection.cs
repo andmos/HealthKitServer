@@ -24,7 +24,7 @@ namespace HealthKitServer.Server
 				{
 					connection.ConnectionString = m_connectionString;
 					connection.Open();
-					IEnumerable<HealthKitData> result =  connection.Query(sql);
+					IEnumerable<HealthKitData> result =  connection.Query<HealthKitData>(sql);
 
 					return result;
 				}
@@ -46,7 +46,7 @@ namespace HealthKitServer.Server
 				{
 					connection.ConnectionString = m_connectionString;
 					connection.Open(); 
-					IEnumerable<HealthKitData> result =  connection.Query(sql, new {PersonId = id});
+					IEnumerable<HealthKitData> result =  connection.Query<HealthKitData>(sql, new {PersonId = id});
 
 					return result;
 				}

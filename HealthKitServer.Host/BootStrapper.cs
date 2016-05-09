@@ -15,16 +15,11 @@ namespace HealthKitServer.Host
 				return new DiagnosticsConfiguration { Password = ConfigurationManager.AppSettings ["DiagnosticsPassword"] };
 			}
 		}
-		protected override IServiceContainer GetServiceContainer()
+
+		protected override void ConfigureApplicationContainer (IServiceContainer existingContainer)
 		{
-			var compositionRoot = new CompositionRoot ();  
-			var container = new ServiceContainer();
-
-			compositionRoot.Compose(container);
-
-			return container; 
+			existingContainer.RegisterFrom <CompositionRoot>();
 		}
-
 	}
 }
 
