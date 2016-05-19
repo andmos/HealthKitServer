@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace TestHealthKitServer.Server
 {
 	[TestFixture ()]
-	public class TestHealthKitDataCahche
+	public class TestHealthKitDataCache
 	{
 		private IHealthKitDataStorage m_dataStorage;
 

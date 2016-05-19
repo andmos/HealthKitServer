@@ -54,23 +54,6 @@ namespace HealthKitServer.Server
 
 			Get["/getHealthKitData"] = parameters => 
 			{
-				var id = this.Request.Query["id"];
-				int number; 
-				Nancy.Response response;
-				if(int.TryParse(id, out number))
-				{
-					response = Response.AsJson(m_dataStorage.GetSpesificHealthKitData(number));
-					response.StatusCode = HttpStatusCode.OK;
-					return response;
-
-				}
-				response = Response.AsText("Bad Request");
-				response.StatusCode = HttpStatusCode.BadRequest;
-				return response;
-			};
-
-			Get["/getHealthKitData"] = parameters => 
-			{
 				var personId = this.Request.Query["id"];
 				int number; 
 				Nancy.Response response;
