@@ -54,11 +54,11 @@
   <ItemGroup>
     <Compile Include="Integration\IntegrationTestableHealthKitDataWebService.cs" />
     <Compile Include="Integration\Modules\IntegrationTestHealthKitDataServerModule.cs" />
-    <Compile Include="Unittests\TestHealthKitDataCache.cs" />
-    <Compile Include="Unittests\TestHealthKitServerModule.cs" />
     <Compile Include="TestableLightInjectBootstrapper.cs" />
     <Compile Include="Logging\TestableLogFactory.cs" />
     <Compile Include="Unittests\TestDataProvider.cs" />
+    <Compile Include="Unittests\Modules\TestHealthKitServerModule.cs" />
+    <Compile Include="Unittests\Services\TestHealthKitDataCache.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -70,6 +70,8 @@
     <Folder Include="Integration\" />
     <Folder Include="Integration\Modules\" />
     <Folder Include="Logging\" />
+    <Folder Include="Unittests\Modules\" />
+    <Folder Include="Unittests\Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HealthKitServer.Server\HealthKitServer.Server.csproj">
