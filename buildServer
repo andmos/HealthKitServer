@@ -31,13 +31,13 @@ mono TestHealthRecordServer.Console/bin/Debug/TestHealthRecordServer.Console.exe
 }
 
 function unit-local(){
-  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.HealthKitServer/bin/Release/Test*.dll -include=Unit
-  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.Server/bin/Release/Test*.dll -include=Unit
+  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.HealthKitServer/bin/Release/Test*.dll -include=unit
+  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.Server/bin/Release/Test*.dll -include=unit
 }
 
 function integration-local(){
-  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.HealthKitServer/bin/Release/Test*.dll -include=Integration
-  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.Server/bin/Release/Test*.dll -include=Integration
+  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.HealthKitServer/bin/Release/Test*.dll -include=integration
+  mono packages/NUnit.Runners.2.6.4/tools/nunit-console.exe  TestHealthKitServer.Server/bin/Release/Test*.dll -include=integration
 }
 
 function testdata-docker(){
