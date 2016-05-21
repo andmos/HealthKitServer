@@ -52,8 +52,32 @@ namespace TestHealthKitServer.Server
 
 			Assert.IsTrue (result.StatusCode == HttpStatusCode.OK);
 			Assert.AreEqual (expectedBloodType, responseModels.FirstOrDefault().BloodType);
-
 		}
+
+		[Test]
+		[Category("unit")]
+		public void GetHealthKitDataRecord_GivenValidPersonIdAndRecordId_ReturnsCorrectRecord()
+		{
+			IHealthKitDataStorage cache = new HealthKitDataCache ();
+			TestDataProvider.ProvideTestData (cache);
+			var bootstrapper = new TestableLightInjectBootstrapper (cache);
+			var browser = new Browser(bootstrapper, defaults: to => to.Accept("application/json"));
+			string expectedBloodType = "A+-"; 
+
+			var result = browser.Get ("/api/v1/getHealthKitDataRecord", with => {
+				with.HttpRequest ();
+				with.Query("id", "11");
+				with.Query("recordId", "2");
+
+			});
+
+			var responseModels = JsonConvert.DeserializeObject<HealthKitData> (result.Body.AsString());
+
+			Assert.IsTrue (result.StatusCode == HttpStatusCode.OK);
+			Assert.AreEqual (expectedBloodType, responseModels.BloodType);
+						
+		}
+	
 	}
 }
 
