@@ -32,6 +32,7 @@ I like to let users choose datastorage, so support for the following datastorage
 * More general interfaces for importing data from other sources than HealthKit. (deserialization of archetypes?)
 * ~~Move from SimpleContainer to [LightInject](https://github.com/seesharper/LightInject) when the codebase gets bigger.~~ Done.
 * Create Apple Watch extension
+* Support for SQLite 
 
 ### Build and try
 
