@@ -18,7 +18,7 @@ The project includes the server itself written in .NET (compiled with Mono for c
 * LightInject
 
 ### Datastorage
-i
+
 I like to let users choose datastorage, so support for the following datastorage methods is created:
 * Local Cache (in memory)
 * MySQL
