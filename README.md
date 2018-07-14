@@ -4,7 +4,7 @@ HealthKitServer is a RESTfull server that uses Apple's new hub for health-realte
 
 With HealthKit, Apple has created a hub for health data from devices like [The Apple Watch](https://www.apple.com/watch/),
 [FitBit](https://www.fitbit.com/no) and [Jawbone](https://jawbone.com/up). Why not store all that data outside the iPhone, perhaps
-in a [structured](http://www.openehr.org) way that can be shared with other health-realted systems?
+in a [structured](http://www.openehr.org) way that can be shared with other health-related systems?
 
 The project includes the server itself written in .NET (compiled with Mono for cross-platform support) and an iOS app written with [Xamarin Forms](http://xamarin.com/forms).
 
